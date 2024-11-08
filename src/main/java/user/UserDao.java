@@ -26,7 +26,7 @@ public class UserDao {
 			pstmt.setString(2, userDto.getRealname());
 			pstmt.setString(3, userDto.getUsername());
 			pstmt.setString(4, userDto.getPassword());
-			System.out.print(pstmt);
+			System.out.println(pstmt);
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -39,7 +39,7 @@ public class UserDao {
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, username);
-			System.out.print(pstmt);
+			System.out.println(pstmt);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
 				userDto = new UserDto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
