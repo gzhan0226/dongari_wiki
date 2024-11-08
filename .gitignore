@@ -1,4 +1,4 @@
 /build/
 
 
-src/main/java/web_programming/db.properties
+src/main/java/db/db.properties
