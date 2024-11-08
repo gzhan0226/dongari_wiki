@@ -1,4 +1,4 @@
-package web_programming;
+package db;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.util.Properties;
@@ -33,7 +33,7 @@ public class DBUtil {
 		try {
 			
 			//JDBC 드라이버를 로딩한다.(관련 클래스 정보를 확인한다)
-			Class.forName("com.mysql.jdbc.Driver");
+			Class.forName("com.mysql.cj.jdbc.Driver");
 			
 			//Connection 객체 생성과 동시에 접속
 			conn = DriverManager.getConnection(dbUrl, dbId, dbPassword);
