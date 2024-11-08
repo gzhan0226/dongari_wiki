@@ -2,6 +2,7 @@ package user;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import db.DBUtil;
@@ -30,5 +31,22 @@ public class UserDao {
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	public UserDto findByUsername(String username) {
+		conn = dbUtil.open();
+		String sql = "select * from user where username = ?";
+		UserDto userDto = null;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, username);
+			System.out.print(pstmt);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				userDto = new UserDto(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return userDto;
 	}
 }

@@ -7,13 +7,11 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h3>회원가입</h3>
-	<form action="/web_programming/join" method="post">	
-		학번<input type="text" name="studentnumber">
-		이름<input type="text" name="realname">
+	<h3>로그인</h3>
+	<form action="/web_programming/login" method="post">	
 		아이디<input type="text" name="username">
 		비밀번호<input type="password" name="password">
-		가입<input type="submit" value="가입">
+		로그인<input type="submit" value="로그인">
 	</form>
 </body>
 </html>
