@@ -13,6 +13,9 @@ public class UserService {
 	
 	public boolean login(String username, String password) {
 		UserDto userDto = userDao.findByUsername(username);
+		if (userDto==null) {
+			return false;
+		}
 		System.out.println(userDto.getUsername());
 		System.out.println(userDto.getPassword());
 		System.out.println(userDto.getPassword() == password);
