@@ -31,7 +31,7 @@ public class Details extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dis = request.getRequestDispatcher("indexjsp");
+		RequestDispatcher dis = request.getRequestDispatcher("details.jsp");
 		dis.forward(request, response);
 	}
 
@@ -39,7 +39,7 @@ public class Details extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dis = request.getRequestDispatcher("index.jsp");
+		RequestDispatcher dis = request.getRequestDispatcher("details.jsp");
 		dis.forward(request, response);
 
 	}
