@@ -18,7 +18,6 @@ public class UserService {
 		}
 		System.out.println(userDto.getUsername());
 		System.out.println(userDto.getPassword());
-		System.out.println(userDto.getPassword() == password);
 		if (userDto.getPassword().equals(password)) {
 			return true;
 		}

@@ -1,6 +1,7 @@
-package user.controller;
+package dongari.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -8,21 +9,21 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
-import user.UserService;
+import dongari.DongariDto;
+import dongari.DongariService;
 
 /**
- * Servlet implementation class Join
+ * Servlet implementation class Dongari
  */
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet("/")
+public class Main extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public Main() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +32,10 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dis = request.getRequestDispatcher("login.jsp");
+		DongariService dongariService = new DongariService();
+		List<DongariDto> list = dongariService.findAll();
+		request.setAttribute("list", list);
+		RequestDispatcher dis = request.getRequestDispatcher("main.jsp");
 		dis.forward(request, response);
 	}
 
@@ -39,23 +43,8 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-	
-
-		UserService userService = new UserService();
-		HttpSession session = request.getSession();
-		
-		
-		if(userService.login(username,password)) {
-			session.setAttribute("username", username);
-		}
-        
-		// 로그인 완료되면 홈화면 가기 
-		response.sendRedirect("./");
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }

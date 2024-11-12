@@ -53,7 +53,7 @@ public class Join extends HttpServlet {
 		userService.saveUser(new UserDto(0,studentnumber,realname,username,password));
         
 		// 회원가입 완료되면 홈화면 가기 
-		response.sendRedirect("main.jsp");
+		response.sendRedirect("./");
 	}
 
 }
