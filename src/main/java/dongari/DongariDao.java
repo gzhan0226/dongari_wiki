@@ -28,16 +28,20 @@ private DBUtil dbUtil = new DBUtil();
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dongariDto.getUser_id());
-			pstmt.setString(2, dongariDto.getTitle());
-			pstmt.setString(3, dongariDto.getSummary());
-			pstmt.setString(4, dongariDto.getBody());
-			pstmt.setInt(5, dongariDto.getCategory_id());
-			pstmt.setString(6, dongariDto.getApply_start());
-			pstmt.setString(7, dongariDto.getApply_end());
-			pstmt.setString(8, dongariDto.getApply_link());
-			pstmt.setInt(9, dongariDto.getMember_num());
-			pstmt.setString(10, dongariDto.getSns_link());
-			pstmt.setString(11, dongariDto.getLocation());
+			pstmt.setInt(2, dongariDto.getCategory_id());
+			pstmt.setInt(3, dongariDto.getMember_num());
+			
+			pstmt.setString(4, dongariDto.getImg());
+			pstmt.setString(5, dongariDto.getTitle());
+			pstmt.setString(6, dongariDto.getSummary());
+			pstmt.setString(7, dongariDto.getBody());
+			
+			pstmt.setString(8, dongariDto.getApply_start());
+			pstmt.setString(9, dongariDto.getApply_end());
+			pstmt.setString(10, dongariDto.getApply_link());
+			
+			pstmt.setString(11, dongariDto.getSns_link());
+			pstmt.setString(12, dongariDto.getLocation());
 			System.out.println(pstmt);
 			pstmt.executeUpdate();
 		} catch(SQLException e) {
@@ -53,9 +57,9 @@ private DBUtil dbUtil = new DBUtil();
 			System.out.println(pstmt);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				dongariDtoList.add(new DongariDto(rs.getInt(1),rs.getInt(2),rs.getString(3),rs.getString(4),rs.getString(5),
-						rs.getInt(6),rs.getString(7),rs.getString(8), rs.getString(9), rs.getInt(10),
-						rs.getString(11),rs.getString(12)));
+				dongariDtoList.add(new DongariDto(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),
+						rs.getString(6),rs.getString(7),rs.getString(8), rs.getString(9), rs.getString(10),
+						rs.getString(11),rs.getString(12),rs.getString(12)));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
