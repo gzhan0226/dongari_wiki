@@ -32,6 +32,8 @@ public class Details extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		RequestDispatcher dis = request.getRequestDispatcher("details.jsp");
+		String dongari_name = request.getParameter("dongari_name");
+		request.setAttribute("dongari_name", dongari_name);
 		dis.forward(request, response);
 	}
 
