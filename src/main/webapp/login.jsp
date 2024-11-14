@@ -167,7 +167,7 @@
         <form class="login-form" action="/web_programming/login" method="post">
             <input type="text" name="username" placeholder="아이디" required>
             <input type="password" name="password" placeholder="비밀번호" required>
-            <button type="submit" value="로그인"></button>
+            <button type="submit" value="로그인">로그인</button>
             <div class="signup-link">
                 아직 계정이 없으신가요? <br>
                 <a href="signup.jsp">회원가입</a>
