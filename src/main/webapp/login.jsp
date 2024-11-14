@@ -30,7 +30,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: space-between; /* 상단과 하단 정렬 */
+            justify-content: space-between;
             position: relative;
         }
 
@@ -80,7 +80,6 @@
             bottom: 0;
         }
 
-        /* 오른쪽 패널 */
         .right-panel {
             width: 60%;
             display: flex;
