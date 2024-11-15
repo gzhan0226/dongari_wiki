@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동국대학교 동아리 위키</title>
-    <link rel="stylesheet" href="main_style.css">
+    <link rel="stylesheet" href="./style/main_style.css">
 </head>
 <body>
     <header>

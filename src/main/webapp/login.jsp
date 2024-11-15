@@ -151,7 +151,7 @@
 <div class="container">
     <div class="left-panel">
         <div class="logo-container">
-            <img src="logo.png" alt="동국대학교 로고">
+            <img src="./assets/logo.png" alt="동국대학교 로고">
             <div class="site-name">
                 <div class="small-text">동국대학교 동아리 위키</div>
                 <div class="large-text">동동</div>
@@ -159,11 +159,11 @@
         </div>
         <p>여러 동아리를 알아보고<br><b>동아리에 대한 리뷰</b>도 남겨보세요!</p>
         <div class="hello-container">
-            <img src="hello.png" alt="환영 이미지">
+            <img src="./assets/hello.png" alt="환영 이미지">
         </div>
     </div>
     <div class="right-panel">
-        <form class="login-form" action="/web_programming/login" method="post">
+        <form class="login-form" action="login" method="post">
             <input type="text" name="username" placeholder="아이디" required>
             <input type="password" name="password" placeholder="비밀번호" required>
             <button type="submit" value="로그인">로그인</button>

@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import db.DBUtil;
@@ -24,7 +25,7 @@ private DBUtil dbUtil = new DBUtil();
 		 * apply_link, member_num, sns_link, location;
 		 */
 		conn = dbUtil.open();
-		String sql = "insert into user values(NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "insert into dongari values(NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dongariDto.getUser_id());
@@ -50,7 +51,7 @@ private DBUtil dbUtil = new DBUtil();
 	}
 	public List<DongariDto> findAll() {
 		conn = dbUtil.open();
-		List<DongariDto> dongariDtoList = null;
+		List<DongariDto> dongariDtoList = new ArrayList<DongariDto>();
 		String sql = "select * from dongari";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -59,11 +60,31 @@ private DBUtil dbUtil = new DBUtil();
 			while(rs.next()) {
 				dongariDtoList.add(new DongariDto(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),
 						rs.getString(6),rs.getString(7),rs.getString(8), rs.getString(9), rs.getString(10),
-						rs.getString(11),rs.getString(12),rs.getString(12)));
+						rs.getString(11),rs.getString(12),rs.getString(13)));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
 		return dongariDtoList;
+	}
+	
+	public DongariDto findById(int id) {
+		conn = dbUtil.open();
+		String sql = "select * from dongari where id = ?";
+		DongariDto dongariDto = null;
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			System.out.println(pstmt);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dongariDto = new DongariDto(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),
+						rs.getString(6),rs.getString(7),rs.getString(8), rs.getString(9), rs.getString(10),
+						rs.getString(11),rs.getString(12),rs.getString(13));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return dongariDto;
 	}
 }

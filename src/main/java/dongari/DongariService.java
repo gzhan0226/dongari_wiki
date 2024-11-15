@@ -17,4 +17,9 @@ private DongariDao dongariDao;
 		List<DongariDto> dongariDtoList = dongariDao.findAll();
 		return dongariDtoList;
 	}
+	
+	public DongariDto findById(int id) {
+		DongariDto dongariDto = dongariDao.findById(id);
+		return dongariDto;
+	}
 }

@@ -11,17 +11,17 @@ public class UserService {
 		userDao.save(userDto);
 	}
 	
-	public boolean login(String username, String password) {
+	public int login(String username, String password) {
 		UserDto userDto = userDao.findByUsername(username);
 		if (userDto==null) {
-			return false;
+			return 0;
 		}
 		System.out.println(userDto.getUsername());
 		System.out.println(userDto.getPassword());
 		if (userDto.getPassword().equals(password)) {
-			return true;
+			return userDto.getId();
 		}
 		else 
-			return false;
+			return 0;
 	}
 }

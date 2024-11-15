@@ -1,6 +1,7 @@
-package user.controller;
+package dongari.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,19 +11,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import user.UserService;
+import dongari.DongariDto;
+import dongari.DongariService;
 
 /**
- * Servlet implementation class Join
+ * Servlet implementation class EditDongari
  */
-@WebServlet("/login")
-public class Login extends HttpServlet {
+@WebServlet("/edit")
+public class EditDongari extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Login() {
+    public EditDongari() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,7 +33,21 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		RequestDispatcher dis = request.getRequestDispatcher("login.jsp");
+		int id = Integer.parseInt(request.getParameter("id")); // url 주소로 보낸 num값 읽어오기 
+		HttpSession session = request.getSession();
+		
+		int user_id = (int) session.getAttribute("user_id");
+		
+		DongariService dongariService = new DongariService();
+		DongariDto dongari = dongariService.findById(id);
+		if (user_id != dongari.getUser_id()) {
+			response.sendRedirect("./");
+			return;
+		}
+		
+		request.setAttribute("dongari", dongari); // 검색한 결과값 담기 (jsp에서 쓸 수 있게)
+		
+		RequestDispatcher dis = request.getRequestDispatcher("dongariForm.jsp"); //form 페이지 생기면 추가
 		dis.forward(request, response);
 	}
 
@@ -39,24 +55,8 @@ public class Login extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-	
-
-		UserService userService = new UserService();
-		HttpSession session = request.getSession();
-		int result = userService.login(username,password);
-		if (result != 0) {	
-			session.setAttribute("user_id", result);
-			session.setAttribute("username", username);
-			System.out.println(result);	
-		}
-	
-		// 로그인 완료되면 홈화면 가기 
-		response.sendRedirect("./");
+		// TODO Auto-generated method stub
+		doGet(request, response);
 	}
 
 }
