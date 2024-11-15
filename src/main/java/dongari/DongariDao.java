@@ -19,11 +19,7 @@ private DBUtil dbUtil = new DBUtil();
 		conn = dbUtil.open();
 	}
 	public void save(DongariDto dongariDto) {
-		/*
-		 * id, user_id, title, summary, 
-		 * body, category_id, apply_start, apply_end, 
-		 * apply_link, member_num, sns_link, location;
-		 */
+		
 		conn = dbUtil.open();
 		String sql = "insert into dongari values(NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
@@ -86,5 +82,43 @@ private DBUtil dbUtil = new DBUtil();
 			e.printStackTrace();
 		}
 		return dongariDto;
+	}
+public void edit(DongariDto dongariDto) {
+		
+		conn = dbUtil.open();
+		String sql = "UPDATE dongari SET user_id = ?, "
+				+ "category_id = ?, "
+				+ "member_num = ?, "
+				+ "img = ?, "
+				+ "title = ?, "
+				+ "summary = ?, "
+				+ "body = ?, "
+				+ "apply_start = ?, "
+				+ "apply_end = ?, "
+				+ "apply_link = ?, "
+				+ "sns_link = ?, "
+				+ "location = ? WHERE id = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, dongariDto.getUser_id());
+			pstmt.setInt(2, dongariDto.getCategory_id());
+			pstmt.setInt(3, dongariDto.getMember_num());
+			
+			pstmt.setString(4, dongariDto.getImg());
+			pstmt.setString(5, dongariDto.getTitle());
+			pstmt.setString(6, dongariDto.getSummary());
+			pstmt.setString(7, dongariDto.getBody());
+			
+			pstmt.setString(8, dongariDto.getApply_start());
+			pstmt.setString(9, dongariDto.getApply_end());
+			pstmt.setString(10, dongariDto.getApply_link());
+			
+			pstmt.setString(11, dongariDto.getSns_link());
+			pstmt.setString(12, dongariDto.getLocation());
+			System.out.println(pstmt);
+			pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
