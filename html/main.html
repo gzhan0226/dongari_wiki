@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동국대학교 동아리 위키</title>
+    <link rel="stylesheet" href="main_style.css">
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="logo.png" alt="동국대학교 로고">
+                <div class="site-name">
+                    <div class="small-text">동국대학교 동아리 위키</div>
+                    <div class="large-text">동동</div>
+                </div>
+            </div>
+            <nav>
+                <a href="main.html" class="active">홈</a>
+                <a href="#">동아리</a>
+            </nav>
+            <div class="header-right">
+                <div class="search-bar">
+                    <input type="search" class="keyword" placeholder="찾으시는 동아리가 있나요?">
+                    <button class="submit">
+                        <img src="search.png" alt="Search">
+                    </button>
+                </div>
+                <div class="user-menu">
+                    <a href="mypage.html">마이페이지</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="clubs">
+            <h2>동아리</h2>
+            <p>여러 분야의 동아리를 확인하고, 관심있는 동아리에 대해 찾아보세요</p>
+            <ul class="club-list">
+                <li class="club-item">
+                    <div class="text-container">
+                        <span><b>NSA</b></span>
+                        <span class="category">학술분과</span>
+                    </div>
+                    <button class="recruit-btn ongoing">상시모집</button>
+                </li>
+                <li class="club-item">
+                    <div class="text-container">
+                        <span><b>만화얼</b></span>
+                        <span class="category">예술창작분과</span>
+                    </div>
+                    <button class="recruit-btn open">모집중</button>
+                </li>
+                <li class="club-item">
+                    <div class="text-container">
+                        <span><b>프론티어</b></span>
+                    <span class="category">사회분과</span>
+                    </div>
+                    <button class="recruit-btn closed">모집완료</button>
+                </li>
+                <li class="club-item">
+                    <div class="text-container">
+                        <span><b>바람소리</b></span>
+                    <span class="category">체육2분과</span>
+                    </div>
+                    <button class="recruit-btn open">모집중</button>
+                </li>
+                <li class="club-item">
+                    <div class="text-container">
+                        <span><b>음샘</b></span>
+                    <span class="category">공연분과</span>
+                    </div>
+                    <button class="recruit-btn open">모집중</button>
+                </li>
+            </ul>
+        </section>
+
+        <aside class="sidebars">
+            <div class="sidebar">
+                <span><b>아이디</b></span><br><br>
+                <a href="mypage.html">마이페이지</a>
+                <a href="#">로그아웃</a>
+            </div>
+            <h5>스크랩</h5>
+            <!--스크랩 동아리 목록을 보여줌-->
+            <div class="sidebar">
+                <p>관심있는 동아리를 PICK하고 다른 대학생들의 의견을 알아보세요!</p>
+            </div>
+            <h5>인기 동아리 리뷰 둘러보기</h5>
+            <!--인기 동아리 리뷰를 보여줌-->
+            <div class="review">
+                <strong>페인터즈</strong>
+                <p><br>대외 활동이 많아서 좋았어요! 여러 야외 활동을 하면서 다양한 경험을 할 수 있었어요.</p>
+            </div>
+            <div class="review">
+                <strong>MECS</strong>
+                <p><br>친목 위주의 분위기라 여러 사람을 만나고 싶을 때 추천드려요!</p>
+            </div>
+            </div>
+        </aside>
+    </main>
+</body>
+</html>

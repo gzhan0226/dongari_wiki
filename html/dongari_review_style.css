@@ -1,0 +1,278 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f3f3;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    display: flex;
+    justify-content: center;
+}
+
+.header-content {
+    width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.site-name .small-text {
+    font-size: 12px;
+}
+
+.site-name .large-text {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+nav a {
+    color: #ccc;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+nav a.active {
+    color: orange;
+}
+
+.search-bar {
+    position: relative;
+    width: 250px;
+    max-width: 250px;
+    border-radius: 40px;
+    background: #FFF;
+    margin-right: 5px;
+}
+
+.search-bar .keyword {
+    width: 100%;
+    padding: 0.5em 1em;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding-right: 3em; /* 버튼 영역 확보 */
+    font-size: 14px;
+}
+
+.search-bar .submit {
+    position: absolute;
+    right: 15px; /* 입력 박스 안쪽의 위치 */
+    top: 55%;
+    transform: translateY(-50%);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+}
+.search-bar .submit img{
+    width: 20px;
+    height: auto;
+}
+
+.user-menu a {
+    border-radius: 10px;
+    border: 1px solid #EFEDEB;
+    color: #fff;
+    padding: 0.5em 1em;
+    margin-left: 5px;
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    gap: 20px;
+}
+
+.club-info {
+    width: 30%;
+    background-color: #FFF;
+    padding: 2em;
+    align-content: center;
+}
+
+.club-info img{
+    width: 100px;
+}
+
+.club-info button {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+.write {
+    text-align: right;
+}
+
+.reviews {
+    background-color: #fff;
+    width: 50%;
+    padding: 1em;
+}
+
+.sidebar span {
+    margin-right: 10px;
+    color: #333;
+}
+
+.sidebar li {
+    list-style: none;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.sidebar a {
+    color: #333;
+    border: none;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.sidebars {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+}
+
+.sidebar {
+    background-color: #fff;
+    padding: 1em;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    margin-top: 10px;
+}
+.sidebar p{
+    color: #666;
+    font-size: 12px;
+}
+
+.sidebars h3 {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.rating-summary h3 {
+    font-size: 2em;
+    color: orange;
+}
+
+.stars {
+    color: orange;
+}
+
+.review-list {
+    margin-top: 10px;
+}
+
+.review-item {
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.review-rating {
+    color: orange;
+    font-size: 1.2em;
+}
+
+.apply {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.apply button {
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.review{
+    border-radius: 10px;
+    border: 1px solid #373737;
+    background: #f3f3f3;
+    padding: 1em;
+    margin-top: 10px;
+}
+
+.review p {
+    color: #333;
+    font-size: 14px;
+}
+
+
+.club-item {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between; /* 버튼을 오른쪽으로 */
+    align-items: center; /* 버튼을 수직 가운데 정렬 */
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column; /* 텍스트를 세로로 정렬 */
+}
+
+.ratings {
+    display: flex;
+    align-items: center;
+}
+
+.rating-summary, .category-ratings {
+    padding: 10px;
+    width: 50%;
+}
+
+.rating-summary {
+    text-align: center;
+}
+
+.category-ratings {
+    text-align: left;
+}
+
+.divider {
+    width: 1px;
+    height: 80px;
+    background-color: #ccc;
+    margin-right: 10px;
+}
