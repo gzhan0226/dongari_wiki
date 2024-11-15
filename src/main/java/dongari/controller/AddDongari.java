@@ -78,7 +78,7 @@ public class AddDongari extends HttpServlet {
 		
 		DongariService dongariService = new DongariService();
 		dongariService.saveDongari(new DongariDto(0,user_id,10,member_num,img,
-				title,summary,body,apply_start,apply_end,apply_link,sns_link,location));
+				title,summary,body,apply_start,apply_end,apply_link,sns_link,location, ""));
 		
 		response.sendRedirect("./");
 		return; 

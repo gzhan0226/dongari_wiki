@@ -18,10 +18,12 @@ public class DongariDto {
 	private String sns_link;
 	private String location;
 	
+	private String category_name;
+	
 	public DongariDto(int id, int user_id,int category_id, int member_num,
 			String img, String title, String summary, String body, 
 			 String apply_start, String apply_end, String apply_link,
-			 String sns_link ,String location) {
+			 String sns_link ,String location, String category_name) {
 		this.id = id;
 		this.user_id = user_id;
 		this.category_id = category_id;
@@ -38,6 +40,7 @@ public class DongariDto {
 		
 		this.sns_link = sns_link;
 		this.location = location;
+		this.category_name = category_name;
 	}
 	//Getter
 	public int getId() {
@@ -91,6 +94,10 @@ public class DongariDto {
     public String getLocation() {
         return location;
     }
+    
+    public String getCategory_name() {
+        return category_name;
+    }
 
     // Setters
     public void setId(int id) {
@@ -143,5 +150,9 @@ public class DongariDto {
 
     public void setLocation(String location) {
         this.location = location;
+    }
+    
+    public void setCategory_name(String category_name) {
+        this.category_name = category_name;
     }
 }

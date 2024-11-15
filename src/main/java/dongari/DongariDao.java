@@ -52,7 +52,7 @@ private DBUtil dbUtil = new DBUtil();
 	public List<DongariDto> findAll() {
 		conn = dbUtil.open();
 		List<DongariDto> dongariDtoList = new ArrayList<DongariDto>();
-		String sql = "select * from dongari";
+		String sql = "SELECT d.*, c.name AS category_name FROM dongari d JOIN category c ON d.category_id = c.id";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			System.out.println(pstmt);
@@ -60,7 +60,7 @@ private DBUtil dbUtil = new DBUtil();
 			while(rs.next()) {
 				dongariDtoList.add(new DongariDto(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),
 						rs.getString(6),rs.getString(7),rs.getString(8), rs.getString(9), rs.getString(10),
-						rs.getString(11),rs.getString(12),rs.getString(13)));
+						rs.getString(11),rs.getString(12),rs.getString(13), rs.getString(14)));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -70,7 +70,7 @@ private DBUtil dbUtil = new DBUtil();
 	
 	public DongariDto findById(int id) {
 		conn = dbUtil.open();
-		String sql = "select * from dongari where id = ?";
+		String sql = "SELECT d.*, c.name AS category_name FROM dongari d JOIN category c ON d.category_id = c.id WHERE d.id = ?";
 		DongariDto dongariDto = null;
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
@@ -80,7 +80,7 @@ private DBUtil dbUtil = new DBUtil();
 			while(rs.next()) {
 				dongariDto = new DongariDto(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),
 						rs.getString(6),rs.getString(7),rs.getString(8), rs.getString(9), rs.getString(10),
-						rs.getString(11),rs.getString(12),rs.getString(13));
+						rs.getString(11),rs.getString(12),rs.getString(13), rs.getString(14));
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();

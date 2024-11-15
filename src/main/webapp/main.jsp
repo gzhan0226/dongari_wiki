@@ -55,11 +55,11 @@
                     <li class="club-item">
                         <div class="text-container">
                             <span><b>${dongari.title}</b></span>
-                            <span class="category">${dongari.category_id}</span>
+                            <span class="category">${dongari.category_name}</span>
                         </div>
                         <button class="recruit-btn ${dongari.apply_start}">
                             <c:choose>
-                                <c:when test="${dongari.apply_start eq 'null'}">상시모집</c:when>
+                                <c:when test="${dongari.apply_start eq 'None'}">상시모집</c:when>
                                 <c:when test="${dongari.apply_start eq '9999'}">모집완료</c:when>
                                 <c:otherwise>모집중</c:otherwise>
                             </c:choose>
