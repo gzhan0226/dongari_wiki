@@ -47,7 +47,7 @@ public class EditDongari extends HttpServlet {
 		
 		request.setAttribute("dongari", dongari); // 검색한 결과값 담기 (jsp에서 쓸 수 있게)
 		
-		RequestDispatcher dis = request.getRequestDispatcher("dongariForm.jsp"); //form 페이지 생기면 추가
+		RequestDispatcher dis = request.getRequestDispatcher("dongariEditForm.jsp"); //form 페이지 생기면 추가
 		dis.forward(request, response);
 	}
 
@@ -58,6 +58,7 @@ public class EditDongari extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
+		int id = Integer.parseInt(request.getParameter("id")); // url 주소로 보낸 num값 읽어오기 
 		HttpSession session = request.getSession();
 		if (session == null) {
 			response.sendRedirect("login");
@@ -73,6 +74,7 @@ public class EditDongari extends HttpServlet {
 		String apply_link = request.getParameter("apply_link");
 		String sns_link = request.getParameter("sns_link");
 		String location = request.getParameter("location");
+		int category_id = Integer.parseInt(request.getParameter("category_id"));
 		
 		String apply_start=null;
 		String apply_end=null;
@@ -86,7 +88,7 @@ public class EditDongari extends HttpServlet {
 		}
 		
 		DongariService dongariService = new DongariService();
-		dongariService.saveDongari(new DongariDto(0,user_id,10,member_num,img,
+		dongariService.editDongari(new DongariDto(id,user_id,category_id,member_num,img,
 				title,summary,body,apply_start,apply_end,apply_link,sns_link,location, ""));
 		
 		response.sendRedirect("./");

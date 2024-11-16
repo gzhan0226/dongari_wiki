@@ -115,6 +115,7 @@ public void edit(DongariDto dongariDto) {
 			
 			pstmt.setString(11, dongariDto.getSns_link());
 			pstmt.setString(12, dongariDto.getLocation());
+			pstmt.setInt(13, dongariDto.getId());
 			System.out.println(pstmt);
 			pstmt.executeUpdate();
 		} catch(SQLException e) {

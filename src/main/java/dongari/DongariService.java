@@ -13,6 +13,10 @@ private DongariDao dongariDao;
 		dongariDao.save(dongariDto);
 	}
 	
+	public void editDongari(DongariDto dongariDto) {
+		dongariDao.edit(dongariDto);
+	}
+	
 	public List<DongariDto> findAll() {
 		List<DongariDto> dongariDtoList = dongariDao.findAll();
 		return dongariDtoList;
