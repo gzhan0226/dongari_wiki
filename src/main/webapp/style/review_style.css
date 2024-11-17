@@ -106,11 +106,11 @@ nav a.active {
 
 main {
     display: flex;
-    gap: 20px;
+    gap: 2px;
 }
 
 .club-info {
-    width: 30%;
+    width: 20%;
     background-color: #FFF;
     padding: 2em;
     align-content: center;
@@ -129,13 +129,23 @@ main {
     border: none;
     cursor: pointer;
 }
+
+.club-info h3 {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
 .write {
     text-align: right;
 }
-
+.write-button a{
+    text-decoration: none;
+    color:#fff;
+}
 .reviews {
     background-color: #fff;
-    width: 50%;
+    width: 60%;
     padding: 1em;
 }
 
@@ -193,11 +203,23 @@ main {
     color: orange;
 }
 
+.category-star {
+    color: orange;
+}
+
+.category-ratings h4{
+    font-weight: bold;
+    margin-bottom: 10px;
+    color:#ababab;
+    font-size: 14px;
+}
+
 .review-list {
     margin-top: 10px;
 }
 
 .review-item {
+    display: flex;
     list-style: none;
     border-bottom: 1px solid #ccc;
     padding: 10px 0;
@@ -206,6 +228,26 @@ main {
 .review-rating {
     color: orange;
     font-size: 1.2em;
+}
+
+.review-header{
+    padding: 10px;
+}
+.review-body{
+    width: 100%;
+    padding: 10px;
+    margin-left: 15px;
+}
+
+.review-title {
+    font-size: 20px;
+}
+
+.review-author {
+    font-size: 13px;
+    font-weight: bold;
+    color: #666;
+    padding: 10px 0px 10px 0px;
 }
 
 .apply {
@@ -222,6 +264,7 @@ main {
     color: white;
     border: none;
     cursor: pointer;
+    font-size: 15px;
 }
 
 .review{
@@ -237,6 +280,10 @@ main {
     font-size: 14px;
 }
 
+.review-controls {
+    width: 100%;
+    text-align: right;
+}
 
 .club-item {
     background-color: #fff;
@@ -275,4 +322,15 @@ main {
     height: 80px;
     background-color: #ccc;
     margin-right: 10px;
+}
+
+.scrap {
+    margin: 10px;
+    font-size: 20px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.scrap.bookmarked {
+    color: orange;
 }

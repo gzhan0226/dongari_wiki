@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동아리 위키 - CAPS</title>
-    <link rel="stylesheet" href="dongari_review_style.css">
+    <link rel="stylesheet" href="review_style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         $(document).ready(function() {
@@ -167,7 +167,7 @@
     
         // 북마크 토글 함수
         function toggleBookmark() {
-            const star = document.getElementById("starRating");
+            const star = document.getElementById("scrap");
             star.classList.toggle("bookmarked");
         }
     
@@ -189,8 +189,8 @@
                 </div>
             </div>
             <nav>
-                <a href="main.html" class="active">홈</a>
-                <a href="#">동아리</a>
+                <a href="main.html">홈</a>
+                <a href="#" class="active">동아리</a>
             </nav>
             <div class="header-right"> <!-- Wrapper to control alignment -->
                 <div class="search-bar">
@@ -214,6 +214,7 @@
                     <div class="large-text">CAPS</div> 
                     <div class="small-text">100명 이상</div><!--부원수-->
                 </div>
+                <div id="scrap" class="scrap" onclick="toggleBookmark()">★</div>
             </div><br>
             <h3>인기 리뷰</h3>
             <div class="review"><!--리뷰-->
@@ -223,7 +224,7 @@
                 <p>친목 위주의 분위기라 여러 사람을 만나고 싶을 때 추천드려요!</p>
             </div>
             <div class="write">
-                <button>리뷰쓰기</button>
+                <button class="write-button"><a href="#">리뷰쓰기</a></button>
             </div>
         </section>
 
@@ -231,39 +232,46 @@
             <div class="ratings">
                 <div class="rating-summary">
                     <h3>4.0</h3>
-                    <div class="stars">★★★★☆</div>
+                    <div class="stars">★★★★☆</div><!--총평점-->
                 </div>
                 <div class="divider"></div>
                 <div class="category-ratings">
-                    <p>4.0★ 분위기</p>
-                    <p>4.0★ 운영</p>
-                    <p>4.0★ 활동</p>
+                    <h4>평점별 항목</h4>
+                    <p><b>4.0★</b>&nbsp;&nbsp;&nbsp;분위기</p>
+                    <p><b>4.0★</b>&nbsp;&nbsp;&nbsp;운영</p>
+                    <p><b>4.0★</b>&nbsp;&nbsp;&nbsp;활동</p>
                 </div>
             </div>
             
             <ul class="review-list">
                 <li class="review-item">
                     <div class="review-header">
-                        <span class="review-rating">5.0 <br>★★★★★</span>
-                        <strong>대외 활동이 많아서 좋았어요!</strong>
+                        <span class="review-rating">4.5<br>★★★★☆</span>
                     </div>
-                    <p class="review-author">동국대 23학번</p>
-                    <p class="review-content">여러 야외 활동을 하면서 다양한 경험을 할 수 있었습니다.</p>
-                    <div class="review-controls">
-                        <span class="like" onclick="toggleLikeDislike('like', 0)">좋아요 👍</span> <span id="likeCount0">0</span>
-                        <span class="dislike" onclick="toggleLikeDislike('dislike', 0)">싫어요 👎</span> <span id="dislikeCount0">0</span>
+                    <div class ="review-body">
+                        <strong class="review-title">"대외 활동하기 좋아요"</strong>
+                        <p class="review-author">동국대 23학번</p>
+                        <p class="review-content">대외활동하기 막막했는데 덕분에 많이 배웠습니다!
+                            여러 활동이 있어서 재밌었어요.
+                            다만 아쉬웠던 점이 몇가지 있어서 적어보고자 합니다.</p>
+                        <div class="review-controls">
+                            <span class="like" onclick="toggleLikeDislike('like', 0)">👍</span> <span id="likeCount0">0</span>
+                            <span class="dislike" onclick="toggleLikeDislike('dislike', 0)">👎</span> <span id="dislikeCount0">0</span>
+                        </div>
                     </div>
                 </li>
                 <li class="review-item">
                     <div class="review-header">
-                        <span class="review-rating">4.5 ★★★★☆</span>
-                        <strong>친목 위주의 분위기라 좋아요!</strong>
+                        <span class="review-rating">5.0<br>★★★★★</span>
                     </div>
-                    <p class="review-author">동국대 23학번</p>
-                    <p class="review-content">새로운 사람들을 만나며 친목을 다질 수 있는 좋은 기회였습니다.</p>
-                    <div class="review-controls">
-                        <span class="like" onclick="toggleLikeDislike('like', 1)">좋아요 👍</span> <span id="likeCount1">0</span>
-                        <span class="dislike" onclick="toggleLikeDislike('dislike', 1)">싫어요 👎</span> <span id="dislikeCount1">0</span>
+                    <div class ="review-body">
+                        <strong class="review-title">"스터디가 가장 잘 운영되고 있는 동아리"</strong>
+                        <p class="review-author">동국대 23학번</p>
+                        <p class="review-content">학술 동아리를 하면서 적절한 친목도 쌓고, 다양한 스터디를 경험할 수 있습니다. 프로그래밍을 배우는 데 관심있다면 이 동아리를 가장 추천드립니다!</p>
+                        <div class="review-controls">
+                            <span class="like" onclick="toggleLikeDislike('like', 1)">👍</span> <span id="likeCount1">0</span>
+                            <span class="dislike" onclick="toggleLikeDislike('dislike', 1)">👎</span> <span id="dislikeCount1">0</span>
+                        </div>
                     </div>
                 </li>
                 <!-- 추가 리뷰 항목은 동일한 구조로 추가 -->
