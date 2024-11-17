@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="new" method="post">
+	<form action="${type}" method="post">
 	<table border="0.5">
 	<tr><th>title</th><th>summary</th><th>body</th><th>모집 상태</th>
 	<th>지원시작일</th><th>지원종료일</th><th>지원주소</th><th>멤버수</th><th>sns</th>
@@ -29,6 +29,8 @@
 			<td><input type="text" value="${dongari.location}" name="location"></td>
 		<tr>
 	</table>
+	<input type="hidden" value="${dongari.category_id}" name="category_id">
+	<input type="hidden" value="${dongari.id}" name="id">
 	<input type="submit" value="확인">
 	<input type="reset" value="취소">
 	</form>

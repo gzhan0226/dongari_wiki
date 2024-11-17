@@ -38,6 +38,7 @@ public class AddDongari extends HttpServlet {
 			response.sendRedirect("login");
 			return;
 		}
+		request.setAttribute("type", "new");
 		RequestDispatcher dis = request.getRequestDispatcher("dongariForm.jsp"); //form 페이지 생기면 추가
 		dis.forward(request, response);
 	}

@@ -46,8 +46,9 @@ public class EditDongari extends HttpServlet {
 		}
 		
 		request.setAttribute("dongari", dongari); // 검색한 결과값 담기 (jsp에서 쓸 수 있게)
+		request.setAttribute("type", "edit");
 		
-		RequestDispatcher dis = request.getRequestDispatcher("dongariEditForm.jsp"); //form 페이지 생기면 추가
+		RequestDispatcher dis = request.getRequestDispatcher("dongariForm.jsp"); //form 페이지 생기면 추가
 		dis.forward(request, response);
 	}
 
