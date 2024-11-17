@@ -95,5 +95,25 @@ public class EditDongari extends HttpServlet {
 		response.sendRedirect("./");
 		return; 
 	}
-
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
+		int id = Integer.parseInt(request.getParameter("id")); // url 주소로 보낸 num값 읽어오기 
+		HttpSession session = request.getSession();
+		if (session == null) {
+			response.sendRedirect("login");
+			return; 
+		}
+		int user_id = (int) session.getAttribute("user_id");
+		
+		
+	
+		
+		DongariService dongariService = new DongariService();
+		dongariService.deleteDongari(id);
+		
+		response.sendRedirect("./");
+		return; 
+	}
 }

@@ -26,4 +26,8 @@ private DongariDao dongariDao;
 		DongariDto dongariDto = dongariDao.findById(id);
 		return dongariDto;
 	}
+	
+	public void deleteDongari(int id) {
+		dongariDao.DeleteById(id);
+	}
 }

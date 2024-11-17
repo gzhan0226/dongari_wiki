@@ -5,6 +5,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+function sendDelete() {
+    const baseUrl = window.location.origin;  // 현재 호스트 및 포트를 동적으로 가져옴
+    const url = `${baseUrl}/web_programming/edit?id=178`;  // 동적 URL 생성
+    
+    fetch(url, {
+        method: 'DELETE'
+    })
+    .then(response => {
+        if (response.ok) {
+            alert("삭제 성공");
+            // 필요 시 다른 작업을 수행할 수 있습니다.
+        } else {
+            alert("삭제 실패");
+        }
+    })
+    .catch(error => {
+        console.error("오류 발생:", error);
+        alert("요청 중 오류가 발생했습니다.");
+    });
+}
+</script>
 </head>
 <body>
 	<form action="${type}" method="post">
@@ -34,5 +56,6 @@
 	<input type="submit" value="확인">
 	<input type="reset" value="취소">
 	</form>
+	<button onclick="sendDelete()">삭제</button>
 </body>
 </html>

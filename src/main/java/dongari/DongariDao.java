@@ -83,7 +83,7 @@ private DBUtil dbUtil = new DBUtil();
 		}
 		return dongariDto;
 	}
-public void edit(DongariDto dongariDto) {
+	public void edit(DongariDto dongariDto) {
 		
 		conn = dbUtil.open();
 		String sql = "UPDATE dongari SET user_id = ?, "
@@ -118,6 +118,18 @@ public void edit(DongariDto dongariDto) {
 			pstmt.setInt(13, dongariDto.getId());
 			System.out.println(pstmt);
 			pstmt.executeUpdate();
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	public void DeleteById(int id) {
+		conn = dbUtil.open();
+		String sql = "DELETE FROM dongari WHERE id = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			pstmt.executeUpdate();
+			System.out.println(pstmt);
 		} catch(SQLException e) {
 			e.printStackTrace();
 		}
