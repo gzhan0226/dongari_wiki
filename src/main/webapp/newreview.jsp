@@ -1,11 +1,12 @@
 <%@ page contentType="text/html; charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동국대학교 동아리 위키</title>
-    <link rel="stylesheet" href="newreview_style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/newreview_style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
         function alertLogin() {
@@ -17,7 +18,7 @@
     <header>
         <div class="header-content">
             <div class="logo-container">
-                <img src="logo.png" alt="Logo">
+                <img src="./assets/logo.png" alt="Logo">
                 <div class="site-name">
                     <span class="small-text">동국대학교 동아리 위키</span><br>
                     <span class="large-text">동동</span>
@@ -31,16 +32,16 @@
                 <div class="search-bar">
                     <input type="search" class="keyword" placeholder="찾으시는 동아리가 있나요?">
                     <button class="submit">
-                        <img src="search.png" alt="Search">
+                        <img src="./assets/search.png" alt="Search">
                     </button>
                 </div>
                 <div class="user-menu">
                     <c:choose>
                         <c:when test="${empty sessionScope.username}">
-                            <a href="login.jsp">로그인</a>
+                            <a href="login">로그인</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="mypage.jsp">마이페이지</a>
+                            <a href="mypage">마이페이지</a>
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -51,7 +52,7 @@
     <main>
         <div class="clubs">
             <div class="review">
-                <form method="post" action="/web_programming/newreview">
+                <form method="post" action="${type}">
                     <label>
                         <input type="radio" name="anonymity" value="실명" checked> 실명
                     </label>
@@ -68,7 +69,7 @@
                             <span class="star" data-value="3">★</span>
                             <span class="star" data-value="4">★</span>
                             <span class="star" data-value="5">★</span>
-                            <input type="hidden" name="atmosphere_rating" class="rating-input">
+                            <input type="hidden" name="atm_rating" class="rating-input">
                         </div>
                         <div class="star_rating">
                             <strong>운영</strong>
@@ -77,7 +78,7 @@
                             <span class="star" data-value="3">★</span>
                             <span class="star" data-value="4">★</span>
                             <span class="star" data-value="5">★</span>
-                            <input type="hidden" name="management_rating" class="rating-input">
+                            <input type="hidden" name="man_rating" class="rating-input">
                         </div>
                         <div class="star_rating">
                             <strong>활동</strong>
@@ -86,7 +87,7 @@
                             <span class="star" data-value="3">★</span>
                             <span class="star" data-value="4">★</span>
                             <span class="star" data-value="5">★</span>
-                            <input type="hidden" name="activity_rating" class="rating-input">
+                            <input type="hidden" name="act_rating" class="rating-input">
                         </div>
 
                         <script>
@@ -101,14 +102,14 @@
                         </script>
 
                         <br><br>
+                        <input type="hidden" value="${id}" name="id">
                         <input type="text" name="title" placeholder="제목" required>
-                        <textarea name="content" placeholder="내용을 입력하세요." required></textarea>
+                        <textarea name="body" placeholder="내용을 입력하세요." required></textarea>
                     </div>
                     <c:choose>
                         <c:when test="${empty sessionScope.username}">
                             <button type="button" onclick="alertLogin()"><b>글쓰기</b></button>
                         </c:when>
-                        
                         <c:otherwise>
                             <button type="submit"><b>글쓰기</b></button>
                         </c:otherwise>

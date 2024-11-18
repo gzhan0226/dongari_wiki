@@ -21,7 +21,7 @@ private DBUtil dbUtil = new DBUtil();
 	public void save(DongariDto dongariDto) {
 		
 		conn = dbUtil.open();
-		String sql = "insert into dongari values(NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO dongari VALUES(NULL,?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, dongariDto.getUser_id());

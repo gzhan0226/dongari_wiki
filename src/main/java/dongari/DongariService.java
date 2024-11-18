@@ -3,7 +3,7 @@ package dongari;
 import java.util.List;
 
 public class DongariService {
-private DongariDao dongariDao;
+	private DongariDao dongariDao;
 	
 	public DongariService() {
 		dongariDao = new DongariDao();

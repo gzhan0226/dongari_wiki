@@ -33,7 +33,7 @@ public class EditDongari extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id")); // url 주소로 보낸 num값 읽어오기 
+		int id = Integer.parseInt(request.getParameter("id")); 
 		HttpSession session = request.getSession();
 		
 		int user_id = (int) session.getAttribute("user_id");

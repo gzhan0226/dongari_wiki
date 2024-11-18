@@ -20,7 +20,7 @@
                 </div>
             </div>
             <nav>
-                <a href="./" class="active">홈</a>
+                <a href="./" class="active">홈</a> 
                 <a href="list">동아리</a>
             </nav>
             <div class="header-right">
