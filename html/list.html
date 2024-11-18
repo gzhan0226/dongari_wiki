@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>동아리 검색 페이지</title>
+  <link rel="stylesheet" href="list_style.css">
+  <script>
+        // script.js
+    document.getElementById("search-input").addEventListener("input", function (e) {
+        const searchQuery = e.target.value.toLowerCase();
+        const clubCards = document.querySelectorAll(".club-card");
+
+        clubCards.forEach(card => {
+            const clubName = card.querySelector("h4").textContent.toLowerCase();
+            if (clubName.includes(searchQuery)) {
+            card.style.display = "block";
+            } else {
+            card.style.display = "none";
+            }
+        });
+    });
+  </script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="logo.png" alt="동국대학교 로고">
+                <div class="site-name">
+                    <div class="small-text">동국대학교 동아리 위키</div>
+                    <div class="large-text">동동</div>
+                </div>
+            </div>
+            <nav>
+                <a href="main.html">홈</a>
+                <a href="#" class="active">동아리</a>
+            </nav>
+            <div class="header-right">
+                </div>
+                <div class="user-menu">
+                    <a href="mypage.html">마이페이지</a>
+                </div>
+            </div>
+        </div>
+    </header>
+  
+  <main>
+    <section class="search-bar">
+        <input type="search" class="keyword" placeholder="찾으시는 동아리가 있나요?">
+        <button class="submit">
+            <img src="search.png" alt="Search">
+        </button>
+    </section>
+    
+    <section class="filter-section">
+      <div class="selection-filter">
+        <h4>분과별 검색</h4>
+        <select class="selects">
+            <option>전체</option>
+            <option>학술</option>
+            <option>봉사</option>
+            <option>사회</option>
+            <option>연구</option>
+            <option>체육1분과</option>
+            <option>체육2분과</option>
+            <option>예술창작</option>
+            <option>신규</option>
+            <option>일반</option>
+        </select>
+      </div>
+      <!--<div class="filter-buttons">
+        <button class="active">전체</button>
+        <button>봉사</button>
+        <button>연구</button>
+        -->
+        <!--분과 작성-->
+      </div>
+    </section>
+    
+    <!--동아리 목록-->
+    <section class="club-list">
+      <div class="club-card">
+        <img src="nsa_logo.png" alt="NSA">
+        <h4>NSA</h4><!--동아리명-->
+        <p>전체 관측 동아리</p><!--동아리분과-->
+        <button class="recruit-btn ongoing">상시모집</button>
+        <button class="club-button">상세보기</button>
+      </div>
+      <div class="club-card">
+        <img src="nsa_logo.png" alt="만화연">
+        <h4>만화연</h4>
+        <p>만화 창작 동아리</p>
+        <button class="recruit-btn open">모집중</button>
+        <button class="club-button">상세보기</button>
+      </div>
+      <div class="club-card">
+        <img src="nsa_logo.png" alt="프론티어">
+        <h4>프론티어</h4>
+        <p>창작 동아리</p>
+        <button class="recruit-btn closed">모집완료</button>
+        <button class="club-button">상세보기</button>
+      </div>
+      <!-- Add more cards as needed -->
+    </section>
+  </main>
+  
+  <script src="script.js"></script>
+</body>
+</html>
