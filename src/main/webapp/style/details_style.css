@@ -1,0 +1,355 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f3f3;
+    box-sizing: border-box;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    display: flex;
+    justify-content: center;
+}
+
+.header-content {
+    width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo-container {
+    justify-content: top;
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.site-name .small-text {
+    font-size: 12px;
+}
+
+.site-name .large-text {
+    font-size: 22px;
+    font-weight: bold;
+}
+.location-border{
+    display: flex;
+    justify-content: flex-end;
+}
+.location{
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: orange;
+    font-size: 12px;
+    color: white;
+    border: none;
+}
+nav a {
+    color: #ccc;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+nav a.active {
+    color: orange;
+}
+
+.search-bar {
+    position: relative;
+    width: 250px;
+    max-width: 250px;
+    border-radius: 40px;
+    background: #FFF;
+    margin-right: 5px;
+}
+
+.search-bar .keyword {
+    width: 100%;
+    padding: 0.5em 1em;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding-right: 3em; /* 버튼 영역 확보 */
+    font-size: 14px;
+}
+
+.search-bar .submit {
+    position: absolute;
+    right: 15px; /* 입력 박스 안쪽의 위치 */
+    top: 55%;
+    transform: translateY(-50%);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+}
+.search-bar .submit img{
+    width: 20px;
+    height: auto;
+}
+
+.user-menu a {
+    border-radius: 10px;
+    border: 1px solid #EFEDEB;
+    color: #fff;
+    padding: 0.5em 1em;
+    margin-left: 5px;
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    gap: 2px;
+}
+
+.club-info {
+    width: 20%;
+    background-color: #FFF;
+    padding: 2em;
+    align-content: center;
+}
+
+.club-info img{
+    width: 100px;
+}
+
+.club-info button {
+    margin-top: 20px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.club-info h3 {
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.write {
+    text-align: right;
+}
+.write-button a{
+    text-decoration: none;
+    color:#fff;
+}
+.reviews {
+    background-color: #fff;
+    width: 60%;
+    padding: 1em;
+}
+
+.sidebar li {
+    list-style: none;
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.question-list {
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+    margin-top: 12px;
+}
+
+.question-list a {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+}
+.sidebar a {
+    color: #333;
+    border: none;
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.sidebars {
+    width: 280px;
+    display: flex;
+    flex-direction: column;
+    padding: 2em;
+}
+
+.sidebar {
+    background-color: #fff;
+    padding: 1em;
+    border-radius: 8px;
+    margin-top: 10px;
+}
+.sidebar p{
+    color: black;
+    font-size: 12px;
+    margin-left: 12px;
+}
+
+.sidebars h3 {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 1.2em;
+    color: #333;
+    margin-bottom: 10px;
+}
+.rating-summary h3 {
+    font-size: 2em;
+    color: orange;
+}
+
+.stars {
+    color: orange;
+}
+
+.category-star {
+    color: orange;
+}
+
+.category-ratings h4{
+    font-weight: bold;
+    margin-bottom: 10px;
+    color:#ababab;
+    font-size: 14px;
+}
+
+.introductions {
+    margin-top: 30px;
+}
+.review{
+    border-radius: 10px;
+    border: 1px solid #373737;
+    background: #f3f3f3;
+    padding: 1em;
+    margin-top: 10px;
+}
+
+.review p {
+    color: #333;
+    font-size: 14px;
+}
+
+.review-controls {
+    width: 100%;
+    text-align: right;
+}
+.review-item {
+    display: flex;
+    list-style: none;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+}
+
+.review-rating {
+    color: orange;
+    font-size: 1.2em;
+}
+
+.review-header{
+    padding: 10px;
+}
+
+.apply {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.button-link{
+    width: 100%;
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+}
+.question-write{
+    margin-bottom: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+}
+.question-write a{
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+}
+.question {
+    background-color: #fff;
+    display: flex;
+    justify-content: space-between; /* 버튼을 오른쪽으로 */
+    align-items: center; /* 버튼을 수직 가운데 정렬 */
+    padding: 10px 15px;
+    border-bottom: 1px solid #eee;
+}
+
+.text-container {
+    flex-direction: column; /* 텍스트를 세로로 정렬 */
+}
+.text-container p{
+    font-size: 14px;
+}
+.ratings {
+    display: flex;
+    align-items: center;
+}
+
+.rating-summary, .category-ratings {
+    padding: 10px;
+    width: 50%;
+}
+
+.rating-summary {
+    text-align: center;
+}
+
+.category-ratings {
+    text-align: left;
+}
+
+.divider {
+    width: 1px;
+    height: 80px;
+    background-color: #ccc;
+    margin-right: 10px;
+}
+
+.scrap {
+    margin: 10px;
+    font-size: 20px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.scrap.bookmarked {
+    color: orange;
+}
