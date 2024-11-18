@@ -1,0 +1,214 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #f3f3f3;
+  }
+  
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    display: flex;
+    justify-content: center;
+}
+
+.header-content {
+    width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo-container {
+    justify-content: top;
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    width: 50px;
+    height: auto;
+    margin-right: 10px;
+}
+
+.site-name .small-text {
+    font-size: 12px;
+}
+
+.site-name .large-text {
+    font-size: 22px;
+    font-weight: bold;
+}
+nav a {
+    color: #ccc;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+nav a.active {
+    color: orange;
+}
+.user-menu a {
+    border-radius: 10px;
+    border: 1px solid #EFEDEB;
+    color: #fff;
+    padding: 0.5em 1em;
+    margin-left: 5px;
+    text-decoration: none;
+}
+
+main {
+    padding: 5em;
+}
+.search-section {
+    text-align: center;
+    background: white;
+    padding: 30px 15px;
+}
+.search-bar {
+    position: relative;
+    max-width: 600px;
+    margin: 2em auto;
+  }
+  
+.search-bar input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    padding-right: 50px;
+    font-size: 16px;
+  }
+  
+  .search-bar .submit {
+    position: absolute;
+    right: 10px;
+    top: 55%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
+    cursor: pointer;
+  }
+    .submit img{
+        width: 25px;
+    }
+  .filter-section {
+    text-align: center;
+    margin: 20px 0;
+  }
+  .selection-filter{
+    display: flex;
+    justify-content: flex-end; /* 제목과 셀렉트 박스 간 간격 조정 */
+    align-items: center; /* 수평 정렬 */
+    margin: 20px;
+  }
+  .selection-filter h4 {
+    margin: 0; /* 제목과 셀렉트 박스 정렬 */
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+  }
+  .selects {
+    padding: 10px 5px 10px 10px;
+    margin-left: 10px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: #333;
+    color: orange;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+  .filter-buttons button {
+    margin: 5px;
+    padding: 10px 30px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #ccc;
+    color: #333;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .club-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    align-content: center;
+  }
+  
+  .club-card {
+        position: relative;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        border-radius: 8px;
+        text-align: center;
+        padding: 15px;
+        overflow: hidden;
+    }
+    .recruit-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 5px 15px;
+        border-radius: 30px;
+        font-size: 0.9em;
+        cursor: pointer;
+        border: none;
+    }
+
+  .club-card img {
+    width: auto;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+  }
+  
+  .club-card h4 {
+    margin: 10px 0 5px;
+  }
+  
+  .club-card p {
+    color: gray;
+    font-size: 14px;
+  }
+  .club-button{
+    padding: 10px;
+    border-radius: 30px;
+    margin-top: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  .club-button:hover{
+    color: orange;
+  }
+.recruit-btn.ongoing {
+    background-color: #333;
+    color: #fff;
+}
+
+.recruit-btn.open {
+    background-color: orange;
+    color: #fff;
+}
+
+.recruit-btn.closed {
+    background-color: #888;
+    color: #fff;
+    cursor: not-allowed;
+}
