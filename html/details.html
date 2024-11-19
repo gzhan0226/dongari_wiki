@@ -1,0 +1,174 @@
+<!DOCTYPE html> 
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동아리 위키 - CAPS</title>
+    <link rel="stylesheet" href="details_style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 리뷰 쓰기 버튼 클릭 시 이벤트 (review_write 페이지에서 별점 데이터를 받는다고 가정)
+            $('#write-review').on('click', function() {
+                // 예시 데이터: review_write 페이지에서 받아온 별점 파라미터
+                const categoryRatings = {
+                    분위기: 4,
+                    운영: 4,
+                    활동: 4
+                };
+                
+                // 항목별 평점 업데이트
+                $('.category-ratings').html(`
+                    <p>${categoryRatings.분위기}★ 분위기</p>
+                    <p>${categoryRatings.운영}★ 운영</p>
+                    <p>${categoryRatings.활동}★ 활동</p>
+                `);
+                
+                // 총 평점 계산
+                const totalRating = (categoryRatings.분위기 + categoryRatings.운영 + categoryRatings.활동) / 3;
+                $('.rating-summary h3').text(totalRating.toFixed(1));
+                
+                // 총 평점 별점 아이콘 갱신
+                const fullStars = '★'.repeat(Math.floor(totalRating));
+                const halfStar = (totalRating % 1 >= 0.5) ? '☆' : '';
+                const emptyStars = '☆'.repeat(4 - Math.floor(totalRating));
+                $('.rating-summary .stars').html(`${fullStars}${halfStar}${emptyStars}`);
+            });
+        });
+
+        // 현재 로그인한 사용자의 ID를 가져오는 함수 (예시)
+        function getCurrentUserId() {
+            // 실제 구현에서는 세션이나 다른 방식으로 현재 로그인한 사용자의 ID를 반환
+            return sessionStorage.getItem('currentUserId');
+        }
+        // 모든 <p> 태그의 개행 문자를 <br> 태그로 변경하는 함수
+        function replaceNewlinesWithBr() {
+            const paragraphs = document.querySelectorAll('p'); // 모든 <p> 태그 선택
+            paragraphs.forEach((p) => {
+                const textWithBr = p.innerHTML.replace(/\n/g, '<br>'); // 개행 문자를 <br>로 대체
+                p.innerHTML = textWithBr; // 업데이트된 내용을 다시 삽입
+            });
+        }
+    
+        // DOM이 로드된 후 실행
+        document.addEventListener('DOMContentLoaded', replaceNewlinesWithBr);
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="logo.png" alt="동국대학교 로고">
+                <div class="site-name">
+                    <div class="small-text">동국대학교 동아리 위키</div>
+                    <div class="large-text">동동</div>
+                </div>
+            </div>
+            <nav>
+                <a href="main.html">홈</a>
+                <a href="#" class="active">동아리</a>
+            </nav>
+            <div class="header-right"> <!-- Wrapper to control alignment -->
+                <div class="search-bar">
+                    <input type="search" class="keyword" placeholder="찾으시는 동아리가 있나요?">
+                    <button class="submit">
+                        <img src="search.png" alt="Search">
+                    </button>
+                </div>
+                <div class="user-menu">
+                    <a href="mypage.html">마이페이지</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="club-info">
+            <div class =  "logo-container">
+                <img src="caps_logo.png" alt="CAPS Logo">
+                <div class="site-name">
+                    <div class="large-text">CAPS</div> 
+                    <!--부원수-->
+                    <div class="small-text">100명 이상</div>
+                    
+                </div>
+                <div id="scrap" class="scrap" onclick="toggleBookmark()">★</div>
+                
+            </div><br>
+            <!--위치-->
+            <div class="location-border">
+                <div class="location">원흥관 E205</div>
+            </div>
+            <h3>인기 리뷰</h3>
+            <div class="review"><!--리뷰-->
+                <p>대외 활동이 많아서 좋았어요! 여러 야외 활동을 하면서 다양한 경험을 할 수 있었어요.</p>
+            </div>
+            <div class="review">
+                <p>친목 위주의 분위기라 여러 사람을 만나고 싶을 때 추천드려요!</p>
+            </div>
+            <div class="write">
+                <button class="write-button"><a href="#">리뷰쓰기</a></button>
+            </div>
+        </section>
+
+        <section class="reviews">
+            <div class="ratings">
+                <div class="rating-summary">
+                    <h3>4.0</h3>
+                    <div class="stars">★★★★☆</div><!--총평점-->
+                </div>
+                <div class="divider"></div>
+                <div class="category-ratings">
+                    <h4>평점별 항목</h4>
+                    <p><b>4.0★</b>&nbsp;&nbsp;&nbsp;분위기</p>
+                    <p><b>4.0★</b>&nbsp;&nbsp;&nbsp;운영</p>
+                    <p><b>4.0★</b>&nbsp;&nbsp;&nbsp;활동</p>
+                </div>
+            </div>
+            
+            <ul class="introductions">
+                <a href="#"><!--인스타그램--></a>
+                <p>동국대학교 프로그래밍 학술 중앙 동아리 CAPS입니다!
+
+현재 200여명의 부원과 함께 프로그래밍 관련한 여러 활동을 진행하고 있습니다. 
+                    
+주요 활동으로는 알고리즘 경진 대회, 시험기간 간식 행사, 가을학기 MT가 있고 이외에도 친목을 위한 다양한 행사를 진행 중에 있습니다! 
+                    
+9월 1일부터 8일까지 신입 부원 모집 중에 있으며, 구글 폼을 통해 지원하실 수 있습니다!
+                    
+많은 지원 부탁드립니다~
+                </p>
+            </ul>
+        </section>
+
+        <aside class="sidebars">
+            <h3>최근 질문</h3>
+            <div class="sidebar">
+                <!--질문 리스트-->
+                <li class="question">
+                    <div class="text-container">
+                        <p>휴학생도 신청 가능한가요??</p>
+                    </div>
+                </li>
+                <li class="question">
+                    <div class="text-container">
+                        <p>비전공자인데 지원가능할까요?</p>
+                    </div>
+                </li>
+                <p class="question-list">
+                    <a href="#">질문 더보기></a>
+                </p>
+            </div>
+            <div class="question-write">
+                <a href="#">질문하기</a>
+            </div>            
+            <div class="apply">
+                <p>동아리 지원 기간</p>
+                <!--정보 받아옴-->
+                <p>9.1 ~ 9.10</p><br>
+                <input type="submit" class="button-link" value="지원하기">
+            </div>
+        </aside>
+    </main>
+</body>
+</html>

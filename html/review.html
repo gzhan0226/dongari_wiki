@@ -1,0 +1,307 @@
+<!DOCTYPE html> 
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>동아리 위키 - CAPS</title>
+    <link rel="stylesheet" href="review_style.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            // 리뷰 쓰기 버튼 클릭 시 이벤트 (review_write 페이지에서 별점 데이터를 받는다고 가정)
+            $('#write-review').on('click', function() {
+                // 예시 데이터: review_write 페이지에서 받아온 별점 파라미터
+                const categoryRatings = {
+                    분위기: 4,
+                    운영: 4,
+                    활동: 4
+                };
+                
+                // 항목별 평점 업데이트
+                $('.category-ratings').html(`
+                    <p>${categoryRatings.분위기}★ 분위기</p>
+                    <p>${categoryRatings.운영}★ 운영</p>
+                    <p>${categoryRatings.활동}★ 활동</p>
+                `);
+                
+                // 총 평점 계산
+                const totalRating = (categoryRatings.분위기 + categoryRatings.운영 + categoryRatings.활동) / 3;
+                $('.rating-summary h3').text(totalRating.toFixed(1));
+                
+                // 총 평점 별점 아이콘 갱신
+                const fullStars = '★'.repeat(Math.floor(totalRating));
+                const halfStar = (totalRating % 1 >= 0.5) ? '☆' : '';
+                const emptyStars = '☆'.repeat(4 - Math.floor(totalRating));
+                $('.rating-summary .stars').html(`${fullStars}${halfStar}${emptyStars}`);
+            });
+        });
+
+        // 페이지 로드 시 모든 리뷰의 좋아요/싫어요 수를 표시
+        window.onload = function() {
+            updateAllReviewCounts();
+        };
+    
+        // 사용자 ID와 리뷰 ID를 조합한 키를 생성하는 함수
+        function createUserReviewKey(userId, reviewId) {
+            return `user_${userId}_review_${reviewId}`;
+        }
+    
+        // 특정 리뷰의 좋아요/싫어요 수를 가져오는 함수
+        function getReviewCounts(reviewId) {
+            const counts = JSON.parse(localStorage.getItem(`review_counts_${reviewId}`)) || {
+                likes: 0,
+                dislikes: 0
+            };
+            return counts;
+        }
+    
+        // 모든 리뷰의 카운트를 업데이트하는 함수
+        function updateAllReviewCounts() {
+            const reviewElements = document.querySelectorAll('[data-review-id]');
+            reviewElements.forEach(element => {
+                const reviewId = element.dataset.reviewId;
+                const counts = getReviewCounts(reviewId);
+                
+                const likeCount = element.querySelector(`#likeCount${reviewId}`);
+                const dislikeCount = element.querySelector(`#dislikeCount${reviewId}`);
+                
+                if (likeCount) likeCount.innerText = counts.likes;
+                if (dislikeCount) dislikeCount.innerText = counts.dislikes;
+    
+                // 사용자의 이전 선택을 표시
+                const userId = getCurrentUserId(); // 현재 로그인한 사용자의 ID를 가져오는 함수 (구현 필요)
+                const userSelection = getUserSelection(userId, reviewId);
+                
+                const likeButton = element.querySelector('.like-button');
+                const dislikeButton = element.querySelector('.dislike-button');
+                
+                if (userSelection.liked) {
+                    likeButton?.classList.add('selected');
+                }
+                if (userSelection.disliked) {
+                    dislikeButton?.classList.add('selected');
+                }
+            });
+        }
+    
+        // 사용자의 선택 상태를 가져오는 함수
+        function getUserSelection(userId, reviewId) {
+            const key = createUserReviewKey(userId, reviewId);
+            return JSON.parse(localStorage.getItem(key)) || {
+                liked: false,
+                disliked: false
+            };
+        }
+    
+        // 사용자의 선택을 저장하는 함수
+        function saveUserSelection(userId, reviewId, selection) {
+            const key = createUserReviewKey(userId, reviewId);
+            localStorage.setItem(key, JSON.stringify(selection));
+        }
+    
+        // 좋아요/싫어요 토글 함수
+        function toggleLikeDislike(type, reviewId) {
+            const userId = getCurrentUserId(); // 현재 로그인한 사용자의 ID를 가져오는 함수 (구현 필요)
+            if (!userId) {
+                alert('로그인이 필요한 기능입니다.');
+                return;
+            }
+    
+            const userSelection = getUserSelection(userId, reviewId);
+            const counts = getReviewCounts(reviewId);
+            let updated = false;
+    
+            if (type === 'like') {
+                if (!userSelection.liked) {
+                    if (userSelection.disliked) {
+                        counts.dislikes--;
+                        userSelection.disliked = false;
+                    }
+                    counts.likes++;
+                    userSelection.liked = true;
+                    updated = true;
+                } else {
+                    counts.likes--;
+                    userSelection.liked = false;
+                    updated = true;
+                }
+            } else if (type === 'dislike') {
+                if (!userSelection.disliked) {
+                    if (userSelection.liked) {
+                        counts.likes--;
+                        userSelection.liked = false;
+                    }
+                    counts.dislikes++;
+                    userSelection.disliked = true;
+                    updated = true;
+                } else {
+                    counts.dislikes--;
+                    userSelection.disliked = false;
+                    updated = true;
+                }
+            }
+    
+            if (updated) {
+                // 로컬 스토리지 업데이트
+                localStorage.setItem(`review_counts_${reviewId}`, JSON.stringify(counts));
+                saveUserSelection(userId, reviewId, userSelection);
+    
+                // UI 업데이트
+                const likeCount = document.getElementById(`likeCount${reviewId}`);
+                const dislikeCount = document.getElementById(`dislikeCount${reviewId}`);
+                if (likeCount) likeCount.innerText = counts.likes;
+                if (dislikeCount) dislikeCount.innerText = counts.dislikes;
+    
+                // 버튼 스타일 업데이트
+                const likeButton = document.querySelector(`[data-review-id="${reviewId}"] .like-button`);
+                const dislikeButton = document.querySelector(`[data-review-id="${reviewId}"] .dislike-button`);
+                
+                if (likeButton) {
+                    likeButton.classList.toggle('selected', userSelection.liked);
+                }
+                if (dislikeButton) {
+                    dislikeButton.classList.toggle('selected', userSelection.disliked);
+                }
+            }
+        }
+    
+        // 북마크 토글 함수
+        function toggleBookmark() {
+            const star = document.getElementById("scrap");
+            star.classList.toggle("bookmarked");
+        }
+    
+        // 현재 로그인한 사용자의 ID를 가져오는 함수 (예시)
+        function getCurrentUserId() {
+            // 실제 구현에서는 세션이나 다른 방식으로 현재 로그인한 사용자의 ID를 반환
+            return sessionStorage.getItem('currentUserId');
+        }
+    </script>
+</head>
+<body>
+    <header>
+        <div class="header-content">
+            <div class="logo-container">
+                <img src="logo.png" alt="동국대학교 로고">
+                <div class="site-name">
+                    <div class="small-text">동국대학교 동아리 위키</div>
+                    <div class="large-text">동동</div>
+                </div>
+            </div>
+            <nav>
+                <a href="main.html">홈</a>
+                <a href="#" class="active">동아리</a>
+            </nav>
+            <div class="header-right"> <!-- Wrapper to control alignment -->
+                <div class="search-bar">
+                    <input type="search" class="keyword" placeholder="찾으시는 동아리가 있나요?">
+                    <button class="submit">
+                        <img src="search.png" alt="Search">
+                    </button>
+                </div>
+                <div class="user-menu">
+                    <a href="mypage.html">마이페이지</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="club-info">
+            <div class =  "logo-container">
+                <img src="caps_logo.png" alt="CAPS Logo">
+                <div class="site-name">
+                    <div class="large-text">CAPS</div> 
+                    <div class="small-text">100명 이상</div><!--부원수-->
+                </div>
+                <div id="scrap" class="scrap" onclick="toggleBookmark()">★</div>
+            </div><br>
+            <h3>인기 리뷰</h3>
+            <div class="review"><!--리뷰-->
+                <p>대외 활동이 많아서 좋았어요! 여러 야외 활동을 하면서 다양한 경험을 할 수 있었어요.</p>
+            </div>
+            <div class="review">
+                <p>친목 위주의 분위기라 여러 사람을 만나고 싶을 때 추천드려요!</p>
+            </div>
+            <div class="write">
+                <button class="write-button"><a href="#">리뷰쓰기</a></button>
+            </div>
+        </section>
+
+        <section class="reviews">
+            <div class="ratings">
+                <div class="rating-summary">
+                    <h3>4.0</h3>
+                    <div class="stars">★★★★☆</div><!--총평점-->
+                </div>
+                <div class="divider"></div>
+                <div class="category-ratings">
+                    <h4>평점별 항목</h4>
+                    <p><b>4.0★</b>&nbsp;&nbsp;&nbsp;분위기</p>
+                    <p><b>4.0★</b>&nbsp;&nbsp;&nbsp;운영</p>
+                    <p><b>4.0★</b>&nbsp;&nbsp;&nbsp;활동</p>
+                </div>
+            </div>
+            
+            <ul class="review-list">
+                <li class="review-item">
+                    <div class="review-header">
+                        <span class="review-rating">4.5<br>★★★★☆</span>
+                    </div>
+                    <div class ="review-body">
+                        <strong class="review-title">"대외 활동하기 좋아요"</strong>
+                        <p class="review-author">동국대 23학번</p>
+                        <p class="review-content">대외활동하기 막막했는데 덕분에 많이 배웠습니다!
+                            여러 활동이 있어서 재밌었어요.
+                            다만 아쉬웠던 점이 몇가지 있어서 적어보고자 합니다.</p>
+                        <div class="review-controls">
+                            <span class="like" onclick="toggleLikeDislike('like', 0)">👍</span> <span id="likeCount0">0</span>
+                            <span class="dislike" onclick="toggleLikeDislike('dislike', 0)">👎</span> <span id="dislikeCount0">0</span>
+                        </div>
+                    </div>
+                </li>
+                <li class="review-item">
+                    <div class="review-header">
+                        <span class="review-rating">5.0<br>★★★★★</span>
+                    </div>
+                    <div class ="review-body">
+                        <strong class="review-title">"스터디가 가장 잘 운영되고 있는 동아리"</strong>
+                        <p class="review-author">동국대 23학번</p>
+                        <p class="review-content">학술 동아리를 하면서 적절한 친목도 쌓고, 다양한 스터디를 경험할 수 있습니다. 프로그래밍을 배우는 데 관심있다면 이 동아리를 가장 추천드립니다!</p>
+                        <div class="review-controls">
+                            <span class="like" onclick="toggleLikeDislike('like', 1)">👍</span> <span id="likeCount1">0</span>
+                            <span class="dislike" onclick="toggleLikeDislike('dislike', 1)">👎</span> <span id="dislikeCount1">0</span>
+                        </div>
+                    </div>
+                </li>
+                <!-- 추가 리뷰 항목은 동일한 구조로 추가 -->
+            </ul>
+
+        </section>
+
+        <aside class="sidebars">
+            <h3>비슷한 동아리</h3>
+            <div class="sidebar">
+                <li class="club-item">
+                    <div class="text-container">
+                        <a href="#">멋쟁이사자처럼</a>
+                    </div>
+                </li>
+                <li class="club-item">
+                    <div class="text-container">
+                        <a href="#">DNA</a>
+                    </div>
+                </li>
+            </div>
+            
+            
+            <div class="apply">
+                <p>동아리 지원 기간</p>
+                <!--정보 받아옴-->
+                <p>9.1 ~ 9.10</p><br>
+                <button>지원하기</button> 
+            </div>
+        </aside>
+    </main>
+</body>
+</html>
