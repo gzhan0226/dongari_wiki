@@ -1,0 +1,195 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    display: flex;
+    justify-content: center;
+}
+
+.header-content {
+    width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.site-name .small-text {
+    font-size: 12px;
+    color: #f3f3f3;
+}
+
+.site-name .large-text {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+nav a {
+    color: #ccc;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+nav a.active {
+    color: orange;
+}
+
+.search-bar {
+    position: relative;
+    width: 250px;
+    max-width: 250px;
+    border-radius: 40px;
+    background: #FFF;
+    margin-right: 5px;
+}
+
+.search-bar .keyword {
+    width: 100%;
+    padding: 0.5em 1em;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding-right: 3em; /* 버튼 영역 확보 */
+    font-size: 14px;
+}
+
+.search-bar .submit {
+    position: absolute;
+    right: 15px; /* 입력 박스 안쪽의 위치 */
+    top: 55%;
+    transform: translateY(-50%);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+}
+.search-bar .submit img{
+    width: 20px;
+    height: auto;
+}
+
+.user-menu a {
+    border-radius: 10px;
+    border: 1px solid #EFEDEB;
+    color: #fff;
+    padding: 0.5em 1em;
+    margin-left: 5px;
+    text-decoration: none;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+    gap: 1em;
+}
+
+.clubs {
+    width: 80%;
+    border-radius: 10px;
+    background: #FFF;
+    padding: 2em;
+    margin-top: 10px;
+}
+
+.review form input[type="text"]{
+    width: 100%;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 10px;
+}
+.review form textarea {
+    width: 100%;
+    height: 200px;
+    padding: 1em;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    resize: none;
+}
+
+.review form button {
+    width: 100%;
+    padding: 0.7em 1em;
+    border-radius: 20px;
+    font-size: 1em;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    cursor: pointer;
+}
+
+.star_rating strong {
+    display: block;
+    color: #333;
+    font-weight: bold;
+}
+
+.ratings-box {
+    background-color: #f3f3f3;
+    padding: 1em;
+    border-radius: 8px;
+    margin-bottom: 1em;
+}
+
+.ratings-box .star_rating{
+    margin-bottom: 0.5em; /* Adds space between each rating */
+}
+
+.star_rating {
+    width: 100%; 
+    box-sizing: border-box; 
+    display: inline-flex; 
+    flex-direction: row; 
+    justify-content: flex-start;
+}
+.star_rating .star {
+    width: 15px; 
+    height: 15px; 
+    margin-left: 10px;
+    display: inline-block; 
+    color: #acacac; /* 기본 상태의 별 색상 */
+    content: "☆";
+    background-size: 100%; 
+    box-sizing: border-box;
+    font-size: 20px;
+    line-height: 18px;
+}
+
+.star_rating .star.on {
+    color: orange; /* 활성화된 별 색상 */
+    content: "★";
+    background-size: 100%; 
+}
+
