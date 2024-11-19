@@ -51,7 +51,7 @@ private DBUtil dbUtil = new DBUtil();
 			System.out.println(pstmt);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				int total_rating = (int) Math.floor((rs.getInt(6) + rs.getInt(7) + rs.getInt(8)) / 3);
+				double total_rating = (double) (rs.getInt(6) + rs.getInt(7) + rs.getInt(8)) / 3;
 				reviewDtoList.add(new ReviewDto(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5)
 						,rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getString(9),total_rating));
 			}
@@ -72,7 +72,7 @@ private DBUtil dbUtil = new DBUtil();
 			System.out.println(pstmt);
 			ResultSet rs = pstmt.executeQuery();
 			while(rs.next()) {
-				int total_rating = (int) Math.floor((rs.getInt(6) + rs.getInt(7) + rs.getInt(8)) / 3);
+				double total_rating = (double) (rs.getInt(6) + rs.getInt(7) + rs.getInt(8)) / 3;
 				reviewDto = new ReviewDto(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5)
 						,rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getString(9),total_rating);
 			}

@@ -13,10 +13,10 @@ public class ReviewDto {
 	private int man;
 	
 	private String username;
-	private int total_rating;
+	private double total_rating;
 	
 	public ReviewDto(int id, int user_id, int dongari_id, String title, String body, int atm, int act, int man
-			,String username, int total_rating) {
+			,String username, double total_rating) {
         this.id = id;
         this.user_id = user_id;
         this.dongari_id = dongari_id;
@@ -66,7 +66,7 @@ public class ReviewDto {
     	return username;
     }
     
-    public int getTotal_rating() {
+    public double getTotal_rating() {
     	return total_rating;
     }
     

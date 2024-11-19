@@ -90,7 +90,7 @@ public class EditReview extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
-		int id = Integer.parseInt(request.getParameter("id")); 
+		int id = Integer.parseInt(request.getParameter("id")); // url 주소로 보낸 num값 읽어오기 
 		int review_id = Integer.parseInt(request.getParameter("review_id"));
 		HttpSession session = request.getSession();
 		if (session == null) {

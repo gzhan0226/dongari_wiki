@@ -39,37 +39,6 @@
             }
         });
     </script> --%>
-    <%
-    // 평점 값을 가져오기
-    Object atmObj = request.getAttribute("atm");
-    Object actObj = request.getAttribute("act");
-    Object manObj = request.getAttribute("man");
-
-    double atm = 0.0;
-    double act = 0.0;
-    double man = 0.0;
-
-    if (atmObj != null) atm = Double.parseDouble(atmObj.toString());
-    if (actObj != null) act = Double.parseDouble(actObj.toString());
-    if (manObj != null) man = Double.parseDouble(manObj.toString());
-%>
-
-<%!
-    // 별 출력 메서드 (선언문 태그 안에 정의)
-    public String generateStars(double rating) {
-        int fullStars = (int) Math.floor(rating);  // 정수 부분
-        boolean hasHalfStar = (rating - fullStars >= 0.5); // 소수점이 0.5 이상인지 확인
-        int emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // 빈 별 개수 계산
-
-        // 문자열로 별 생성
-        StringBuilder stars = new StringBuilder();
-        for (int i = 0; i < fullStars; i++) stars.append("★");
-        if (hasHalfStar) stars.append("☆");
-        for (int i = 0; i < emptyStars; i++) stars.append("☆");
-        
-        return stars.toString();
-    }
-%>
     
 </head>
 <body>
@@ -130,9 +99,9 @@
                 </div>
                 <div class="divider"></div>
                  <div class="category-ratings">
-                    <p>분위기: <%= generateStars(atm) %></p>
-					<p>활동 : <%= generateStars(act) %></p>
-					<p>운영 : <%= generateStars(man) %></p>
+                    <p>분위기: ${atm} </p>
+					<p>활동 : ${act} </p>
+					<p>운영 : ${man} </p>
                 </div> 
             </div> 
             
@@ -147,10 +116,11 @@
                         </div>
                         <p class="review-author">${review.username}</p>
                         <p class="review-content">${review.body}</p>
-                        <%-- <div class="review-controls">
-                            <span class="like" id="likeBtn${review.id}" onclick="toggleLikeDislike('like', ${review.id})">좋아요 👍</span> <span id="likeCount${review.id}">${review.likes}</span>
-                            <span class="dislike" id="dislikeBtn${review.id}" onclick="toggleLikeDislike('dislike', ${review.id})">싫어요 👎</span> <span id="dislikeCount${review.id}">${review.dislikes}</span>
-                        </div> --%>
+                        <div class="review-controls">
+                            <span class="like" id="likeBtn${review.id}" onclick="toggleLikeDislike('like', ${review.id})">좋아요 👍</span> 
+                            <span id="likeCount${review.id}">${review.likeCount}</span>
+                            <span id="likeCount${review.id}">${review.likeCheck}</span>
+                        </div> 
                     </li>
                 </c:forEach>
             </ul>
