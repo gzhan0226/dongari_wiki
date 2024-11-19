@@ -8,31 +8,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동아리 위키 - CAPS</title>
-    <link rel="stylesheet" href="dongari_review_style.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/style/review_style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
+    <%-- <script>
         $(document).ready(function() {
-            $('#write-review').on('click', function() {
-                const categoryRatings = {
-                    분위기: <c:out value="${categoryRatings.분위기}" />,
-                    운영: <c:out value="${categoryRatings.운영}" />,
-                    활동: <c:out value="${categoryRatings.활동}" />
-                };
-                
-                $('.category-ratings').html(`
-                    <p>${categoryRatings.분위기}★ 분위기</p>
-                    <p>${categoryRatings.운영}★ 운영</p>
-                    <p>${categoryRatings.활동}★ 활동</p>
-                `);
-                
-                const totalRating = (categoryRatings.분위기 + categoryRatings.운영 + categoryRatings.활동) / 3;
-                $('.rating-summary h3').text(totalRating.toFixed(1));
-                
-                const fullStars = '★'.repeat(Math.floor(totalRating));
-                const halfStar = (totalRating % 1 >= 0.5) ? '☆' : '';
-                const emptyStars = '☆'.repeat(4 - Math.floor(totalRating));
-                $('.rating-summary .stars').html(`${fullStars}${halfStar}${emptyStars}`);
-            });
 
             function toggleLikeDislike(type, reviewId) {
                 const userId = '<%= session.getAttribute("userId") %>';
@@ -59,13 +38,45 @@
                 });
             }
         });
-    </script>
+    </script> --%>
+    <%
+    // 평점 값을 가져오기
+    Object atmObj = request.getAttribute("atm");
+    Object actObj = request.getAttribute("act");
+    Object manObj = request.getAttribute("man");
+
+    double atm = 0.0;
+    double act = 0.0;
+    double man = 0.0;
+
+    if (atmObj != null) atm = Double.parseDouble(atmObj.toString());
+    if (actObj != null) act = Double.parseDouble(actObj.toString());
+    if (manObj != null) man = Double.parseDouble(manObj.toString());
+%>
+
+<%!
+    // 별 출력 메서드 (선언문 태그 안에 정의)
+    public String generateStars(double rating) {
+        int fullStars = (int) Math.floor(rating);  // 정수 부분
+        boolean hasHalfStar = (rating - fullStars >= 0.5); // 소수점이 0.5 이상인지 확인
+        int emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0); // 빈 별 개수 계산
+
+        // 문자열로 별 생성
+        StringBuilder stars = new StringBuilder();
+        for (int i = 0; i < fullStars; i++) stars.append("★");
+        if (hasHalfStar) stars.append("☆");
+        for (int i = 0; i < emptyStars; i++) stars.append("☆");
+        
+        return stars.toString();
+    }
+%>
+    
 </head>
 <body>
     <header>
         <div class="header-content">
             <div class="logo-container">
-                <img src="logo.png" alt="동국대학교 로고">
+                <img src="./assets/logo.png" alt="동국대학교 로고">
                 <div class="site-name">
                     <div class="small-text">동국대학교 동아리 위키</div>
                     <div class="large-text">동동</div>
@@ -79,7 +90,7 @@
                 <div class="search-bar">
                     <input type="search" class="keyword" placeholder="찾으시는 동아리가 있나요?">
                     <button class="submit">
-                        <img src="search.png" alt="Search">
+                        <img src="./assets/search.png" alt="Search">
                     </button>
                 </div>
                 <div class="user-menu">
@@ -92,17 +103,17 @@
     <main>
         <section class="club-info">
             <div class="logo-container">
-                <img src="caps_logo.png" alt="${clubName} Logo">
+                <img src="./assets/caps_logo.png" alt="${dongari.title} Logo">
                 <div class="site-name">
-                    <div class="large-text">${clubName}</div> 
-                    <div class="small-text">${memberCount}명 이상</div>
+                    <div class="large-text">${dongari.title}</div> 
+                    <div class="small-text">${dongari.member_num}명 이상</div>
                 </div>
             </div><br>
             <h3>인기 리뷰</h3>
             <div class="review">
                <c:forEach var="review" items="${reviews}">
 				    <div class="review">
-				        <p>${review.content}</p>
+				        <p>${review.body}</p>
 				    </div>
 				</c:forEach>
             </div>
@@ -112,32 +123,34 @@
         </section>
 
         <section class="reviews">
-            <div class="ratings">
+          	<div class="ratings">
                 <div class="rating-summary">
-                    <h3><c:out value="${totalRating}" /></h3>
-                    <div class="stars"><c:out value="${totalStars}" /></div>
+                    <h3><c:out value="${total}" /></h3>
+                    <div class="stars"><c:out value="${total}" /></div>
                 </div>
                 <div class="divider"></div>
-                <div class="category-ratings">
-                    <p><c:out value="${categoryRatings.분위기}" />★ 분위기</p>
-                    <p><c:out value="${categoryRatings.운영}" />★ 운영</p>
-                    <p><c:out value="${categoryRatings.활동}" />★ 활동</p>
-                </div>
-            </div>
+                 <div class="category-ratings">
+                    <p>분위기: <%= generateStars(atm) %></p>
+					<p>활동 : <%= generateStars(act) %></p>
+					<p>운영 : <%= generateStars(man) %></p>
+                </div> 
+            </div> 
+            
+            
             
             <ul class="review-list">
                 <c:forEach var="review" items="${reviews}">
                     <li class="review-item" data-review-id="${review.id}">
                         <div class="review-header">
-                            <span class="review-rating">${review.rating} ★</span>
+                            <span class="review-rating">${review.total_rating} ★</span>
                             <strong>${review.title}</strong>
                         </div>
-                        <p class="review-author">${review.author}</p>
-                        <p class="review-content">${review.content}</p>
-                        <div class="review-controls">
+                        <p class="review-author">${review.username}</p>
+                        <p class="review-content">${review.body}</p>
+                        <%-- <div class="review-controls">
                             <span class="like" id="likeBtn${review.id}" onclick="toggleLikeDislike('like', ${review.id})">좋아요 👍</span> <span id="likeCount${review.id}">${review.likes}</span>
                             <span class="dislike" id="dislikeBtn${review.id}" onclick="toggleLikeDislike('dislike', ${review.id})">싫어요 👎</span> <span id="dislikeCount${review.id}">${review.dislikes}</span>
-                        </div>
+                        </div> --%>
                     </li>
                 </c:forEach>
             </ul>

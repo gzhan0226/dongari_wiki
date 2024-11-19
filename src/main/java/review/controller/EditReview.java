@@ -14,16 +14,16 @@ import review.ReviewDto;
 import review.ReviewService;
 
 /**
- * Servlet implementation class AddReview
+ * Servlet implementation class EditReview
  */
-@WebServlet("/newreview")
-public class AddReview extends HttpServlet {
+@WebServlet("/editreview")
+public class EditReview extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddReview() {
+    public EditReview() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,13 +35,27 @@ public class AddReview extends HttpServlet {
 		HttpSession session = request.getSession();
 		
 		int id = Integer.parseInt(request.getParameter("id"));
+		int review_id = Integer.parseInt(request.getParameter("review_id"));
+		
+		ReviewService reviewService = new ReviewService();
+		ReviewDto reviewDto = reviewService.findById(review_id);
+		
 		if (session.getAttribute("user_id") == null) {
 			response.sendRedirect("login");
 			return;
 		}
-		request.setAttribute("type", "newreview");
+		
+		int user_id = (int) session.getAttribute("user_id");
+		
+		if (user_id != reviewDto.getUser_id()) {
+			response.sendRedirect("./");
+			return;
+		}
+		
+		request.setAttribute("type", "editreview");
 		request.setAttribute("id", id);
-		RequestDispatcher dis = request.getRequestDispatcher("newreview.jsp"); //form 페이지 생기면 추가
+		request.setAttribute("review", reviewDto);
+		RequestDispatcher dis = request.getRequestDispatcher("newreview.jsp"); 
 		dis.forward(request, response);
 	}
 
@@ -53,7 +67,7 @@ public class AddReview extends HttpServlet {
 		response.setContentType("text/html;charset=UTF-8");
 		
 		int id = Integer.parseInt(request.getParameter("id")); // url 주소로 보낸 num값 읽어오기 
-		
+		int review_id = Integer.parseInt(request.getParameter("review_id"));
 		HttpSession session = request.getSession();
 		if (session == null) {
 			response.sendRedirect("login");
@@ -67,10 +81,27 @@ public class AddReview extends HttpServlet {
 		int man = Integer.parseInt(request.getParameter("man_rating"));
 		
 		ReviewService reviewService = new ReviewService();
-		reviewService.saveReview(new ReviewDto(0,user_id,id,title,body,atm,act,man,"",0));
+		reviewService.editReview(new ReviewDto(review_id,user_id,id,title,body,atm,act,man,"",0));
 		
 		response.sendRedirect("./");
 		return; 
 	}
-
+	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
+		
+		int id = Integer.parseInt(request.getParameter("id")); 
+		int review_id = Integer.parseInt(request.getParameter("review_id"));
+		HttpSession session = request.getSession();
+		if (session == null) {
+			response.sendRedirect("login");
+			return; 
+		}
+		
+		ReviewService reviewService = new ReviewService();
+		reviewService.deleteReview(review_id);
+		
+		response.sendRedirect("./");
+		return; 
+	}
 }

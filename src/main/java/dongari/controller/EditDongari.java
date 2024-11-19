@@ -107,9 +107,6 @@ public class EditDongari extends HttpServlet {
 		}
 		int user_id = (int) session.getAttribute("user_id");
 		
-		
-	
-		
 		DongariService dongariService = new DongariService();
 		dongariService.deleteDongari(id);
 		

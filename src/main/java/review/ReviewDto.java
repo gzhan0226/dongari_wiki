@@ -12,7 +12,11 @@ public class ReviewDto {
 	private int act;
 	private int man;
 	
-	public ReviewDto(int id, int user_id, int dongari_id, String title, String body, int atm, int act, int man) {
+	private String username;
+	private int total_rating;
+	
+	public ReviewDto(int id, int user_id, int dongari_id, String title, String body, int atm, int act, int man
+			,String username, int total_rating) {
         this.id = id;
         this.user_id = user_id;
         this.dongari_id = dongari_id;
@@ -21,6 +25,8 @@ public class ReviewDto {
         this.atm = atm;
         this.act = act;
         this.man = man;
+        this.username = username;
+        this.total_rating = total_rating;
     }
     
     // Getters
@@ -54,6 +60,14 @@ public class ReviewDto {
     
     public int getMan() {
         return man;
+    }
+    
+    public String getUsername() {
+    	return username;
+    }
+    
+    public int getTotal_rating() {
+    	return total_rating;
     }
     
     // Setters

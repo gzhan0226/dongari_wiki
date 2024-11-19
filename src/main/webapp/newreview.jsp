@@ -53,12 +53,6 @@
         <div class="clubs">
             <div class="review">
                 <form method="post" action="${type}">
-                    <label>
-                        <input type="radio" name="anonymity" value="실명" checked> 실명
-                    </label>
-                    <label>
-                        <input type="radio" name="anonymity" value="익명"> 익명
-                    </label>
                     <br><br>
                     
                     <div class="ratings-box">
@@ -69,7 +63,7 @@
                             <span class="star" data-value="3">★</span>
                             <span class="star" data-value="4">★</span>
                             <span class="star" data-value="5">★</span>
-                            <input type="hidden" name="atm_rating" class="rating-input">
+                            <input type="hidden" name="atm_rating" class="rating-input" value="${review.atm}">
                         </div>
                         <div class="star_rating">
                             <strong>운영</strong>
@@ -78,7 +72,7 @@
                             <span class="star" data-value="3">★</span>
                             <span class="star" data-value="4">★</span>
                             <span class="star" data-value="5">★</span>
-                            <input type="hidden" name="man_rating" class="rating-input">
+                            <input type="hidden" name="man_rating" class="rating-input" value="${review.man}">
                         </div>
                         <div class="star_rating">
                             <strong>활동</strong>
@@ -87,7 +81,7 @@
                             <span class="star" data-value="3">★</span>
                             <span class="star" data-value="4">★</span>
                             <span class="star" data-value="5">★</span>
-                            <input type="hidden" name="act_rating" class="rating-input">
+                            <input type="hidden" name="act_rating" class="rating-input" value="${review.act}">
                         </div>
 
                         <script>
@@ -103,8 +97,9 @@
 
                         <br><br>
                         <input type="hidden" value="${id}" name="id">
-                        <input type="text" name="title" placeholder="제목" required>
-                        <textarea name="body" placeholder="내용을 입력하세요." required></textarea>
+                        <input type="hidden" value="${review.id}" name="review_id">
+                        <input type="text" name="title" placeholder="제목" required value="${review.title}">
+                        <input type="text" name="body" placeholder="내용을 입력하세요." required value="${review.body}">
                     </div>
                     <c:choose>
                         <c:when test="${empty sessionScope.username}">
