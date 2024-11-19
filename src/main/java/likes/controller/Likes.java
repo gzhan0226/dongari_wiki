@@ -52,6 +52,8 @@ public class Likes extends HttpServlet {
 		}
 		else 
 			likesService.likeReview(review_id, user_id);
+		
+		response.sendRedirect("request.getRequestURI()" + "?review_id=" + review_id);
 		return;
 	}
 
