@@ -10,35 +10,33 @@
     <title>동아리 위키 - CAPS</title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/style/review_style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <%-- <script>
-        $(document).ready(function() {
-
-            function toggleLikeDislike(type, reviewId) {
-                const userId = '<%= session.getAttribute("userId") %>';
-                if (!userId) {
-                    alert('로그인이 필요한 기능입니다.');
-                    return;
+    <script>
+    $(document).ready(function () {
+        // 좋아요 버튼 클릭 이벤트 핸들러
+        $('.like-btn').on('click', function () {
+            const review_id = $(this).data('review-id'); // 버튼에서 review_id 가져오기
+			const likeCheck = $(this).data('likecheck');
+            // AJAX POST 요청 (파라미터 형식으로 전송)
+            $.ajax({
+                url: '/web_programming/likes', // 요청을 보낼 URL
+                type: 'POST', // POST 방식
+                data: { review_id: review_id }, // 파라미터로 전송
+                success: function () {
+                	if (likeCheck) {
+                		alert('좋아요 취소');
+                	}
+                	else
+                		alert('좋아요');
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error('좋아요 요청 실패:', error);
+                    alert('좋아요 요청 처리 중 오류가 발생했습니다.');
                 }
-
-                $.ajax({
-                    url: 'ToggleLikeDislikeServlet',
-                    type: 'POST',
-                    data: { type: type, reviewId: reviewId, userId: userId },
-                    success: function(response) {
-                        $(`#likeCount${reviewId}`).text(response.likes);
-                        $(`#dislikeCount${reviewId}`).text(response.dislikes);
-                        if (type === 'like') {
-                            $(`#likeBtn${reviewId}`).toggleClass('selected', response.liked);
-                            $(`#dislikeBtn${reviewId}`).removeClass('selected');
-                        } else {
-                            $(`#dislikeBtn${reviewId}`).toggleClass('selected', response.disliked);
-                            $(`#likeBtn${reviewId}`).removeClass('selected');
-                        }
-                    }
-                });
-            }
+            });
         });
-    </script> --%>
+    });
+    </script> 
     
 </head>
 <body>
@@ -108,22 +106,23 @@
             
             
             <ul class="review-list">
-                <c:forEach var="review" items="${reviews}">
-                    <li class="review-item" data-review-id="${review.id}">
-                        <div class="review-header">
-                            <span class="review-rating">${review.total_rating} ★</span>
-                            <strong>${review.title}</strong>
-                        </div>
-                        <p class="review-author">${review.username}</p>
-                        <p class="review-content">${review.body}</p>
-                        <div class="review-controls">
-                            <span class="like" id="likeBtn${review.id}" onclick="toggleLikeDislike('like', ${review.id})">좋아요 👍</span> 
-                            <span id="likeCount${review.id}">${review.likeCount}</span>
-                            <span id="likeCount${review.id}">${review.likeCheck}</span>
-                        </div> 
-                    </li>
-                </c:forEach>
-            </ul>
+   				<c:forEach var="review" items="${reviews}">
+        		<li class="review-item" data-review-id="${review.id}">
+            	<div class="review-header">
+                <span class="review-rating">${review.total_rating} ★</span>
+                <strong>${review.title}</strong>
+            </div>
+            <p class="review-author">${review.username}</p>
+            <p class="review-content">${review.body}</p>
+            <div class="review-controls">
+                <!-- 좋아요 버튼 -->
+                <button class="like-btn" data-review-id="${review.id}" data-likecheck="${review.likeCheck}">좋아요 👍</button>
+                <!-- 좋아요 수 -->
+                <span id="likeCount${review.id}">${review.likeCount}</span>
+            </div>
+        		</li>
+    			</c:forEach>
+			</ul>
         </section>
     </main>
 </body>
