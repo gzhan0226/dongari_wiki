@@ -36,10 +36,8 @@ public class Likes extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int review_id = Integer.parseInt(request.getParameter("review_id")); // url 주소로 보낸 num값 읽어오기 
-		
-		LikesService likesService = new LikesService();
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		
 		HttpSession session = request.getSession();
 		if (session == null) {
@@ -48,6 +46,9 @@ public class Likes extends HttpServlet {
 		}
 		int user_id = (int) session.getAttribute("user_id");
 		
+		int review_id = Integer.parseInt(request.getParameter("review_id")); 
+		LikesService likesService = new LikesService();
+	
 		if (likesService.check(review_id, user_id)) {
 			likesService.cancelReview(review_id, user_id);
 		}

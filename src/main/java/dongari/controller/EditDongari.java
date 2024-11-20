@@ -33,9 +33,13 @@ public class EditDongari extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id = Integer.parseInt(request.getParameter("id")); 
-		HttpSession session = request.getSession();
+		int id = Integer.parseInt(request.getParameter("id")); //여기서 id는 동아리 id
 		
+		HttpSession session = request.getSession();
+		if (session == null) {
+			response.sendRedirect("login");
+			return; 
+		}
 		int user_id = (int) session.getAttribute("user_id");
 		
 		DongariService dongariService = new DongariService();
@@ -58,14 +62,15 @@ public class EditDongari extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
-		
-		int id = Integer.parseInt(request.getParameter("id")); // url 주소로 보낸 num값 읽어오기 
 		HttpSession session = request.getSession();
 		if (session == null) {
 			response.sendRedirect("login");
 			return; 
 		}
+		
 		int user_id = (int) session.getAttribute("user_id");
+		
+		int id = Integer.parseInt(request.getParameter("id")); // 여기서 id는 동아리 id
 		String title = request.getParameter("title");
 		String summary = request.getParameter("summary");
 		String body = request.getParameter("body");
@@ -99,13 +104,13 @@ public class EditDongari extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
-		int id = Integer.parseInt(request.getParameter("id")); // url 주소로 보낸 num값 읽어오기 
 		HttpSession session = request.getSession();
 		if (session == null) {
 			response.sendRedirect("login");
 			return; 
 		}
-		int user_id = (int) session.getAttribute("user_id");
+		
+		int id = Integer.parseInt(request.getParameter("id")); // url 주소로 보낸 num값 읽어오기 
 		
 		DongariService dongariService = new DongariService();
 		dongariService.deleteDongari(id);

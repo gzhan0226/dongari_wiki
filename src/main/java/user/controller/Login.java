@@ -42,12 +42,13 @@ public class Login extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
+		HttpSession session = request.getSession();
+		
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-	
-
+		
 		UserService userService = new UserService();
-		HttpSession session = request.getSession();
+	
 		int result = userService.login(username,password);
 		if (result != 0) {	
 			session.setAttribute("user_id", result);

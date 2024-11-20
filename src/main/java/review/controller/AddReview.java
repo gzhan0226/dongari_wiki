@@ -33,14 +33,16 @@ public class AddReview extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
-		int id = Integer.parseInt(request.getParameter("id"));
 		if (session.getAttribute("user_id") == null) {
 			response.sendRedirect("login");
 			return;
 		}
+		
+		int id = Integer.parseInt(request.getParameter("id"));
+		
 		request.setAttribute("type", "newreview");
 		request.setAttribute("id", id);
+		
 		RequestDispatcher dis = request.getRequestDispatcher("newreview.jsp"); //form 페이지 생기면 추가
 		dis.forward(request, response);
 	}
@@ -52,13 +54,13 @@ public class AddReview extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		
-		int id = Integer.parseInt(request.getParameter("id")); // url 주소로 보낸 num값 읽어오기 
-		
 		HttpSession session = request.getSession();
 		if (session == null) {
 			response.sendRedirect("login");
 			return; 
 		}
+		
+		int id = Integer.parseInt(request.getParameter("id")); // url 주소로 보낸 num값 읽어오기 
 		int user_id = (int) session.getAttribute("user_id");
 		String title = request.getParameter("title");
 		String body = request.getParameter("body");

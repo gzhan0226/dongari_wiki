@@ -36,17 +36,19 @@ public class Scraps extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		int dongari_id = Integer.parseInt(request.getParameter("dongari_id"));
-		
-		ScrapsService scrapsService = new ScrapsService();
+		request.setCharacterEncoding("UTF-8");
+		response.setContentType("text/html;charset=UTF-8");
 		
 		HttpSession session = request.getSession();
 		if (session == null) {
 			response.sendRedirect("login");
 			return; 
 		}
+
 		int user_id = (int) session.getAttribute("user_id");
+		int dongari_id = Integer.parseInt(request.getParameter("dongari_id"));
+		
+		ScrapsService scrapsService = new ScrapsService();
 		
 		if(scrapsService.check(dongari_id, user_id)) {
 			scrapsService.deleteScraps(dongari_id, user_id);

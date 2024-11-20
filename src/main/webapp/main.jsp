@@ -51,7 +51,7 @@
             <h2>동아리</h2>
             <p>여러 분야의 동아리를 확인하고, 관심있는 동아리에 대해 찾아보세요</p>
             <ul class="club-list">
-                <c:forEach var="dongari" items="${list}">
+                <c:forEach var="dongari" items="${dongariList}">
                     <li class="club-item">
                         <div class="text-container">
                             <span><b>${dongari.title}</b></span>
@@ -93,7 +93,7 @@
                             <p>관심있는 동아리를 PICK하고 다른 대학생들의 의견을 알아보세요!</p>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="scrap" items="${scrapsDongariList}">
+                            <c:forEach var="scrap" items="${scrapList}">
                                 <div class="scrapped-club">
                                     <span>${scrap.title} </span>
                                     <span class="category">${scrap.category_name}</span>

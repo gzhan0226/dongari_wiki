@@ -55,7 +55,9 @@ public class AddDongari extends HttpServlet {
 			response.sendRedirect("login");
 			return; 
 		}
+		
 		int user_id = (int) session.getAttribute("user_id");
+		
 		String title = request.getParameter("title");
 		String summary = request.getParameter("summary");
 		String body = request.getParameter("body");

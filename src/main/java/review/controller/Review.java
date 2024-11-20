@@ -40,19 +40,21 @@ public class Review extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int id = Integer.parseInt(request.getParameter("id")); // url 주소로 보낸 num값 읽어오기 
-		
-		ReviewService reviewService = new ReviewService();
-		LikesService likesService = new LikesService();
-		
-		List<ReviewDto> list = reviewService.findAllByDongariId(id);
-		List<ReviewLikeDto> reviews = new ArrayList<>();
-		
 		HttpSession session = request.getSession();
 		int user_id=0;
 		if (session.getAttribute("user_id") != null) {
 	    	user_id = (int) session.getAttribute("user_id");
 	    }
+		
+		int id = Integer.parseInt(request.getParameter("id")); // url 주소로 보낸 num값 읽어오기 
+		
+		ReviewService reviewService = new ReviewService();
+		LikesService likesService = new LikesService();
+		DongariService dongariService = new DongariService();
+		ScrapsService scrapsService = new ScrapsService();
+		
+		List<ReviewDto> list = reviewService.findAllByDongariId(id);
+		List<ReviewLikeDto> reviews = new ArrayList<>();
 		
 		for (ReviewDto reviewDto : list) {
 		    int likeCount = likesService.count(reviewDto.getId());
@@ -69,18 +71,16 @@ public class Review extends HttpServlet {
 		
 		double total = (atm + act + man) / 3;
 		
+		DongariDto dongariDto = dongariService.findById(id);
+		
+		boolean scrapCheck = scrapsService.check(dongariDto.getId(), user_id);
+		
+		request.setAttribute("dongari", dongariDto);
 		request.setAttribute("reviews", reviews);
 		request.setAttribute("atm", atm);
 		request.setAttribute("act", act);
 		request.setAttribute("man", man);
 		request.setAttribute("total", total);
-		
-		DongariService dongariService = new DongariService();
-		DongariDto dongariDto = dongariService.findById(id);
-		request.setAttribute("dongari", dongariDto);
-		
-		ScrapsService scrapsService = new ScrapsService();
-		boolean scrapCheck = scrapsService.check(dongariDto.getId(), user_id);
 		request.setAttribute("scrapCheck", scrapCheck);
 		
 		RequestDispatcher dis = request.getRequestDispatcher("review.jsp");

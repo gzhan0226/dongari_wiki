@@ -36,11 +36,6 @@ public class Main extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		DongariService dongariService = new DongariService();
-		ScrapsService scrapsService = new ScrapsService(); 
-		
-		List<DongariDto> list = dongariService.findAll();
-		request.setAttribute("list", list);
 		
 		HttpSession session = request.getSession();
 		int user_id=0;
@@ -48,13 +43,20 @@ public class Main extends HttpServlet {
 	    	user_id = (int) session.getAttribute("user_id");
 	    }
 		
+		DongariService dongariService = new DongariService();
+		ScrapsService scrapsService = new ScrapsService(); 
+		
+		List<DongariDto> list = dongariService.findAll();
+		
 		List<ScrapsDto> scrapsDtoList = scrapsService.findAll(user_id);
 		List<DongariDto> scrapsDongariList = new ArrayList<>(); 
 		
 		for (ScrapsDto scrap : scrapsDtoList) {
 			scrapsDongariList.add(dongariService.findById(scrap.getDongari_id()));
 		}
-		request.setAttribute("scrapsDongariList", scrapsDongariList);
+		
+		request.setAttribute("dongariList", list);
+		request.setAttribute("scrapList", scrapsDongariList);
 		
 		RequestDispatcher dis = request.getRequestDispatcher("main.jsp");
 		dis.forward(request, response);
