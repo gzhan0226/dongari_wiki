@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동동</title>
     <style>
+        
         body {
             font-family: Arial, sans-serif;
             background-color: #f5f5f5;
@@ -116,6 +117,20 @@
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+        .form-group-inline input[type="radio"] {
+            display: none;
+        }
+        .form-group-inline label {
+            background: #ddd;
+            color: #333;
+            padding: 7px 12px;
+            border-radius: 10px;
+            margin: 5px;
+            cursor: pointer;
+        }
+        .form-group-inline input[type="radio"]:checked + label {
+            background: orange;
+        }
         .form-button {
             display: flex;
             gap: 10px;
@@ -162,6 +177,9 @@
             cursor: pointer;
             margin: 10px;
         }
+        input[type="file"]::file-selector-button:hover {
+            color: orange;
+        }
         .description {
             resize: none;
             height: 100px;
@@ -178,6 +196,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            background: #ccc;
         }
         button[type="submit"] {
             background-color: orange;
@@ -294,9 +313,12 @@
             <div class="form-group">
                 <label>모집 상태</label>
                 <div class="form-group-inline">
-                    <label><input type="radio" name="apply_status" value="1" checked> 모집 중</label>
-                    <label><input type="radio" name="apply_status" value="2"> 상시모집</label>
-                    <label><input type="radio" name="apply_status" value="3"> 모집 완료</label>
+                    <input type="radio" name="apply_status" value="1" id="recruiting" checked>
+                    <label for="recruiting">모집 중</label>
+                    <input type="radio" name="apply_status" value="2" id="always-recruiting">
+                    <label for="always-recruiting">상시모집</label>
+                    <input type="radio" name="apply_status" value="3" id="recruitment-closed">
+                    <label for="recruitment-closed">모집 완료</label>
                 </div>
             </div>
             <div class="form-group">
