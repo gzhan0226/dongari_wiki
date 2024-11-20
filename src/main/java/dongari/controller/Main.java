@@ -1,6 +1,7 @@
 package dongari.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.RequestDispatcher;
@@ -9,9 +10,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dongari.DongariDto;
 import dongari.DongariService;
+import scraps.ScrapsDto;
+import scraps.ScrapsService;
 
 /**
  * Servlet implementation class Dongari
@@ -33,8 +37,25 @@ public class Main extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		DongariService dongariService = new DongariService();
+		ScrapsService scrapsService = new ScrapsService(); 
+		
 		List<DongariDto> list = dongariService.findAll();
 		request.setAttribute("list", list);
+		
+		HttpSession session = request.getSession();
+		int user_id=0;
+		if (session.getAttribute("user_id") != null) {
+	    	user_id = (int) session.getAttribute("user_id");
+	    }
+		
+		List<ScrapsDto> scrapsDtoList = scrapsService.findAll(user_id);
+		List<DongariDto> scrapsDongariList = new ArrayList<>(); 
+		
+		for (ScrapsDto scrap : scrapsDtoList) {
+			scrapsDongariList.add(dongariService.findById(scrap.getDongari_id()));
+		}
+		request.setAttribute("scrapsDongariList", scrapsDongariList);
+		
 		RequestDispatcher dis = request.getRequestDispatcher("main.jsp");
 		dis.forward(request, response);
 	}

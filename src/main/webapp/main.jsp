@@ -89,14 +89,14 @@
                 <h5>스크랩</h5>
                 <div class="sidebar">
                     <c:choose>
-                        <c:when test="${empty scrappedClubs}">
+                        <c:when test="${empty scrapsDongariList}">
                             <p>관심있는 동아리를 PICK하고 다른 대학생들의 의견을 알아보세요!</p>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="scrappedClub" items="${scrappedClubs}">
+                            <c:forEach var="scrap" items="${scrapsDongariList}">
                                 <div class="scrapped-club">
-                                    <span>${scrappedClub.name}</span>
-                                    <span class="category">${scrappedClub.category}</span>
+                                    <span>${scrap.title} </span>
+                                    <span class="category">${scrap.category_name}</span>
                                 </div>
                             </c:forEach>
                         </c:otherwise>

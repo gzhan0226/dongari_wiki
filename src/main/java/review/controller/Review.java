@@ -18,6 +18,7 @@ import likes.LikesService;
 import review.ReviewDto;
 import review.ReviewLikeDto;
 import review.ReviewService;
+import scraps.ScrapsService;
 
 /**
  * Servlet implementation class Review
@@ -48,15 +49,16 @@ public class Review extends HttpServlet {
 		List<ReviewLikeDto> reviews = new ArrayList<>();
 		
 		HttpSession session = request.getSession();
+		int user_id=0;
+		if (session.getAttribute("user_id") != null) {
+	    	user_id = (int) session.getAttribute("user_id");
+	    }
 		
 		for (ReviewDto reviewDto : list) {
 		    int likeCount = likesService.count(reviewDto.getId());
 		    boolean likeCheck = false;
+		    likeCheck = likesService.check(reviewDto.getId(), user_id);
 		    
-		    if (session.getAttribute("user_id") != null) {
-		    	int user_id = (int) session.getAttribute("user_id");
-		    	likeCheck = likesService.check(reviewDto.getId(), user_id);
-		    }
 		    ReviewLikeDto reviewLikeDto = new ReviewLikeDto(reviewDto, likeCount, likeCheck);
 		    reviews.add(reviewLikeDto); // 리스트에 추가
 		}
@@ -76,6 +78,10 @@ public class Review extends HttpServlet {
 		DongariService dongariService = new DongariService();
 		DongariDto dongariDto = dongariService.findById(id);
 		request.setAttribute("dongari", dongariDto);
+		
+		ScrapsService scrapsService = new ScrapsService();
+		boolean scrapCheck = scrapsService.check(dongariDto.getId(), user_id);
+		request.setAttribute("scrapCheck", scrapCheck);
 		
 		RequestDispatcher dis = request.getRequestDispatcher("review.jsp");
 		dis.forward(request, response);

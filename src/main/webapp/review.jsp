@@ -35,6 +35,28 @@
                 }
             });
         });
+        $('.scrap-btn').on('click', function () {
+            const dongari_id = $(this).data('dongari-id'); 
+			const scrapCheck = $(this).data('scrapcheck');
+            // AJAX POST 요청 (파라미터 형식으로 전송)
+            $.ajax({
+                url: '/web_programming/scraps', 
+                type: 'POST', // POST 방식
+                data: { dongari_id: dongari_id },
+                success: function () {
+                	if (scrapCheck) {
+                		alert('스크랩 취소');
+                	}
+                	else
+                		alert('스크랩');
+                    location.reload();
+                },
+                error: function (xhr, status, error) {
+                    console.error('스크랩 요청 실패:', error);
+                    alert('스크랩 요청 처리 중 오류가 발생했습니다.');
+                }
+            });
+        });
     });
     </script> 
     
@@ -74,6 +96,7 @@
                 <div class="site-name">
                     <div class="large-text">${dongari.title}</div> 
                     <div class="small-text">${dongari.member_num}명 이상</div>
+                    <button class="scrap-btn" data-dongari-id="${dongari.id}" data-scrapcheck="${scrapCheck}">즐겨찾기☆</button>
                 </div>
             </div><br>
             <h3>인기 리뷰</h3>
