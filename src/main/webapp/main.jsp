@@ -21,7 +21,7 @@
             </div>
             <nav>
                 <a href="./" class="active">홈</a> 
-                <a href="list">동아리</a>
+                <a href="./all">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="search-bar">
@@ -88,7 +88,7 @@
             
             <c:if test="${not empty sessionScope.username}">
                 <h5>스크랩</h5>
-                <div class="sidebar">
+                <div class="sidebar">	
                     <c:choose>
                         <c:when test="${empty scrappedClubs}">
                             <p>관심있는 동아리를 PICK하고 다른 대학생들의 의견을 알아보세요!</p>
