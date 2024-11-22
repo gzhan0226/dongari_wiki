@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -201,11 +202,13 @@
         button[type="submit"] {
             background-color: orange;
             color: white;
-            padding: 10px 15px;
         }
         button[type="reset"] {
             background-color: #ccc;
             padding: 10px 15px;
+        }
+        .form-button button{
+        	padding: 10px 15px;
         }
         .delete-button button {
             background-color: #fff;
@@ -262,25 +265,34 @@
     <header>
         <div class="header-content">
             <div class="logo-container">
-                <img src="logo.png" alt="동국대학교 로고">
+                <img src="./assets/logo.png" alt="동국대학교 로고">
                 <div class="site-name">
                     <div class="small-text">동국대학교 동아리 위키</div>
                     <div class="large-text">동동</div>
                 </div>
             </div>
             <nav>
-                <a href="main.html">홈</a>
-                <a href="#" class="active">동아리</a>
+                <a href="./">홈</a> 
+                <a href="list" class="active">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="search-bar">
-                    <input type="search" class="keyword" placeholder="찾으시는 동아리가 있나요?">
-                    <button class="submit">
-                        <img src="search.png" alt="Search">
-                    </button>
+                    <form action="search.jsp" method="GET">
+                        <input type="search" name="keyword" class="keyword" placeholder="찾으시는 동아리가 있나요?">
+                        <button type="submit" class="submit">
+                            <img src="./assets/search.png" alt="Search">
+                        </button>
+                    </form>
                 </div>
                 <div class="user-menu">
-                    <a href="mypage.html">마이페이지</a>
+                    <c:choose>
+                        <c:when test="${empty sessionScope.username}">
+                            <a href="login.jsp">로그인</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a href="mypage.jsp">마이페이지</a>
+                        </c:otherwise>
+                    </c:choose>
                 </div>
             </div>
         </div>
