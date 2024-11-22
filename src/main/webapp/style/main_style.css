@@ -77,13 +77,13 @@ nav a.active {
     padding: 0.5em 1em;
     border: 1px solid #fff;
     border-radius: 20px;
-    padding-right: 3em; /* 버튼 영역 확보 */
+    padding-right: 3em;
     font-size: 14px;
 }
 
 .search-bar .submit {
     position: absolute;
-    right: 15px; /* 입력 박스 안쪽의 위치 */
+    right: 15px;
     top: 55%;
     transform: translateY(-50%);
     color: #fff;
@@ -96,11 +96,6 @@ nav a.active {
     height: auto;
 }
 
-.sidebar span {
-    margin-right: 10px;
-    color: #333;
-}
-
 .user-menu a {
     border-radius: 10px;
     border: 1px solid #EFEDEB;
@@ -110,16 +105,6 @@ nav a.active {
     text-decoration: none;
 }
 
-.sidebar a {
-    width: 20%;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 0.5em 1em;
-    margin-left: 5px;
-    text-decoration: none;
-    border-radius: 10px;
-}
 main {
     display: flex;
     justify-content: center;
@@ -152,6 +137,51 @@ main {
     font-size: 12px;
 }
 
+.sidebar span {
+    margin-right: 10px;
+    color: #333;
+}
+.sidebar a {
+    width: 20%;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    margin-left: 5px;
+    text-decoration: none;
+    border-radius: 10px;
+}
+.user-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+.user-actions a, .logout-button {
+    width: auto;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    padding: 0.5em 1em;
+    text-decoration: none;
+    border-radius: 10px;
+    text-align: center;
+    cursor: pointer;
+}
+
+.logout-form {
+    margin: 0;
+}
+
+.logout-button {
+    all: unset;
+    display: inline-block;
+    padding: 0.5em 1em;
+    border-radius: 10px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    cursor: pointer;
+}
 .clubs h2 {
     font-size: 1.5em;
     color: #333;
