@@ -203,6 +203,7 @@ main {
     margin-top: 1em;
 }
 .box{
+	display:block;
 	background-color:white;
 	padding:10px;
 	aspect-ratio:1/1;
@@ -215,6 +216,9 @@ main {
 	position:relative;
 }
 
+.box[style="display: none;"] {
+    display: none !important;
+}
 .box > img{
 	position:relative;
 	left:35%;
@@ -236,8 +240,11 @@ main {
 }
 
 .recruit-btn {
+	display:flex;
+	justify-content:center;
+	align-items:center;
 	position:relative;
-	left: 30%;	
+	margin: 0 auto;
 	width:45%;
 	aspect-ratio:3/1;
 	background-color:#333;
@@ -246,6 +253,9 @@ main {
     border: 1px;
     border-radius:20px;
 	color:orange;
+}
+.recruit-btn > button{
+	
 }
 #typeof{
 	position: relative;

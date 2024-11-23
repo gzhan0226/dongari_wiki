@@ -46,8 +46,9 @@
     <main>
 
         <section class="clubs">
-                <input type="text" id="search_it" placeholder="동아리명으로 검색해보세요! "><br>
-                <div id="typeof">
+        <input type="text" id="search_it" placeholder="동아리명으로 검색해보세요!" onkeyup="filterList()">
+<br>
+<div id="typeof">
                 <h4>분과별 검색</h4>
                 <input type="text" list="suggestions"name="typeof" placeholder="전체">
                 <datalist id="suggestions">
@@ -63,25 +64,49 @@
                 </datalist>
                 </div>
                 <br>
-                <c:forEach var="dongari" items="${list}">
-                <div class="box">
-                	<img>
-                	<button class="apply" ${dongari.apply_start}>
-                            <c:choose>
-                                <c:when test="${dongari.apply_start eq 'None'}">상시모집</c:when>
-                                <c:when test="${dongari.apply_start eq '9999'}">모집완료</c:when>
-                                <c:otherwise>모집중</c:otherwise>
-                            </c:choose>
-                        </button>
-                        <div class="text-container">
-                            <h3>${dongari.title}</h3>
-                            <p class="category">${dongari.category_name}</p>
-                        </div><br>
-                        <div class="recruit-btn">
-                        	<button class="recruit-btn" onClick=window.location.href="/dongari_wiki/details?=${dongari.title}">상세보기</button>
-                        </div>
-                    </div>
-                </c:forEach>
+<div id="club-list">
+    <c:forEach var="dongari" items="${list}">
+    <div class="box" data-title="${dongari.title}">
+        <img>
+        <button class="apply" ${dongari.apply_start}>
+            <c:choose>
+                <c:when test="${dongari.apply_start eq 'None'}">상시모집</c:when>
+                <c:when test="${dongari.apply_start eq '9999'}">모집완료</c:when>
+                <c:otherwise>모집중</c:otherwise>
+            </c:choose>
+        </button>
+        <div class="text-container">
+            <h3>${dongari.title}</h3>
+            <p class="category">${dongari.category_name}</p>
+        </div>
+        <br>
+        <div class="recruit-btn">
+            <button class="recruit-btn" onclick="window.location.href='/dongari_wiki/details?=${dongari.title}'">상세보기</button>
+        </div>
+    </div>
+    </c:forEach>
+</div>
+
+<script>
+    function filterList() {
+        // 검색어 입력값 가져오기
+        const searchInput = document.getElementById('search_it').value.toLowerCase();
+        const clubBoxes = document.querySelectorAll('#club-list .box');
+
+        // 각 동아리 이름과 비교하며 필터링
+        clubBoxes.forEach(box => {
+            const title = box.dataset.title.toLowerCase();
+            if (title.includes(searchInput)) {
+                box.style.display = ''; // 검색 결과가 있으면 표시
+            } else {
+                box.style.display = 'none'; // 없으면 숨김
+            }
+        });
+    }
+</script>
+        <br>
+                
+                
                 
         </section>
     </main>
