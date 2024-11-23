@@ -47,6 +47,22 @@
 
         <section class="clubs">
                 <input type="text" id="search_it" placeholder="동아리명으로 검색해보세요! "><br>
+                <div id="typeof">
+                <h4>분과별 검색</h4>
+                <input type="text" list="suggestions"name="typeof" placeholder="전체">
+                <datalist id="suggestions">
+                    <option value="공연"></option>
+                    <option value="봉사"></option>
+                    <option value="사회"></option>
+                    <option value="학술"></option>
+                    <option value="예술창작"></option>
+                    <option value="연구"></option>
+                    <option value="체육1"></option>
+                    <option value="체육2"></option>
+                    <option value="신규"></option>
+                </datalist>
+                </div>
+                <br>
                 <c:forEach var="dongari" items="${list}">
                 <div class="box">
                 	<img>
@@ -61,27 +77,13 @@
                             <h3>${dongari.title}</h3>
                             <p class="category">${dongari.category_name}</p>
                         </div><br>
-                        <a class="recruit-btn" href="/details">상세보기</a>
+                        <div class="recruit-btn">
+                        	<button class="recruit-btn" onClick=window.location.href="/dongari_wiki/details?=${dongari.title}">상세보기</button>
+                        </div>
                     </div>
                 </c:forEach>
                 
         </section>
-
-        <aside class="sidebars">
-            
-            <h5>인기 동아리 리뷰 둘러보기</h5>
-            <c:forEach var="review" items="${popularReviews}">
-                <div class="review">
-                    <strong>${review.clubName}</strong>
-                    <p><br>${review.content}</p>
-                    <%-- 선택사항 --%>
-                    <div class="review-meta">
-                        <span class="likes">좋아요 ${review.likes}</span>
-                        <span class="date">${review.formattedDate}</span>
-                    </div>
-                </div>
-            </c:forEach>
-        </aside>
     </main>
 
     <%-- 서버에서 필요한 데이터를 JavaScript 변수로 전달 --%>
