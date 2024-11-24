@@ -1,0 +1,247 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f3f3f3;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1em 0;
+    display: flex;
+    justify-content: center;
+}
+
+.header-content {
+    width: 1200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+}
+
+.logo-container img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.site-name .small-text {
+    font-size: 12px;
+    color: #f3f3f3;
+}
+
+.site-name .large-text {
+    font-size: 22px;
+    font-weight: bold;
+}
+
+nav a {
+    color: #ccc;
+    margin: 0 10px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+nav a.active {
+    color: orange;
+}
+nav a:hover{
+	color: orange;
+}
+.search-bar {
+    position: relative;
+    width: 250px;
+    max-width: 250px;
+    border-radius: 40px;
+    background: #FFF;
+    margin-right: 5px;
+}
+
+.search-bar .keyword {
+    width: 100%;
+    padding: 0.5em 1em;
+    border: 1px solid #fff;
+    border-radius: 20px;
+    padding-right: 3em; /* 버튼 영역 확보 */
+    font-size: 14px;
+}
+
+.search-bar .submit {
+    position: absolute;
+    right: 15px; /* 입력 박스 안쪽의 위치 */
+    top: 55%;
+    transform: translateY(-50%);
+    color: #fff;
+    border: none;
+    cursor: pointer;
+    background-color: #fff;
+}
+.search-bar .submit img{
+    width: 20px;
+    height: auto;
+}
+
+#customFileBtn {
+    display: inline-block;
+    color: orange; /* 텍스트 색상 */
+    background-color: #333; /* 버튼 배경색 */
+    width: 5em;
+    height: 2em;
+    line-height: 2em; /* 텍스트를 중앙에 정렬 */
+    text-align: center; /* 텍스트 가운데 정렬 */
+    border: none;
+    border-radius: 10px; /* 둥근 버튼 */
+    cursor: pointer; /* 클릭 커서 표시 */
+    font-size:1em;
+  }
+  /* 기본 radio 버튼 숨기기 */
+input[type="radio"] {
+  display: none;
+}
+
+/* 기본 스타일: 버튼처럼 보이게 */
+.radio-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 5px;
+  border: 2px solid #333;
+  border-radius: 5px;
+  background-color: white;
+  color: #333;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* 선택된 상태 스타일 */
+input[type="radio"]:checked + .radio-btn {
+  background-color: orange;
+  color: black;
+  border-color: orange;
+}
+
+/* 호버 효과 */
+.radio-btn:hover {
+  background-color: #ddd;
+}
+
+  #customFileBtn:hover {
+    background-color: #555; /* 호버 시 배경색 */
+  }
+.sidebar span {
+    margin-right: 10px;
+    color: #333;
+
+}
+.sidebar a{
+	position: relative;
+	top: 10px;
+	left:10px;
+	font-size: 0.8em;
+	width:auto;
+    background-color: #FFF;
+    color: #333;
+    border: #333 1px solid;
+    padding: 0.5em 1em;
+    margin-left: 5px;
+    text-decoration: none;
+    border-radius: 10px;
+    float:left;
+}
+.sidebar > h2{
+	position: relative;
+	top: 20px;
+	left:30px;
+}
+.sidebar > img{
+	width:30%;
+	height:80%;
+	float:left;
+}
+
+.user-menu a {
+    border-radius: 10px;
+    border: 1px solid #EFEDEB;
+    color: #fff;
+    padding: 0.5em 1em;
+    margin-left: 5px;
+    text-decoration: none;
+}
+#inputbox{
+	padding-top:5%;
+	padding-left:10%;
+	padding-right:10%;
+	
+}
+#inputbox >form> *{
+	margin: 1em;
+}
+input[name="title"]{
+	width:20vw;
+	height:3em;
+	border:0px;
+	border-radius:10px;
+}
+input[name="summary"], input[name="apply_link"],input[name="sns_link"],input[name="location"]{
+	width:40vw;
+	height:3em;
+	border:0px;
+	border-radius:10px;
+}
+input[type="date"]{
+	width:10vw;
+	height:3em;
+	border:0px;
+	border-radius:10px;
+}
+input[type="submit"],input[type="reset"]{
+	position:fixed;
+	right:5vw;
+	width:10vw;
+	bottom: 10vh;
+	aspect-ratio:3/1;
+	border:0px;
+	border-radius:10px;
+	font-size:1em;
+}
+input[type="submit"]{
+	background-color:orange;
+	right:20vw;
+	width:10vw;
+	border:0px;
+	border-radius:10px;
+}
+input[type="text"]{
+	height:3em;
+	border:0px;
+	border-radius:10px;
+}
+textarea{
+	width:40vw;
+	height:20em;
+	border:0px;
+	border-radius:10px;
+}
+main {
+    display: flex;
+    justify-content: center;
+    padding: 1em;
+    gap: 1em;
+}
