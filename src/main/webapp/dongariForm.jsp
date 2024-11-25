@@ -273,7 +273,7 @@
             </div>
             <nav>
                 <a href="./">홈</a> 
-                <a href="list" class="active">동아리</a>
+                <a href="./all" class="active">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="search-bar">
@@ -316,7 +316,7 @@
             </div>
             <div class="form-group">
                 <label for="description">동아리 설명 *</label>
-                <textarea class="description" value="${dongari.body}" name="body" required></textarea>
+                <textarea class="description" name="body" required>${dongari.body}</textarea>
             </div>
             <div class="form-group">
                 <label for="currentMembers">현재 부원 수</label>
