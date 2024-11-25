@@ -112,7 +112,7 @@
                         <input type="hidden" value="${id}" name="id">
                         <input type="hidden" value="${review.id}" name="review_id">
                         <input type="text" name="title" placeholder="제목" required value="${review.title}">
-                        <textarea name="body" placeholder="내용을 입력하세요." required value="${review.body}"></textarea>
+                        <textarea name="body" placeholder="내용을 입력하세요." required>${review.body}</textarea>
                     </div>
                     <c:choose>
                         <c:when test="${empty sessionScope.username}">
