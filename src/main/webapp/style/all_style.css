@@ -58,6 +58,9 @@ nav a {
 nav a.active {
     color: orange;
 }
+nav a.deactive:hover{
+	color:orange;
+}
 .user-menu a {
     border-radius: 10px;
     border: 1px solid #EFEDEB;

@@ -21,7 +21,7 @@
             </div>
             <nav>
                 <a href="./" class="active">홈</a> 
-                <a href="./all">동아리</a>
+                <a href="./all" class="deactive">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="search-bar">

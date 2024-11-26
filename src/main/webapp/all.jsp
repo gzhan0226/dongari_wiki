@@ -20,8 +20,8 @@
                 </div>
             </div>
             <nav>
-                <a href="./" class="active">홈</a> 
-                <a href="./all">동아리</a>
+                <a href="./" class="deactive">홈</a> 
+                <a href="./all" class="active">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="user-menu">
