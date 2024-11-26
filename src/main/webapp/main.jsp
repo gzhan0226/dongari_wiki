@@ -21,7 +21,7 @@
             </div>
             <nav>
                 <a href="./" class="active">홈</a> 
-                <a href="list">동아리</a>
+                <a href="./all">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="search-bar">
@@ -35,10 +35,10 @@
                 <div class="user-menu">
                     <c:choose>
                         <c:when test="${empty sessionScope.username}">
-                            <a href="login.jsp">로그인</a>
+                            <a href="./login">로그인</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="mypage.jsp">마이페이지</a>
+                            <a href="./mypage">마이페이지</a>
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -97,7 +97,7 @@
                 <h5>스크랩</h5>
                 <div class="sidebar">
                     <c:choose>
-                        <c:when test="${empty scrapsDongariList}">
+                        <c:when test="${empty scrapList}">
                             <p>관심있는 동아리를 PICK하고 다른 대학생들의 의견을 알아보세요!</p>
                         </c:when>
                         <c:otherwise>
@@ -117,11 +117,6 @@
                 <div class="review">
                     <strong>${review.clubName}</strong>
                     <p><br>${review.content}</p>
-                    <%-- 선택사항 --%>
-                    <div class="review-meta">
-                        <span class="likes">좋아요 ${review.likes}</span>
-                        <span class="date">${review.formattedDate}</span>
-                    </div>
                 </div>
             </c:forEach>
         </aside>
