@@ -135,7 +135,9 @@ main {
     font-weight: bold;
     font-size: 18px;
 }
-
+.introductions {
+    margin-top: 30px;
+}
 .write {
     text-align: right;
 }
@@ -298,8 +300,24 @@ main {
     width: 100%;
     text-align: right;
 }
-
-.club-item {
+.question-write{
+    margin-bottom: 30px;
+    text-align: center;
+    display: flex;
+    justify-content: flex-end;
+}
+.question-write a{
+    padding: 10px;
+    border-radius: 10px;
+    margin-top: 10px;
+    background-color: #333;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    text-decoration: none;
+}
+.question {
     background-color: #fff;
     display: flex;
     justify-content: space-between; /* 버튼을 오른쪽으로 */
@@ -307,7 +325,24 @@ main {
     padding: 10px 15px;
     border-bottom: 1px solid #eee;
 }
+.question-list {
+    display: flex;
+    justify-content: flex-end;
+    text-align: right;
+    margin-top: 12px;
+}
 
+.question-list a {
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: bold;
+}
+.sidebar a {
+    color: #333;
+    border: none;
+    text-decoration: none;
+    border-radius: 10px;
+}
 .text-container {
     display: flex;
     flex-direction: column; /* 텍스트를 세로로 정렬 */
