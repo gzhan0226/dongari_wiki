@@ -70,7 +70,16 @@
             }
         });
     });
-    </script>
+    function handleReviewClick(reviewUsername, sessionUsername, dongariId, reviewId) {
+        if (reviewUsername === sessionUsername) {
+            // 본인의 리뷰일 경우 리뷰 수정 페이지로 이동
+            window.location.href = 'editreview?id=' + dongariId + '&review_id=' + reviewId;
+        } else {
+            // 본인의 리뷰가 아닐 경우 경고 메시지
+            alert('본인의 리뷰만 수정할 수 있습니다.');
+        }
+    }
+	</script>
 </head>
 <body>
     <header>
@@ -121,15 +130,10 @@
                 <div class="scrap-btn" data-dongari-id="${dongari.id}" data-scrapcheck="${scrapCheck}">
                 	<div class="scrap">★</div>
                 </div>
-            </div><br>
-            <h3>인기 리뷰</h3>
-            <div class="club-review">
-               <c:forEach var="review" items="${reviews}">
-				    <div class="review">
-				        <p>${review.body}</p>
-				    </div>
-				</c:forEach>
-            </div>
+            </div><br><br>
+            <div class="introductions">
+   				<p>${dongari.body}</p>
+			</div>
             <div class="write">
                 <button class="write-button"><a href="newreview?id=${dongari.id}">리뷰쓰기</a></button>
             </div>
@@ -167,7 +171,7 @@
 			</div>
             <ul class="review-list">
    				<c:forEach var="review" items="${reviews}">
-        		<li class="review-item" data-review-id="${review.id}" onclick="location.href='editreview?id=${dongari.id}&review_id=${review.id}'">
+        		<li class="review-item" data-review-id="${review.id}"  onclick="handleReviewClick('${review.username}', '${sessionScope.username}', '${dongari.id}', '${review.id}')">
 	            	<div class="review-header">
 		                <span class="review-rating">
 		                	<fmt:formatNumber value="${review.total_rating}" type="number" maxFractionDigits="1" /><br>
@@ -200,20 +204,44 @@
 			</ul>
         </section>
         <aside class="sidebars">
-            <h3>비슷한 동아리</h3>
-            <div class="sidebar">
+            <h3>최근 질문</h3>
+            
+			<div class="sidebar">
+			    <ul>
+	                <!--질문 리스트-->
+	                <li class="question">
+	                    <div class="text-container">
+	                        <p>휴학생도 신청 가능한가요??</p>
+	                    </div>
+	                </li>
+	                <li class="question">
+	                    <div class="text-container">
+	                        <p>비전공자인데 지원가능할까요?</p>
+	                    </div>
+	                </li>
+	                <!-- <p class="question-list">
+	                    <a href="#">질문 더보기></a>
+	                </p> -->
+	            </ul>
 	            <ul>
-	            <li class="club-item">
-                    <div class="text-container">
-                        <a href="#">멋쟁이사자처럼</a>
-                    </div>
-                </li>
-                <li class="club-item">
-                    <div class="text-container">
-                        <a href="#">DNA</a>
-                    </div>
-                </li>
-                </ul>
+			        <c:forEach var="question" items="${questions}">
+		                <li class="question">
+	                    	<div class="text-container">
+			                	<c:choose>
+					                <c:when test="${empty question.title}">
+					                    <p>동아리에 대해 궁금한 점을 물어보세요!</p>
+					                </c:when>
+					                <c:otherwise>
+					                    <p>${question.title}</p>
+					                </c:otherwise>
+					            </c:choose>
+			                </div>
+			            </li>
+			        </c:forEach>
+			    </ul>
+			</div>
+            <div class="question-write">
+                <a href="question.jsp">질문하기</a>
             </div>
             
             <div class="apply">
