@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+<html>
 <head>
     <meta charset="UTF-8">
     <title>동국대학교 동아리 위키 - 동동</title>
@@ -169,7 +170,7 @@
             <button type="submit" value="로그인">로그인</button>
             <div class="signup-link">
                 아직 계정이 없으신가요? <br>
-                <a href="signup.jsp">회원가입</a>
+                <a href="join.jsp">회원가입</a>
             </div>
         </form>
     </div>
