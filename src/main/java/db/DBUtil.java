@@ -32,10 +32,10 @@ public class DBUtil {
         }
 		try {
 			
-			//JDBC ï¿½ï¿½ï¿½ï¿½Ì¹ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½Ñ´ï¿½.(ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½ï¿½Ñ´ï¿½)
+			//JDBC µå¶óÀÌ¹ö¸¦ ·ÎµùÇÑ´Ù.(°ü·Ã Å¬·¡½º Á¤º¸¸¦ È®ÀÎÇÑ´Ù)
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			
-			//Connection ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ã¿ï¿½ ï¿½ï¿½ï¿½ï¿½
+			//Connection °´Ã¼ »ý¼º°ú µ¿½Ã¿¡ Á¢¼Ó
 			conn = DriverManager.getConnection(dbUrl, dbId, dbPassword);
 			
 			return conn;

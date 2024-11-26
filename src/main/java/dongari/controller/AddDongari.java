@@ -1,6 +1,7 @@
 package dongari.controller;
 
 import java.io.IOException;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -38,7 +39,7 @@ public class AddDongari extends HttpServlet {
 			return;
 		}
 		request.setAttribute("type", "new");
-		RequestDispatcher dis = request.getRequestDispatcher("dongariForm.jsp"); //form ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
+		RequestDispatcher dis = request.getRequestDispatcher("dongariForm.jsp"); //form ÆäÀÌÁö »ý±â¸é Ãß°¡
 		dis.forward(request, response);
 	}
 
@@ -54,13 +55,15 @@ public class AddDongari extends HttpServlet {
 			response.sendRedirect("login");
 			return; 
 		}
+		
 		int user_id = (int) session.getAttribute("user_id");
+		
 		String title = request.getParameter("title");
 		String summary = request.getParameter("summary");
 		String body = request.getParameter("body");
 		int member_num = Integer.parseInt(request.getParameter("member_num"));
 		String img = request.getParameter("img");
-		int apply_status = Integer.parseInt(request.getParameter("apply_status")); //1 - ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½, 2 - ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, 3 - ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+		int apply_status = Integer.parseInt(request.getParameter("apply_status")); //1 - ¸ðÁýÁß, 2 - »ó½Ã ¸ðÁý, 3 - ¸ðÁý ¸¶°¨
 		String apply_link = request.getParameter("apply_link");
 		String sns_link = request.getParameter("sns_link");
 		String location = request.getParameter("location");

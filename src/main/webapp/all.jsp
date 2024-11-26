@@ -20,7 +20,7 @@
             </div>
             <nav>
                 <a href="./">홈</a> 
-                <a href="list" class="active">동아리</a>
+                <a href="all" class="active">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="search-bar"></div>
@@ -60,7 +60,7 @@
             </div>
 
             <div id="club-list">
-                <c:forEach var="dongari" items="${list}">
+                <c:forEach var="dongari" items="${dongariList}">
                     <div class="box" data-title="${dongari.title}">
                         <img>
                         <button class="apply" ${dongari.apply_start}>

@@ -12,36 +12,61 @@
         function alertLogin() {
             alert("로그인이 필요한 기능입니다.");
         }
+        $(document).ready(function() {
+        	let ratingsSelected = {
+                atm_rating: false,
+                man_rating: false,
+                act_rating: false
+            };
+            $('.star_rating .star').click(function() {
+                var ratingValue = $(this).data('value');
+                $(this).siblings('.star').removeClass('on');
+                $(this).addClass('on').prevAll('.star').addClass('on');
+                $(this).closest('.star_rating').find('.rating-input').val(ratingValue);
+                
+                var ratingName = $(this).closest('.star_rating').find('.rating-input').attr('name');
+                ratingsSelected[ratingName] = true;
+            });
+            $('form').submit(function(event) {
+                if (!ratingsSelected.atm_rating || !ratingsSelected.man_rating || !ratingsSelected.act_rating) {
+                    alert('별점을 모두 선택해주세요.');
+                    event.preventDefault(); // 폼 제출을 막음
+                }
+            });
+        });
     </script>
 </head>
 <body>
     <header>
         <div class="header-content">
             <div class="logo-container">
-                <img src="./assets/logo.png" alt="Logo">
+                <img src="./assets/logo.png" alt="동국대학교 로고">
                 <div class="site-name">
-                    <span class="small-text">동국대학교 동아리 위키</span><br>
-                    <span class="large-text">동동</span>
+                
+                    <div class="small-text">동국대학교 동아리 위키</div>
+                    <div class="large-text">동동</div>
                 </div>
             </div>
             <nav>
-                <a href="main.jsp">홈</a>
-                <a href="#" class="active">동아리</a>
+                <a href="./">홈</a> 
+                <a href="./all" class="active">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="search-bar">
-                    <input type="search" class="keyword" placeholder="찾으시는 동아리가 있나요?">
-                    <button class="submit">
-                        <img src="./assets/search.png" alt="Search">
-                    </button>
+                    <form action="search.jsp" method="GET">
+                        <input type="search" name="keyword" class="keyword" placeholder="찾으시는 동아리가 있나요?">
+                        <button type="submit" class="submit">
+                            <img src="./assets/search.png" alt="Search">
+                        </button>
+                    </form>
                 </div>
                 <div class="user-menu">
                     <c:choose>
                         <c:when test="${empty sessionScope.username}">
-                            <a href="login">로그인</a>
+                            <a href="login.jsp">로그인</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="mypage">마이페이지</a>
+                            <a href="mypage.jsp">마이페이지</a>
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -53,12 +78,6 @@
         <div class="clubs">
             <div class="review">
                 <form method="post" action="${type}">
-                    <label>
-                        <input type="radio" name="anonymity" value="실명" checked> 실명
-                    </label>
-                    <label>
-                        <input type="radio" name="anonymity" value="익명"> 익명
-                    </label>
                     <br><br>
                     
                     <div class="ratings-box">
@@ -69,7 +88,7 @@
                             <span class="star" data-value="3">★</span>
                             <span class="star" data-value="4">★</span>
                             <span class="star" data-value="5">★</span>
-                            <input type="hidden" name="atm_rating" class="rating-input">
+                            <input type="hidden" name="atm_rating" class="rating-input" value="${review.atm}">
                         </div>
                         <div class="star_rating">
                             <strong>운영</strong>
@@ -78,7 +97,7 @@
                             <span class="star" data-value="3">★</span>
                             <span class="star" data-value="4">★</span>
                             <span class="star" data-value="5">★</span>
-                            <input type="hidden" name="man_rating" class="rating-input">
+                            <input type="hidden" name="man_rating" class="rating-input" value="${review.man}">
                         </div>
                         <div class="star_rating">
                             <strong>활동</strong>
@@ -87,24 +106,13 @@
                             <span class="star" data-value="3">★</span>
                             <span class="star" data-value="4">★</span>
                             <span class="star" data-value="5">★</span>
-                            <input type="hidden" name="act_rating" class="rating-input">
+                            <input type="hidden" name="act_rating" class="rating-input" value="${review.act}">
                         </div>
-
-                        <script>
-                            $(document).ready(function() {
-                                $('.star_rating .star').click(function() {
-                                    var ratingValue = $(this).data('value');
-                                    $(this).siblings('.star').removeClass('on');
-                                    $(this).addClass('on').prevAll('.star').addClass('on');
-                                    $(this).closest('.star_rating').find('.rating-input').val(ratingValue);
-                                });
-                            });
-                        </script>
-
                         <br><br>
                         <input type="hidden" value="${id}" name="id">
-                        <input type="text" name="title" placeholder="제목" required>
-                        <textarea name="body" placeholder="내용을 입력하세요." required></textarea>
+                        <input type="hidden" value="${review.id}" name="review_id">
+                        <input type="text" name="title" placeholder="제목" required value="${review.title}">
+                        <textarea name="body" placeholder="내용을 입력하세요." required>${review.body}</textarea>
                     </div>
                     <c:choose>
                         <c:when test="${empty sessionScope.username}">

@@ -11,7 +11,7 @@ import db.DBUtil;
 
 public class DongariDao {
 	
-private DBUtil dbUtil = new DBUtil();
+	private DBUtil dbUtil = new DBUtil();
 	
 	private Connection conn;
 	
@@ -83,6 +83,7 @@ private DBUtil dbUtil = new DBUtil();
 		}
 		return dongariDto;
 	}
+	
 	public void edit(DongariDto dongariDto) {
 		
 		conn = dbUtil.open();

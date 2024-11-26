@@ -21,7 +21,7 @@
             </div>
             <nav>
                 <a href="./" class="active">홈</a> 
-                <a href="./all">동아리</a>
+                <a href="all">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="search-bar">
@@ -45,19 +45,23 @@
             </div>
         </div>
     </header>
-
     <main>
         <section class="clubs">
             <h2>동아리</h2>
             <p>여러 분야의 동아리를 확인하고, 관심있는 동아리에 대해 찾아보세요</p>
             <ul class="club-list">
-                <c:forEach var="dongari" items="${list}">
+                <c:forEach var="dongari" items="${dongariList}">
                     <li class="club-item">
                         <div class="text-container">
                             <span><b>${dongari.title}</b></span>
                             <span class="category">${dongari.category_name}</span>
                         </div>
-                        <button class="recruit-btn ${dongari.apply_start}">
+                        <button class="recruit-btn 
+	                        <c:choose>
+					            <c:when test="${dongari.apply_start eq 'None'}">ongoing</c:when>
+					            <c:when test="${dongari.apply_start eq '9999'}">closed</c:when>
+					            <c:otherwise>open</c:otherwise>
+					        </c:choose>">
                             <c:choose>
                                 <c:when test="${dongari.apply_start eq 'None'}">상시모집</c:when>
                                 <c:when test="${dongari.apply_start eq '9999'}">모집완료</c:when>
@@ -78,26 +82,29 @@
                         <a href="join">회원가입</a>
                     </c:when>
                     <c:otherwise>
-                    	<img>
-                        <h2>${sessionScope.username}</h2><br><br>
-                        <a href="mypage.jsp">마이페이지</a>
-                        <a href="/web_programming/logout">로그아웃</a>
+                        <span><b>${sessionScope.username}</b></span><br><br>
+                        <div class="user-actions">
+                           <a href="mypage.jsp">마이페이지</a>
+                            <form action="./" method="get">
+                                <button type="submit" class="logout-button">로그아웃</button>
+                            </form>
+                        </div>
                     </c:otherwise>
                 </c:choose>
             </div>
             
             <c:if test="${not empty sessionScope.username}">
                 <h5>스크랩</h5>
-                <div class="sidebar">	
+                <div class="sidebar">
                     <c:choose>
-                        <c:when test="${empty scrappedClubs}">
+                        <c:when test="${empty scrapsDongariList}">
                             <p>관심있는 동아리를 PICK하고 다른 대학생들의 의견을 알아보세요!</p>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="scrappedClub" items="${scrappedClubs}">
+                            <c:forEach var="scrap" items="${scrapList}">
                                 <div class="scrapped-club">
-                                    <span>${scrappedClub.name}</span>
-                                    <span class="category">${scrappedClub.category}</span>
+                                    <span>${scrap.title} </span>
+                                    <span class="category">${scrap.category_name}</span>
                                 </div>
                             </c:forEach>
                         </c:otherwise>
