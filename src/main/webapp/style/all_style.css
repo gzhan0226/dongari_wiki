@@ -140,18 +140,16 @@ main {
     cursor: pointer;
   }
   
-	.club-list {
-    	display: grid;
-    	grid-template-columns: repeat(auto-fill, minmax(200px, max-content)); /* 각 카드가 200px 이상의 크기를 가지며 최소 크기만 차지 */
-    	gap: 20px; /* 카드 간의 간격 */
-    	justify-content: center; /* 카드들을 가운데 정렬 */
-    	align-content: start; /* 카드들을 위쪽 정렬 */
-    	padding: 20px;
-	}
+  .club-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    align-content: center;
+  }
   
   .club-card {
-  		width: 200px; /* 고정된 카드 너비 */
-    	max-width: 100%; /* 화면이 작을 때 크기 제한 */
         position: relative;
         border: 1px solid #ddd;
         background-color: #fff;
@@ -159,6 +157,7 @@ main {
         text-align: center;
         padding: 20px 15px 15px;
         overflow: hidden;
+        max-width: 200px;
     }
     .recruit-btn {
         position: absolute;
@@ -188,7 +187,7 @@ main {
     font-size: 14px;
   }
   .club-button{
-     width: 100%;
+  	width: 100%;
     padding: 10px;
     border: 1px solid #333;
     color: #333;
