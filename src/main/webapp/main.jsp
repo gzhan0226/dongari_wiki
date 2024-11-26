@@ -21,7 +21,7 @@
             </div>
             <nav>
                 <a href="./" class="active">홈</a> 
-                <a href="list">동아리</a>
+                <a href="./all">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="search-bar">
@@ -117,11 +117,6 @@
                 <div class="review">
                     <strong>${review.clubName}</strong>
                     <p><br>${review.content}</p>
-                    <%-- 선택사항 --%>
-                    <div class="review-meta">
-                        <span class="likes">좋아요 ${review.likes}</span>
-                        <span class="date">${review.formattedDate}</span>
-                    </div>
                 </div>
             </c:forEach>
         </aside>
