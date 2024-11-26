@@ -42,7 +42,7 @@ public class All extends HttpServlet {
 		List<DongariDto> list = dongariService.findAll();
 		
 		
-		request.setAttribute("dongariList", list);
+		request.setAttribute("list", list);
 		
 		RequestDispatcher dis = request.getRequestDispatcher("all.jsp");
 		dis.forward(request, response);

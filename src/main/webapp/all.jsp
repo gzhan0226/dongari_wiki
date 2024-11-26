@@ -6,29 +6,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>동국대학교 동아리 위키</title>
-   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/style/all_style.css">
+   <link rel="stylesheet" type="text/css" href="style/all_style.css">
 </head>
 <body>
-    <header>
+     <header>
         <div class="header-content">
             <div class="logo-container">
                 <img src="./assets/logo.png" alt="동국대학교 로고">
                 <div class="site-name">
+                
                     <div class="small-text">동국대학교 동아리 위키</div>
                     <div class="large-text">동동</div>
                 </div>
             </div>
             <nav>
-                <a href="./">홈</a> 
-                <a href="all" class="active">동아리</a>
+                <a href="./" class="deactive">홈</a> 
+                <a href="./all" class="active">동아리</a>
             </nav>
             <div class="header-right">
-                <div class="search-bar"></div>
                 <div class="user-menu">
                     <c:choose>
                         <c:when test="${empty sessionScope.username}">
-                        <a href="login">로그인</a>
-                        <a href="join">회원가입</a>
+                            <a href="login.jsp">로그인</a>
                         </c:when>
                         <c:otherwise>
                             <a href="mypage.jsp">마이페이지</a>
@@ -38,50 +37,57 @@
             </div>
         </div>
     </header>
-
     <main>
-        <section class="clubs">
-            <input type="text" id="search_it" placeholder="동아리명으로 검색해보세요!" onkeyup="filterList()">
-            <br>
-            <div id="typeof">
-                <h4>분과별 검색</h4>
-                <input type="text" list="suggestions" name="categoryType" id="categoryType" placeholder="전체" oninput="filterList()">
-                <datalist id="suggestions">
-                    <option value="공연"></option>
-                    <option value="봉사"></option>
-                    <option value="사회"></option>
-                    <option value="학술"></option>
-                    <option value="예술창작"></option>
-                    <option value="연구"></option>
-                    <option value="체육1"></option>
-                    <option value="체육2"></option>
-                    <option value="신규"></option>
-                </datalist>
-            </div>
-
-            <div id="club-list">
-                <c:forEach var="dongari" items="${dongariList}">
-                    <div class="box" data-title="${dongari.title}">
-                        <img>
-                        <button class="apply" ${dongari.apply_start}>
+       <div>
+          <section class="search-bar">
+               <input type="search" name="keyword" class="keyword" placeholder="찾으시는 동아리가 있나요?" onkeyup="filterList()">
+               <div class="submit">
+                   <img src="./assets/search.png" alt="Search">
+               </div>
+            </section>
+        </div>
+             <section class="filter-section">
+                <div class="selection-filter">
+                   <h4>분과별 검색</h4>
+                   <select class="selects" oninput="filterList()">
+                     <option>전체</option>
+                     <option>학술</option>
+                     <option>봉사</option>
+                     <option>사회</option>
+                     <option>연구</option>
+                     <option>체육1</option>
+                     <option>체육2</option>
+                     <option>예술창작</option>
+                     <option>신규</option>
+                     <option>일반</option>
+                 </select>
+               </div>
+          </section>
+            <section class="club-list">
+                <c:forEach var="dongari" items="${list}">
+                    <div class="club-card" data-title="${dongari.title}">
+                        <img src="./assets/default_logo.png" alt="logo">
+                        <h4>${dongari.title}</h4>
+                        <p class="category">${dongari.category_name}</p>
+                        <p>${dongari.summary}</p>
+                        <button class="recruit-btn 
+                           <c:choose>
+                           <c:when test="${dongari.apply_start eq 'None'}">ongoing</c:when>
+                           <c:when test="${dongari.apply_start eq '9999'}">closed</c:when>
+                           <c:otherwise>open</c:otherwise>
+                       </c:choose>">
                             <c:choose>
                                 <c:when test="${dongari.apply_start eq 'None'}">상시모집</c:when>
                                 <c:when test="${dongari.apply_start eq '9999'}">모집완료</c:when>
                                 <c:otherwise>모집중</c:otherwise>
                             </c:choose>
                         </button>
-                        <div class="text-container">
-                            <h3>${dongari.title}</h3>
-                            <p class="category">${dongari.category_name}</p>
-                        </div>
                         <br>
-                        <div class="recruit-btn">
-                            <button class="recruit-btn" onclick="window.location.href='/dongari_wiki/details?=${dongari.title}'">상세보기</button>
-                        </div>
+                        <%-- window.location.href='/web_programming/details?id=${dongari.id}' 로 나중에 바꾸기--%>
+                        <button class="club-button" onclick="window.location.href='/web_programming/review?id=${dongari.id}'">상세보기</button>
                     </div>
                 </c:forEach>
-            </div>
-        </section>
+            </section>
     </main>
 
     <%-- 서버에서 필요한 데이터를 JavaScript 변수로 전달 --%>
@@ -93,25 +99,31 @@
     </script>
 
     <script>
-        function filterList() {
-            // 검색어 입력값 가져오기
-            const searchInput = document.getElementById('search_it').value.toLowerCase();
-            const categoryInput = document.getElementById('categoryType').value.toLowerCase(); // 분과 검색값
+    function filterList() {
+        // 검색어 입력값 가져오기
+        const searchInput = document.querySelector('.keyword').value.toLowerCase(); // 검색창 입력값
+        const categoryInput = document.querySelector('.selects').value.toLowerCase(); // 선택된 분과 값
 
-            const clubBoxes = document.querySelectorAll('#club-list .box');
-            // 각 동아리 이름과 분과를 필터링
-            clubBoxes.forEach(box => {
-                const title = box.dataset.title.toLowerCase();
-                const category = box.querySelector('.category').textContent.toLowerCase();
+        // 동아리 목록 가져오기
+        const clubCards = document.querySelectorAll('.club-card'); // 각 동아리 카드
 
-                // 검색어와 분과 기준으로 필터링
-                if (title.includes(searchInput) && category.includes(categoryInput)) {
-                    box.style.display = ''; // 검색 및 분과 필터에 맞는 동아리 표시
-                } else {
-                    box.style.display = 'none'; // 필터에 맞지 않는 동아리 숨김
-                }
-            });
-        }
+        // 각 동아리 카드 필터링
+        clubCards.forEach(card => {
+            const title = card.dataset.title ? card.dataset.title.toLowerCase() : ''; // 데이터 속성의 제목
+            const category = card.querySelector('.category').textContent.toLowerCase(); // <p> 태그의 카테고리 텍스트
+
+            // 검색어와 분과 선택 조건 확인
+            const matchesSearch = title.includes(searchInput); // 제목이 검색어 포함 여부
+            const matchesCategory = categoryInput === '전체' || category.includes(categoryInput); // '전체'는 모든 분과 표시
+
+            // 조건에 따라 표시 여부 결정
+            if (matchesSearch && matchesCategory) {
+                card.style.display = ''; // 조건에 맞는 경우 표시
+            } else {
+                card.style.display = 'none'; // 조건에 맞지 않는 경우 숨김
+            }
+        });
+    }
     </script>
 
     <script src="main.js"></script>

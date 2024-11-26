@@ -1,14 +1,12 @@
-* {
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-}
-
-body {
-    font-family: 'Arial', sans-serif;
     background-color: #f3f3f3;
-}
-
+  }
+  
 header {
     background-color: #333;
     color: white;
@@ -31,26 +29,25 @@ header {
 }
 
 .logo-container {
+    justify-content: top;
     display: flex;
     align-items: center;
 }
 
 .logo-container img {
     width: 50px;
-    height: 50px;
+    height: auto;
     margin-right: 10px;
 }
 
 .site-name .small-text {
     font-size: 12px;
-    color: #f3f3f3;
 }
 
 .site-name .large-text {
     font-size: 22px;
     font-weight: bold;
 }
-
 nav a {
     color: #ccc;
     margin: 0 10px;
@@ -58,76 +55,12 @@ nav a {
     font-size: 16px;
     font-weight: bold;
 }
-
 nav a.active {
     color: orange;
 }
-nav a:hover{
-	color: orange;
+nav a.deactive:hover{
+	color:orange;
 }
-.search-bar {
-    position: relative;
-    width: 250px;
-    max-width: 250px;
-    border-radius: 40px;
-    background: #FFF;
-    margin-right: 5px;
-}
-
-.search-bar .keyword {
-    width: 100%;
-    padding: 0.5em 1em;
-    border: 1px solid #fff;
-    border-radius: 20px;
-    padding-right: 3em; /* 버튼 영역 확보 */
-    font-size: 14px;
-}
-
-.search-bar .submit {
-    position: absolute;
-    right: 15px; /* 입력 박스 안쪽의 위치 */
-    top: 55%;
-    transform: translateY(-50%);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    background-color: #fff;
-}
-.search-bar .submit img{
-    width: 20px;
-    height: auto;
-}
-
-.sidebar span {
-    margin-right: 10px;
-    color: #333;
-}
-.sidebar a{
-	position: relative;
-	top: 10px;
-	left:10px;
-	font-size: 0.8em;
-	width:auto;
-    background-color: #FFF;
-    color: #333;
-    border: #333 1px solid;
-    padding: 0.5em 1em;
-    margin-left: 5px;
-    text-decoration: none;
-    border-radius: 10px;
-    float:left;
-}
-.sidebar > h2{
-	position: relative;
-	top: 20px;
-	left:30px;
-}
-.sidebar > img{
-	width:30%;
-	height:80%;
-	float:left;
-}
-
 .user-menu a {
     border-radius: 10px;
     border: 1px solid #EFEDEB;
@@ -136,185 +69,152 @@ nav a:hover{
     margin-left: 5px;
     text-decoration: none;
 }
-.sidebar a:nth-child(3){
-	width: 30%;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 0.5em 1em;
-    margin-left: 5px;
-    text-decoration: none;
-    border-radius: 10px;
-}
 
 main {
-    display: flex;
-    justify-content: center;
-    padding: 1em;
-    gap: 1em;
+    padding: 5em;
 }
-
-.clubs {
-    width: 60%;
-    background-color: f3f3f3;
-    border-radius: 8px;
+.search-section {
+    text-align: center;
+    background: white;
+    padding: 30px 15px;
 }
-
-.sidebars {
-    width: 280px;
-    display: flex;
-    flex-direction: column;
-}
-#search_it{
-	text-align:right;
-	margin-bottom:10px;
-	border:1px;
-	border-radius:20px;
-	aspect-ratio:20/1;
-	width:94%;
-	font-size:1.1em;
-}
-.sidebar {
-    background-color: #fff;
-    padding: 0.5em;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    margin-top: 10px;
-    height:5%;
-}
-.sidebar p{
-    color: #666;
-    font-size: 12px;
-}
-
-.clubs h2 {
-    font-size: 1.5em;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.category {
-    color: #666;
-    margin-bottom: 20px;
-    font-size: 14px;
-}
-.club-list {
-    list-style: none;
-    margin-top: 1em;
-}
-.box{
-	display:block;
-	background-color:white;
-	padding:10px;
-	aspect-ratio:1/1;
-	width:30%;
-	float:left;
-	border: 1px;
-	border-radius: 20px;
-	margin-right:2%;
-	margin-bottom:2%;
-	position:relative;
-}
-
-.box[style="display: none;"] {
-    display: none !important;
-}
-.box > img{
-	position:relative;
-	left:35%;
-	aspect-ratio:1/1;
-	width:30%;
-}
-.text-container {
-    display: flex;
-    flex-direction: column; /* 텍스트를 세로로 정렬 */
-}
-.text-container > h3, p{
-	text-align:center;
-}
-.category {
-    color: #888;
-    margin-top: 5px; /* NSA 아래 여백 추가 */
-    padding: 2px 5px;
-    font-size: 14px;
-}
-
-.recruit-btn {
-	display:flex;
-	justify-content:center;
-	align-items:center;
-	position:relative;
-	margin: 0 auto;
-	width:45%;
-	aspect-ratio:3/1;
-	background-color:#333;
-    font-size: 0.9em;
+.search-bar {
+    position: relative;
+    max-width: 600px;
+    margin: 2em auto;
+  }
+  
+.search-bar input {
+    width: 100%;
+    padding: 15px 20px;
+    border-radius: 30px;
+    border: 1px solid #ddd;
+    padding-right: 50px;
+    font-size: 16px;
+  }
+  
+  .search-bar .submit {
+    position: absolute;
+    right: 10px;
+    top: 55%;
+    transform: translateY(-50%);
+    border: none;
+    background: none;
     cursor: pointer;
-    border: 1px;
-    border-radius:20px;
-	color:orange;
-}
-
-#typeof{
-	position: relative;
-	left:70%;
-}
-#typeof > h4{
-	padding:5px;
-	float:left;
-}
-#typeof > input{
-	aspect-ratio:3/1;
-	background-color:#333;
-	width:10%;
-	padding:5px;
-	border: 1px;
-	border-radius:10px;
-	color:orange;
-}
-#typeof > input::placeholder{
-	font-size: 1.4em;
-	color:orange;
-	text-align:center;
-}
-.apply{
-	position:absolute;
-	top:10px;
-	right:10px;
-	aspect-ratio:3/1;
-	width:30%;
-	background-color:#333;
-    font-size: 0.9em;
-    cursor: pointer;
-    border: 1px;
-    border-radius:20px;
-    color: orange;
-}
-.recruit-btn:onclick{
-	color:000;
-}
-
-.sidebar h3 {
-    font-size: 1.2em;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-.review{
-    border-radius: 10px;
-    border: 1px solid #373737;
-    background: #FFF;
-    padding: 1em;
-    margin-top: 10px;
-}
-
-.review strong {
-    display: block;
+  }
+    .submit img{
+        width: 25px;
+    }
+  .filter-section {
+    text-align: center;
+    margin: 20px 0;
+  }
+  .selection-filter{
+    display: flex;
+    justify-content: flex-end; /* 제목과 셀렉트 박스 간 간격 조정 */
+    align-items: center; /* 수평 정렬 */
+    margin: 20px;
+  }
+  .selection-filter h4 {
+    margin: 10px;
+    font-size: 16px;
     font-weight: bold;
     color: #333;
+  }
+  .selects {
+    padding: 10px;
+    border-radius: 20px;
+    text-align: center;
+    background-color: #333;
+    color: orange;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+  .filter-buttons button {
+    margin: 5px;
+    padding: 10px 30px;
+    margin-top: 20px;
+    border-radius: 10px;
+    background-color: #ccc;
+    color: #333;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .club-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    justify-content: center;
+    align-content: center;
+  }
+  
+  .club-card {
+        position: relative;
+        border: 1px solid #ddd;
+        background-color: #fff;
+        border-radius: 8px;
+        text-align: center;
+        padding: 20px 15px 15px;
+        overflow: hidden;
+        max-width: 200px;
+    }
+    .recruit-btn {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        padding: 5px 15px;
+        border-radius: 30px;
+        font-size: 0.9em;
+        cursor: pointer;
+        border: none;
+    }
+
+  .club-card img {
+    width: auto;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 8px 8px 0 0;
+    margin-top: 30px;
+  }
+  
+  .club-card h4 {
+    margin: 10px 0 5px;
+  }
+  
+  .club-card p {
+    color: gray;
+    font-size: 14px;
+  }
+  .club-button{
+  	background-color:orange;
+  	width: 80%;
+    padding: 10px;
+    border: 1px solid orange;
+    color: #333;
+    border-radius:10px;
+    cursor: pointer;
+    transition: transform 0.5s ease;
+  }
+  .club-button:hover{
+
+  	transform: scale(1.3);
+  }
+.recruit-btn.ongoing {
+    background-color: #333;
+    color: #fff;
 }
 
-.review p {
-    color: #666;
-    font-size: 14px;
+.recruit-btn.open {
+    background-color: orange;
+    color: #fff;
+}
+
+.recruit-btn.closed {
+    background-color: #888;
+    color: #fff;
+    cursor: not-allowed;
 }

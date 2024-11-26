@@ -62,6 +62,9 @@ nav a {
 nav a.active {
     color: orange;
 }
+nav a.deactive:hover{
+	color: orange;
+}
 
 .search-bar {
     position: relative;
