@@ -1,391 +1,429 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f3f3f3;
+	font-family: 'Arial', sans-serif;
+	background-color: #f3f3f3;
 }
 
 header {
-    background-color: #333;
-    color: white;
-    padding: 1em 0;
-    display: flex;
-    justify-content: center;
+	background-color: #333;
+	color: white;
+	padding: 1em 0;
+	display: flex;
+	justify-content: center;
 }
 
 .header-content {
-    width: 1200px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+	width: 1200px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .header-right {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+	display: flex;
+	align-items: center;
+	gap: 5px;
 }
 
 .logo-container {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .logo-container img {
-    width: 50px;
-    height: auto;
-    margin-right: 10px;
+	width: 50px;
+	height: auto;
+	margin-right: 10px;
 }
 
 .site-name .small-text {
-    font-size: 12px;
+	font-size: 12px;
 }
 
 .site-name .large-text {
-    font-size: 22px;
-    font-weight: bold;
+	font-size: 22px;
+	font-weight: bold;
 }
 
 nav a {
-    color: #ccc;
-    margin: 0 10px;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
+	color: #ccc;
+	margin: 0 10px;
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: bold;
 }
 
 nav a.active {
-    color: orange;
+	color: orange;
+}
+
+nav a.deactive:hover {
+	color: orange;
 }
 
 .search-bar {
-    position: relative;
-    width: 250px;
-    max-width: 250px;
-    border-radius: 40px;
-    background: #FFF;
-    margin-right: 5px;
+	position: relative;
+	width: 250px;
+	max-width: 250px;
+	border-radius: 40px;
+	background: #FFF;
+	margin-right: 5px;
 }
 
 .search-bar .keyword {
-    width: 100%;
-    padding: 0.5em 1em;
-    border: 1px solid #fff;
-    border-radius: 20px;
-    padding-right: 3em; /* 버튼 영역 확보 */
-    font-size: 14px;
+	width: 100%;
+	padding: 0.5em 1em;
+	border: 1px solid #fff;
+	border-radius: 20px;
+	padding-right: 3em;
+	/* 버튼 영역 확보 */
+	font-size: 14px;
 }
 
 .search-bar .submit {
-    position: absolute;
-    right: 15px; /* 입력 박스 안쪽의 위치 */
-    top: 55%;
-    transform: translateY(-50%);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    background-color: #fff;
+	position: absolute;
+	right: 15px;
+	/* 입력 박스 안쪽의 위치 */
+	top: 55%;
+	transform: translateY(-50%);
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	background-color: #fff;
 }
-.search-bar .submit img{
-    width: 20px;
-    height: auto;
+
+.search-bar .submit img {
+	width: 20px;
+	height: auto;
 }
 
 .user-menu a {
-    border-radius: 10px;
-    border: 1px solid #EFEDEB;
-    color: #fff;
-    padding: 0.5em 1em;
-    margin-left: 5px;
-    text-decoration: none;
+	border-radius: 10px;
+	border: 1px solid #EFEDEB;
+	color: #fff;
+	padding: 0.5em 1em;
+	margin-left: 5px;
+	text-decoration: none;
 }
 
 main {
-    display: flex;
-    gap: 2px;
+	display: flex;
+	gap: 2px;
 }
 
 .club-info {
-    width: 20%;
-    background-color: #FFF;
-    padding: 2em;
-    align-content: center;
+	width: 20%;
+	background-color: #FFF;
+	padding: 2em;
+	align-content: center;
 }
 
-.club-info img{
-    width: 100px;
+.club-info img {
+	width: 100px;
 }
 
 .club-info button {
-    margin-top: 20px;
-    padding: 10px;
-    border-radius: 10px;
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
+	margin-top: 20px;
+	padding: 10px;
+	border-radius: 10px;
+	background-color: #333;
+	color: white;
+	border: none;
+	cursor: pointer;
 }
 
 .club-info h3 {
-    margin-top: 10px;
-    font-weight: bold;
-    font-size: 18px;
+	margin-top: 10px;
+	font-weight: bold;
+	font-size: 18px;
 }
+
 .introductions {
-    margin-top: 30px;
+	margin-top: 30px;
 }
+
 .write {
-    text-align: right;
+	text-align: right;
 }
-.write-button a{
-    text-decoration: none;
-    color:#fff;
+
+.write-button a {
+	text-decoration: none;
+	color: #fff;
 }
+
 .reviews {
-    background-color: #fff;
-    width: 60%;
-    padding: 1em;
+	background-color: #fff;
+	width: 60%;
+	padding: 1em;
 }
 
 .sidebar span {
-    margin-right: 10px;
-    color: #333;
+	margin-right: 10px;
+	color: #333;
 }
 
 .sidebar li {
-    list-style: none;
-    padding: 10px;
-    border-bottom: 1px solid #eee;
+	list-style: none;
+	padding: 10px;
+	border-bottom: 1px solid #eee;
 }
 
 .sidebar a {
-    color: #333;
-    border: none;
-    text-decoration: none;
-    border-radius: 10px;
+	color: #333;
+	border: none;
+	text-decoration: none;
+	border-radius: 10px;
 }
 
 .sidebars {
-    width: 280px;
-    display: flex;
-    flex-direction: column;
-    padding: 2em;
+	width: 280px;
+	display: flex;
+	flex-direction: column;
+	padding: 2em;
 }
 
 .sidebar {
-    background-color: #fff;
-    padding: 1em;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    margin-top: 10px;
+	background-color: #fff;
+	padding: 1em;
+	border-radius: 8px;
+	margin-bottom: 20px;
+	margin-top: 10px;
 }
-.sidebar p{
-    color: #666;
-    font-size: 12px;
+
+.sidebar p {
+	color: #666;
+	font-size: 12px;
 }
 
 .sidebars h3 {
-    margin-top: 20px;
-    text-align: center;
-    font-size: 1.2em;
-    color: #333;
-    margin-bottom: 10px;
+	margin-top: 20px;
+	text-align: center;
+	font-size: 1.2em;
+	color: #333;
+	margin-bottom: 10px;
 }
 
 .rating-summary h3 {
-    font-size: 2em;
-    color: orange;
+	font-size: 2em;
+	color: orange;
 }
 
 .stars {
-    color: orange;
+	color: orange;
 }
 
 .category-star {
-    color: orange;
+	color: orange;
 }
 
-.category-ratings h4{
-    font-weight: bold;
-    margin-bottom: 10px;
-    color:#ababab;
-    font-size: 14px;
+.category-ratings h4 {
+	font-weight: bold;
+	margin-bottom: 10px;
+	color: #ababab;
+	font-size: 14px;
 }
 
 .review-list {
-    margin-top: 10px;
+	margin-top: 10px;
 }
 
 .review-item {
-    display: flex;
-    list-style: none;
-    border-bottom: 1px solid #ccc;
-    padding: 10px 0;
-    cursor: pointer;
-    text-decoration: none;
-    color: inherit;
+	display: flex;
+	list-style: none;
+	border-bottom: 1px solid #ccc;
+	padding: 10px 0;
+	cursor: pointer;
+	text-decoration: none;
+	color: inherit;
 }
+
 .review-item:hover {
-    background-color: #f0f0f0;
+	background-color: #f0f0f0;
 }
+
 .review-rating {
-    display: inline-block;
-    white-space: nowrap;
-    font-size: 18px;
-    color: orange;
+	display: inline-block;
+	white-space: nowrap;
+	font-size: 18px;
+	color: orange;
 }
+
 .review-rating .star {
-	    display: inline;
-	    margin-right: 2px;
-	}
-.review-header{
-    padding: 10px;
+	display: inline;
+	margin-right: 2px;
 }
-.review-body{
-    width: 100%;
-    padding: 10px;
-    margin-left: 15px;
+
+.review-header {
+	padding: 10px;
+}
+
+.review-body {
+	width: 100%;
+	padding: 10px;
+	margin-left: 15px;
 }
 
 .review-title {
-    font-size: 20px;
+	font-size: 20px;
 }
 
 .review-author {
-    font-size: 13px;
-    font-weight: bold;
-    color: #666;
-    padding: 10px 0px 10px 0px;
+	font-size: 13px;
+	font-weight: bold;
+	color: #666;
+	padding: 10px 0px 10px 0px;
 }
 
 .apply {
-    margin-top: 20px;
-    text-align: center;
-}
-.apply a {
- 	border-radius: 10px;
-    color: #fff;
-    text-decoration: none;
-}
-.apply button {
-    width: 100%;
-    padding: 10px;
-    border-radius: 10px;
-    margin-top: 10px;
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 15px;
+	margin-top: 20px;
+	text-align: center;
 }
 
-.review{
-    border-radius: 10px;
-    border: 1px solid #373737;
-    background: #f3f3f3;
-    padding: 1em;
-    margin-top: 10px;
+.apply a {
+	border-radius: 10px;
+	color: #fff;
+	text-decoration: none;
+}
+
+.apply button {
+	width: 100%;
+	padding: 10px;
+	border-radius: 10px;
+	margin-top: 10px;
+	background-color: #333;
+	color: white;
+	border: none;
+	cursor: pointer;
+	font-size: 15px;
+}
+
+.review {
+	border-radius: 10px;
+	border: 1px solid #373737;
+	background: #f3f3f3;
+	padding: 1em;
+	margin-top: 10px;
 }
 
 .review p {
-    color: #333;
-    font-size: 14px;
+	color: #333;
+	font-size: 14px;
 }
 
 .review-controls {
-    width: 100%;
-    text-align: right;
+	width: 100%;
+	text-align: right;
 }
-.question-write{
-    margin-bottom: 30px;
-    text-align: center;
-    display: flex;
-    justify-content: flex-end;
+
+.question-write {
+	margin-bottom: 30px;
+	text-align: center;
+	display: flex;
+	justify-content: flex-end;
 }
-.question-write a{
-    padding: 10px;
-    border-radius: 10px;
-    margin-top: 10px;
-    background-color: #333;
-    color: white;
-    border: none;
-    cursor: pointer;
-    font-size: 15px;
-    text-decoration: none;
+
+.question-write a {
+	padding: 10px;
+	border-radius: 10px;
+	margin-top: 10px;
+	background-color: #333;
+	color: white;
+	border: none;
+	cursor: pointer;
+	font-size: 15px;
+	text-decoration: none;
 }
+
 .question {
-    background-color: #fff;
-    display: flex;
-    justify-content: space-between; /* 버튼을 오른쪽으로 */
-    align-items: center; /* 버튼을 수직 가운데 정렬 */
-    padding: 10px 15px;
-    border-bottom: 1px solid #eee;
+	background-color: #fff;
+	display: flex;
+	justify-content: space-between;
+	/* 버튼을 오른쪽으로 */
+	align-items: center;
+	/* 버튼을 수직 가운데 정렬 */
+	padding: 10px 15px;
+	border-bottom: 1px solid #eee;
 }
+
+.question a {
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
+}
+
 .question-list {
-    display: flex;
-    justify-content: flex-end;
-    text-align: right;
-    margin-top: 12px;
+	display: flex;
+	justify-content: flex-end;
+	text-align: right;
+	margin-top: 12px;
 }
 
 .question-list a {
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: bold;
-}
-.sidebar a {
-    color: #333;
-    border: none;
-    text-decoration: none;
-    border-radius: 10px;
-}
-.text-container {
-    display: flex;
-    flex-direction: column; /* 텍스트를 세로로 정렬 */
-}
-.scrap-btn .scrap {
-    font-size: 24px;
-    color: #ccc;
-}
-.scrap-btn.scraped .scrap {
-    color: orange;
-}
-.ratings {
-    display: flex;
-    align-items: center;
+	text-decoration: none;
+	font-size: 12px;
+	font-weight: bold;
 }
 
-.rating-summary, .category-ratings {
-    padding: 10px;
-    width: 50%;
+.sidebar a {
+	color: #333;
+	border: none;
+	text-decoration: none;
+	border-radius: 10px;
+}
+
+.text-container {
+	display: flex;
+	flex-direction: column;
+	/* 텍스트를 세로로 정렬 */
+}
+
+.scrap-btn .scrap {
+	font-size: 24px;
+	color: #ccc;
+}
+
+.scrap-btn.scraped .scrap {
+	color: orange;
+}
+
+.ratings {
+	display: flex;
+	align-items: center;
+}
+
+.rating-summary,
+.category-ratings {
+	padding: 10px;
+	width: 50%;
 }
 
 .rating-summary {
-    text-align: center;
+	text-align: center;
 }
 
 .category-ratings {
-    text-align: left;
+	text-align: left;
 }
 
 .divider {
-    width: 1px;
-    height: 80px;
-    background-color: #ccc;
-    margin-right: 10px;
+	width: 1px;
+	height: 80px;
+	background-color: #ccc;
+	margin-right: 10px;
 }
 
 .scrap {
-    margin: 10px;
-    font-size: 20px;
-    color: #ccc;
-    cursor: pointer;
+	margin: 10px;
+	font-size: 20px;
+	color: #ccc;
+	cursor: pointer;
 }
 
 .scrap.bookmarked {
-    color: orange;
+	color: orange;
 }
