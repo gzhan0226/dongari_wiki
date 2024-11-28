@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -66,7 +67,8 @@ public class Mypage extends HttpServlet {
 		request.setAttribute("scrapList", scrapsDongariList);
 		request.setAttribute("questionList", questionDtoList);
 		
-		
+		RequestDispatcher dis = request.getRequestDispatcher("mypage.jsp");
+		dis.forward(request, response);
 	}
 
 	/**
