@@ -30,4 +30,9 @@ public class DongariService {
 	public void deleteDongari(int id) {
 		dongariDao.DeleteById(id);
 	}
+	
+	public List<DongariDto> findByUserId(int user_id) {
+		List<DongariDto> dongariDtoList = dongariDao.findByUserId(user_id);
+		return dongariDtoList;
+	}
 }

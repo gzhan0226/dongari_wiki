@@ -1,4 +1,4 @@
-package review.controller;
+package question.controller;
 
 import java.io.IOException;
 
@@ -10,20 +10,25 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import dongari.DongariDto;
+import dongari.DongariService;
+import question.QuestionDto;
+import question.QuestionService;
 import review.ReviewDto;
 import review.ReviewService;
 
+
 /**
- * Servlet implementation class AddReview
+ * Servlet implementation class EditQuestion
  */
-@WebServlet("/newreview")
-public class AddReview extends HttpServlet {
+@WebServlet("/EditQuestion")
+public class EditQuestion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddReview() {
+    public EditQuestion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,17 +38,31 @@ public class AddReview extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		
+		int dongari_id = Integer.parseInt(request.getParameter("dongari_id"));
+		int question_id = Integer.parseInt(request.getParameter("question_id"));
+		
+		QuestionService questionService = new QuestionService();
+		DongariService dongariService = new DongariService();
+		
+		QuestionDto questionDto = questionService.findById(question_id);
+		DongariDto dongariDto = dongariService.findById(dongari_id);
+		
 		if (session.getAttribute("user_id") == null) {
 			response.sendRedirect("login");
 			return;
 		}
 		
-		int id = Integer.parseInt(request.getParameter("id"));
+		int user_id = (int) session.getAttribute("user_id");
 		
-		request.setAttribute("type", "newreview");
-		request.setAttribute("id", id);
+		if (user_id != questionDto.getUser_id()) {
+			response.sendRedirect("./");
+			return;
+		}
 		
-		RequestDispatcher dis = request.getRequestDispatcher("newreview.jsp"); //form 페이지 생기면 추가
+		request.setAttribute("dongari", dongariDto);
+		request.setAttribute("question", questionDto);
+		RequestDispatcher dis = request.getRequestDispatcher("reply.jsp"); 
 		dis.forward(request, response);
 	}
 
@@ -60,18 +79,15 @@ public class AddReview extends HttpServlet {
 			return; 
 		}
 		
-		int id = Integer.parseInt(request.getParameter("id")); 
-		int review_id = Integer.parseInt(request.getParameter("review_id"));	
+		int id = Integer.parseInt(request.getParameter("id")); //question_id
+		int dongari_id = Integer.parseInt(request.getParameter("dongari_id"));	
 		int user_id = (int) session.getAttribute("user_id");
 		String title = request.getParameter("title");
 		String body = request.getParameter("body");
-		int atm = Integer.parseInt(request.getParameter("atm_rating"));
-		int act = Integer.parseInt(request.getParameter("act_rating"));
-		int man = Integer.parseInt(request.getParameter("man_rating"));
+		String reply = request.getParameter("reply");
 		
-		ReviewService reviewService = new ReviewService();
-		reviewService.editReview(new ReviewDto(review_id,user_id,id,title,body,atm,act,man,"",0));
-		
+		QuestionService questionService = new QuestionService();
+		questionService.reply(new QuestionDto(id,user_id,dongari_id,title,body,reply)); 
 		response.sendRedirect("./");
 		return; 
 	}
