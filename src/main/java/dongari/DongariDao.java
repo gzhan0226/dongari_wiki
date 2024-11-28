@@ -135,4 +135,24 @@ public class DongariDao {
 			e.printStackTrace();
 		}
 	}
+	
+	public List<DongariDto> findByUserId(int user_id) {
+		conn = dbUtil.open();
+		List<DongariDto> dongariDtoList = new ArrayList<DongariDto>();
+		String sql = "SELECT d.*, c.name AS category_name FROM dongari d JOIN category c ON d.category_id = c.id WHERE d.user_id = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, user_id);
+			System.out.println(pstmt);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				dongariDtoList.add(new DongariDto(rs.getInt(1),rs.getInt(2),rs.getInt(3),rs.getInt(4),rs.getString(5),
+						rs.getString(6),rs.getString(7),rs.getString(8), rs.getString(9), rs.getString(10),
+						rs.getString(11),rs.getString(12),rs.getString(13), rs.getString(14)));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return dongariDtoList;
+	}
 }

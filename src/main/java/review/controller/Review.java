@@ -19,6 +19,8 @@ import review.ReviewDto;
 import review.ReviewLikeDto;
 import review.ReviewService;
 import scraps.ScrapsService;
+import question.QuestionDto;
+import question.QuestionService;
 
 /**
  * Servlet implementation class Review
@@ -52,6 +54,7 @@ public class Review extends HttpServlet {
 		LikesService likesService = new LikesService();
 		DongariService dongariService = new DongariService();
 		ScrapsService scrapsService = new ScrapsService();
+		QuestionService questionService = new QuestionService();
 		
 		List<ReviewDto> list = reviewService.findAllByDongariId(id);
 		List<ReviewLikeDto> reviews = new ArrayList<>();
@@ -75,6 +78,8 @@ public class Review extends HttpServlet {
 		
 		boolean scrapCheck = scrapsService.check(dongariDto.getId(), user_id);
 		
+		List<QuestionDto> questions = questionService.findAllByDongariId(id);
+		
 		request.setAttribute("dongari", dongariDto);
 		request.setAttribute("reviews", reviews);
 		request.setAttribute("atm", atm);
@@ -82,6 +87,7 @@ public class Review extends HttpServlet {
 		request.setAttribute("man", man);
 		request.setAttribute("total", total);
 		request.setAttribute("scrapCheck", scrapCheck);
+		request.setAttribute("questions", questions);
 		
 		RequestDispatcher dis = request.getRequestDispatcher("review.jsp");
 		dis.forward(request, response);
