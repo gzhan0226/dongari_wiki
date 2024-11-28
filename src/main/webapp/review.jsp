@@ -93,7 +93,7 @@
                 </div>
             </div>
             <nav>
-                <a href="./">홈</a> 
+                <a href="./" class="deactive">홈</a> 
                 <a href="./all" class="active">동아리</a>
             </nav>
             <div class="header-right">
@@ -171,7 +171,7 @@
 			</div>
             <ul class="review-list">
    				<c:forEach var="review" items="${reviews}">
-        		<li class="review-item" data-review-id="${review.id}"  onclick="handleReviewClick('${review.username}', '${sessionScope.username}', '${dongari.id}', '${review.id}')">
+        		<li class="review-item" data-review-id="${review.id}" >
 	            	<div class="review-header">
 		                <span class="review-rating">
 		                	<fmt:formatNumber value="${review.total_rating}" type="number" maxFractionDigits="1" /><br>
@@ -191,9 +191,11 @@
 		                </span>
 		            </div>
 		            <div class ="review-body">
-			            <strong class="review-title">"${review.title}"</strong>
-			            <p class="review-author">${review.username}</p>
-			            <p class="review-content">${review.body}</p>
+		            	<div onclick="handleReviewClick('${review.username}', '${sessionScope.username}', '${dongari.id}', '${review.id}')">
+				            <strong class="review-title">"${review.title}"</strong>
+				            <p class="review-author">${review.username}</p>
+				            <p class="review-content">${review.body}</p>
+			            </div>
 			            <div class="review-controls">
 			                <span class="like-btn" data-review-id="${review.id}" data-likecheck="${review.likeCheck}">👍</span>
 			                <span id="likeCount${review.id}">${review.likeCount}</span>
@@ -207,41 +209,27 @@
             <h3>최근 질문</h3>
             
 			<div class="sidebar">
-			    <ul>
-	                <!--질문 리스트-->
-	                <li class="question">
-	                    <div class="text-container">
-	                        <p>휴학생도 신청 가능한가요??</p>
-	                    </div>
-	                </li>
-	                <li class="question">
-	                    <div class="text-container">
-	                        <p>비전공자인데 지원가능할까요?</p>
-	                    </div>
-	                </li>
-	                <!-- <p class="question-list">
-	                    <a href="#">질문 더보기></a>
-	                </p> -->
-	            </ul>
-	            <ul>
-			        <c:forEach var="question" items="${questions}">
-		                <li class="question">
-	                    	<div class="text-container">
-			                	<c:choose>
-					                <c:when test="${empty question.title}">
-					                    <p>동아리에 대해 궁금한 점을 물어보세요!</p>
-					                </c:when>
-					                <c:otherwise>
-					                    <p>${question.title}</p>
-					                </c:otherwise>
-					            </c:choose>
-			                </div>
-			            </li>
-			        </c:forEach>
-			    </ul>
+	            <c:choose>
+	            	<c:when test="${empty questions}">
+		                    <p>동아리에 대해 궁금한 점을 물어보세요!</p>
+		                </c:when>
+		                <c:otherwise>
+                  				<c:forEach var="question" items="${questions}">
+				                <li class="question">
+			                    	<div class="text-container">
+			                    		<a href="reply?id=${question.id}">${question.title}</a>
+					                </div>
+					            </li>
+			        			</c:forEach>
+		                </c:otherwise>
+		        </c:choose>
+		        <p class="question-list">
+		        	<!-- <a href="question?id=${dongari.id}">질문 더보기></a> -->
+					<a href="question.jsp">질문 더보기></a>
+				</p>
 			</div>
             <div class="question-write">
-                <a href="question.jsp">질문하기</a>
+            	<a href="newquestion?dongari_id=${dongari.id}">질문하기</a>
             </div>
             
             <div class="apply">
@@ -258,7 +246,15 @@
 				    </c:when>
 				    <c:otherwise>
 				        <p>동아리 지원 기간</p>
-				        <p>${dongari.apply_start} ~ ${dongari.apply_end}</p><br>
+						<c:choose>
+						    <c:when test="${empty dongari.apply_start || empty dongari.apply_end}">
+						        <p>등록되지 않았습니다.</p>
+						    </c:when>
+						    <c:otherwise>
+						        <p>${dongari.apply_start} ~ ${dongari.apply_end}</p>
+						    </c:otherwise>
+						</c:choose>
+						<br>
 				        <button onclick="checkApplyLink('${dongari.apply_link}')">
 				            지원하기
 				        </button>
