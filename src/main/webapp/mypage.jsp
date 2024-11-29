@@ -54,22 +54,24 @@
         <div id="my">
        	<div class="select"><h3>내가 쓴 리뷰</h3>
        	<div class="sidebar">
+
                     <c:choose> 
-                        <c:when test="${empty questionList}">
-                            <p>관심있는 동아리에 질문을 남기세요!</p>
+                        <c:when test="${empty reviewList}">
+                            <p>관심있는 동아리에 리뷰를 남기세요!</p>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="scrap" items="${questionList}">
+                            <c:forEach var="scrap" items="${reviewList}">
                                 <div class="scrapped-club">
-                                    <span>${questionList.title} </span>
-                                    <span class="category">${questionList.body}</span>
+                                    <span>${review.title} </span>
+                                    <span class="category">${reviewList.body}</span>
                                 </div>
                             </c:forEach>
                         </c:otherwise>
                     </c:choose>
-                </div></div><br>
+                </div></div>
+               <br>
        	<hr>
-       	<div class="select"><h3>내가 받은 답변</h3>
+       	<div class="select"><h3>나의 질문과 답변</h3>
        	<div class="sidebar">
                     <c:choose> 
                         <c:when test="${empty questionList}">
@@ -79,6 +81,7 @@
                             <c:forEach var="scrap" items="${questionList}">
                                 <div class="scrapped-club">
                                     <span>${questionList.title} </span>
+                                     <span>${questionList.body} </span>
                                     <span class="category">${questionList.answer}</span>
                                 </div>
                             </c:forEach>

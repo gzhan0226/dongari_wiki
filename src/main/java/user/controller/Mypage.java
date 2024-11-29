@@ -1,6 +1,7 @@
 package user.controller;
 
 import java.io.IOException;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,6 +19,7 @@ import question.QuestionDto;
 import question.QuestionService;
 import scraps.ScrapsDto;
 import scraps.ScrapsService;
+import review.*;
 
 /**
  * Servlet implementation class Mypage
@@ -50,10 +52,11 @@ public class Mypage extends HttpServlet {
 		DongariService dongariService = new DongariService();
 		ScrapsService scrapsService = new ScrapsService(); 
 		QuestionService questionService = new QuestionService();
-		
+		ReviewService reviewService = new ReviewService();
 		List<DongariDto> dongariList = dongariService.findByUserId(user_id);
 		
 		List<ScrapsDto> scrapsDtoList = scrapsService.findAll(user_id);
+
 		List<DongariDto> scrapsDongariList = new ArrayList<>(); 
 		for (ScrapsDto scrap : scrapsDtoList) {
 			scrapsDongariList.add(dongariService.findById(scrap.getDongari_id()));
