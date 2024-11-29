@@ -21,14 +21,14 @@ import review.ReviewService;
 /**
  * Servlet implementation class EditQuestion
  */
-@WebServlet("/EditQuestion")
-public class EditQuestion extends HttpServlet {
+@WebServlet("/reply")
+public class ReplyQuestion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public EditQuestion() {
+    public ReplyQuestion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,8 +38,7 @@ public class EditQuestion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
-		int dongari_id = Integer.parseInt(request.getParameter("dongari_id"));
+		int dongari_id = Integer.parseInt(request.getParameter("id"));
 		int question_id = Integer.parseInt(request.getParameter("question_id"));
 		
 		QuestionService questionService = new QuestionService();
@@ -79,8 +78,8 @@ public class EditQuestion extends HttpServlet {
 			return; 
 		}
 		
-		int id = Integer.parseInt(request.getParameter("id")); //question_id
-		int dongari_id = Integer.parseInt(request.getParameter("dongari_id"));	
+		int id = Integer.parseInt(request.getParameter("question_id")); 
+		int dongari_id = Integer.parseInt(request.getParameter("id"));	
 		int user_id = (int) session.getAttribute("user_id");
 		String title = request.getParameter("title");
 		String body = request.getParameter("body");
@@ -88,7 +87,7 @@ public class EditQuestion extends HttpServlet {
 		
 		QuestionService questionService = new QuestionService();
 		questionService.reply(new QuestionDto(id,user_id,dongari_id,title,body,reply)); 
-		response.sendRedirect("./");
+		response.sendRedirect("./question?id=" + dongari_id);
 		return; 
 	}
 

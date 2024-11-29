@@ -7,9 +7,9 @@ public class UserDto {
 	private String username;
 	private String password; 
 	
-	public UserDto(int id, String student_number, String realname, String username, String password) {
+	public UserDto(int id, String studentnumber, String realname, String username, String password) {
 		this.id = id;
-		this.studentnumber = student_number;
+		this.studentnumber = studentnumber;
 		this.realname = realname; 
 		this.username = username;
 		this.password = password;
@@ -27,7 +27,7 @@ public class UserDto {
 	public String getPassword() {
 		return password;
 	}
-	public String getStudentNumber() {
+	public String getStudentnumber() {
 		return studentnumber;
 	}
 	

@@ -169,7 +169,7 @@
     </style>
 </head>
 <body>
-    <header>
+   <header>
         <div class="header-content">
             <div class="logo-container">
                 <img src="./assets/logo.png" alt="동국대학교 로고">
@@ -180,12 +180,12 @@
                 </div>
             </div>
             <nav>
-                <a href="./" class="deactive">홈</a>
-                <a href="./all" class="active">동아리</a>
+                <a href="./" class="active">홈</a> 
+                <a href="./all" class="deactive">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="search-bar">
-                    <form action="search.jsp" method="GET">
+                    <form action="all" method="GET">
                         <input type="search" name="keyword" class="keyword" placeholder="찾으시는 동아리가 있나요?">
                         <button type="submit" class="submit">
                             <img src="./assets/search.png" alt="Search">
@@ -195,10 +195,10 @@
                 <div class="user-menu">
                     <c:choose>
                         <c:when test="${empty sessionScope.username}">
-                            <a href="login.jsp">로그인</a>
+                            <a href="./login">로그인</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="mypage.jsp">마이페이지</a>
+                            <a href="./mypage">마이페이지</a>
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -207,24 +207,25 @@
     </header>
 
     <div class="container">
-        <form action="question" method="post">
+        <form action="reply" method="post">
             <div class="form-group">
                 <label for="club-name">동아리명</label>
-                <input type="text" id="club-name" value="${dongari.title}" disabled/>
+                <input type="text" id="club-name" value="${dongari.title}" readonly/>
             </div>
             <div class="form-group">
                 <label for="question-title">질문 제목</label>
-                <input type="text" id="question-title" name="title" value="${question.title}"disabled/>
+                <input type="text" id="question-title" name="title" value="${question.title}"readonly/>
             </div>
             <div class="form-group">
                 <label for="question-content">질문 내용</label>
-                <textarea id="question-content" name="body" disabled>${question.body}</textarea>
+                <textarea id="question-content" name="body" readonly>${question.body}</textarea>
             </div>
             <div class="form-group">
                 <label for="question-content">답변 내용</label>
                 <textarea id="question-content" name="reply">${question.answer}</textarea>
             </div>
-            <input type="hidden" name="dongari_id" value="${dongari.id}"/>
+            <input type="hidden" name="id" value="${dongari.id}"/>
+            <input type="hidden" name="question_id" value="${question.id}"/>
             <div class="form-button">
                 <button type="submit">올리기</button>
                 <button type="reset">취소</button>

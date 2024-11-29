@@ -41,8 +41,10 @@ public class All extends HttpServlet {
 		
 		List<DongariDto> list = dongariService.findAll();
 		
+		String keyword = request.getParameter("keyword");
 		
 		request.setAttribute("list", list);
+		request.setAttribute("keyword", keyword);
 		
 		RequestDispatcher dis = request.getRequestDispatcher("all.jsp");
 		dis.forward(request, response);

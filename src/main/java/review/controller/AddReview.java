@@ -60,8 +60,7 @@ public class AddReview extends HttpServlet {
 			return; 
 		}
 		
-		int id = Integer.parseInt(request.getParameter("id")); 
-		int review_id = Integer.parseInt(request.getParameter("review_id"));	
+		int id = Integer.parseInt(request.getParameter("id")); 	
 		int user_id = (int) session.getAttribute("user_id");
 		String title = request.getParameter("title");
 		String body = request.getParameter("body");
@@ -70,7 +69,7 @@ public class AddReview extends HttpServlet {
 		int man = Integer.parseInt(request.getParameter("man_rating"));
 		
 		ReviewService reviewService = new ReviewService();
-		reviewService.editReview(new ReviewDto(review_id,user_id,id,title,body,atm,act,man,"",0));
+		reviewService.saveReview(new ReviewDto(0,user_id,id,title,body,atm,act,man,"",0));
 		
 		response.sendRedirect("./");
 		return; 

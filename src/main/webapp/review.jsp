@@ -93,12 +93,12 @@
                 </div>
             </div>
             <nav>
-                <a href="./" class="deactive">홈</a> 
-                <a href="./all" class="active">동아리</a>
+                <a href="./" class="active">홈</a> 
+                <a href="./all" class="deactive">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="search-bar">
-                    <form action="search.jsp" method="GET">
+                    <form action="all" method="GET">
                         <input type="search" name="keyword" class="keyword" placeholder="찾으시는 동아리가 있나요?">
                         <button type="submit" class="submit">
                             <img src="./assets/search.png" alt="Search">
@@ -108,10 +108,10 @@
                 <div class="user-menu">
                     <c:choose>
                         <c:when test="${empty sessionScope.username}">
-                            <a href="login.jsp">로그인</a>
+                            <a href="./login">로그인</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="mypage.jsp">마이페이지</a>
+                            <a href="./mypage">마이페이지</a>
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -122,7 +122,7 @@
     <main>
         <section class="club-info">
             <div class="logo-container">
-                <img src="./assets/caps_logo.png" alt="${dongari.title} Logo">
+                <img src="./${dongari.img}" alt="${dongari.title} Logo">
                 <div class="site-name">
                     <div class="large-text">${dongari.title}</div> 
                     <div class="small-text">${dongari.member_num}명 이상</div>
@@ -224,8 +224,7 @@
 		                </c:otherwise>
 		        </c:choose>
 		        <p class="question-list">
-		        	<!-- <a href="question?id=${dongari.id}">질문 더보기></a> -->
-					<a href="question.jsp">질문 더보기></a>
+		        	<a href="question?id=${dongari.id}">질문 더보기></a>
 				</p>
 			</div>
             <div class="question-write">

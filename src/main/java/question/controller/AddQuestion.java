@@ -14,8 +14,7 @@ import dongari.DongariDto;
 import dongari.DongariService;
 import question.QuestionDto;
 import question.QuestionService;
-import review.ReviewDto;
-import review.ReviewService;
+
 
 /**
  * Servlet implementation class Question
@@ -42,7 +41,7 @@ public class AddQuestion extends HttpServlet {
 			return;
 		}
 		
-		int id = Integer.parseInt(request.getParameter("id"));
+		int id = Integer.parseInt(request.getParameter("dongari_id"));
 		
 		DongariService dongariService = new DongariService();
 		

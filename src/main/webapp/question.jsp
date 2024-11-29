@@ -84,7 +84,7 @@
 	</script>
 </head>
 <body>
-    <header>
+   <header>
         <div class="header-content">
             <div class="logo-container">
                 <img src="./assets/logo.png" alt="동국대학교 로고">
@@ -95,12 +95,12 @@
                 </div>
             </div>
             <nav>
-                <a href="./" class="deactive">홈</a> 
-                <a href="./all" class="active">동아리</a>
+                <a href="./" class="active">홈</a> 
+                <a href="./all" class="deactive">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="search-bar">
-                    <form action="search.jsp" method="GET">
+                    <form action="all" method="GET">
                         <input type="search" name="keyword" class="keyword" placeholder="찾으시는 동아리가 있나요?">
                         <button type="submit" class="submit">
                             <img src="./assets/search.png" alt="Search">
@@ -110,10 +110,10 @@
                 <div class="user-menu">
                     <c:choose>
                         <c:when test="${empty sessionScope.username}">
-                            <a href="login.jsp">로그인</a>
+                            <a href="./login">로그인</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="mypage.jsp">마이페이지</a>
+                            <a href="./mypage">마이페이지</a>
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -177,14 +177,14 @@
 			        <ul class="review-list">
 			            <c:forEach var="question" items="${questions}">
 			                <li class="review-item" data-question-id="${question.id}">
-			                    <div class="review-body" onclick="window.location.href='/web_programming/reply?id=${question.id}'">
+			                    <div class="review-body" onclick="window.location.href='/web_programming/reply?id=${dongari.id}&question_id=${question.id}'">
 			                     	<strong class="review-title">"${question.title}"</strong>
 			                        <p class="review-author">${question.user_id}</p>
 			                        <p class="review-content">${question.body}</p>
 		                        </div>
 		                     </li>
 		                     <li class="review-item" data-question-id="${question.id}">
-								<div class="review-body" onclick="window.location.href='/web_programming/reply?id=${question.id}'">
+								<div class="review-body" onclick="window.location.href='/web_programming/reply?id=${dongari.id}&question_id=${question.id}'">
 			                        <p class="review-answer">
 			                            <c:choose>
 			                                <c:when test="${not empty question.answer}">

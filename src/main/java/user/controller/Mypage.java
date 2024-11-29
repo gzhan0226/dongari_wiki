@@ -16,8 +16,12 @@ import dongari.DongariDto;
 import dongari.DongariService;
 import question.QuestionDto;
 import question.QuestionService;
+import review.ReviewDto;
+import review.ReviewService;
 import scraps.ScrapsDto;
 import scraps.ScrapsService;
+import user.UserDto;
+import user.UserService;
 
 /**
  * Servlet implementation class Mypage
@@ -41,18 +45,24 @@ public class Mypage extends HttpServlet {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");
 		HttpSession session = request.getSession();
-		if (session == null) {
+		if (session.getAttribute("user_id") == null) {
 			response.sendRedirect("login");
 			return; 
 		}
 		
 		int user_id = (int) session.getAttribute("user_id");
+		String username = (String) session.getAttribute("username");
 		
 		DongariService dongariService = new DongariService();
 		ScrapsService scrapsService = new ScrapsService(); 
 		QuestionService questionService = new QuestionService();
+		ReviewService reviewService = new ReviewService();
+		UserService userService = new UserService();
+		
+		UserDto userDto = userService.findByUsername(username);
 		
 		List<DongariDto> dongariList = dongariService.findByUserId(user_id);
+		List<ReviewDto> reviewList = reviewService.findAllByUserId(user_id);
 		
 		List<ScrapsDto> scrapsDtoList = scrapsService.findAll(user_id);
 		List<DongariDto> scrapsDongariList = new ArrayList<>(); 
@@ -61,11 +71,13 @@ public class Mypage extends HttpServlet {
 			scrapsDongariList.add(dongariService.findById(scrap.getDongari_id()));
 		}
 		
-		List<QuestionDto> questionDtoList = questionService.findAllByUserId(user_id);
+		List<QuestionDto> questionList = questionService.findAllByUserId(user_id);
 		
 		request.setAttribute("dongariList", dongariList);
+		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("scrapList", scrapsDongariList);
-		request.setAttribute("questionList", questionDtoList);
+		request.setAttribute("questionList", questionList);
+		request.setAttribute("user", userDto);
 		
 		RequestDispatcher dis = request.getRequestDispatcher("mypage.jsp");
 		dis.forward(request, response);

@@ -61,6 +61,27 @@ private DBUtil dbUtil = new DBUtil();
 		return reviewDtoList;
 	}
 	
+public List<ReviewDto> findAllByUserId(int user_id) {
+		
+		conn = dbUtil.open();
+		List<ReviewDto> reviewDtoList = new ArrayList<ReviewDto>();
+		String sql = "SELECT r.*, u.username AS username FROM review r JOIN user u ON r.user_id = u.id where r.user_id = ?";
+		try {
+			PreparedStatement pstmt = conn.prepareStatement(sql);	
+			pstmt.setInt(1, user_id);
+			System.out.println(pstmt);
+			ResultSet rs = pstmt.executeQuery();
+			while(rs.next()) {
+				double total_rating = (double) (rs.getInt(6) + rs.getInt(7) + rs.getInt(8)) / 3;
+				reviewDtoList.add(new ReviewDto(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getString(4), rs.getString(5)
+						,rs.getInt(6),rs.getInt(7),rs.getInt(8),rs.getString(9),total_rating));
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		}
+		return reviewDtoList;
+	}
+	
 	public ReviewDto findById(int id) {
 		
 		conn = dbUtil.open();
