@@ -19,12 +19,12 @@
                 </div>
             </div>
             <nav>
-                <a href="main.jsp" class="active">홈</a>
-                <a href="clubs.jsp">동아리</a>
+                <a href="main" class="active">홈</a>
+                <a href="clubs">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="search-bar">
-                    <form action="search.jsp" method="GET">
+                    <form action="search" method="GET">
                         <input type="search" name="keyword" class="keyword" placeholder="찾으시는 동아리가 있나요?">
                         <button type="submit" class="submit">
                             <img src="search.png" alt="Search">
@@ -34,10 +34,10 @@
                 <div class="user-menu">
                     <c:choose>
                         <c:when test="${empty sessionScope.username}">
-                            <a href="login.jsp">로그인</a>
+                            <a href="login">로그인</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="mypage.jsp">마이페이지</a>
+                            <a href="mypage">마이페이지</a>
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -73,12 +73,12 @@
                 <c:choose>
                     <c:when test="${empty sessionScope.username}">
                         <p>관심있는 동아리를 PICK하고 다른 대학생들의 의견을 알아보세요!</p>
-                        <a href="login.jsp">로그인</a>
-                        <a href="register.jsp">회원가입</a>
+                        <a href="login">로그인</a>
+                        <a href="register">회원가입</a>
                     </c:when>
                     <c:otherwise>
                         <span><b>${sessionScope.username}</b></span><br><br>
-                        <a href="mypage.jsp">마이페이지</a>
+                        <a href="mypage">마이페이지</a>
                         <form action="/web_programming/logout" method="get"><button type="submit">로그아웃</button></form>
                     </c:otherwise>
                 </c:choose>
