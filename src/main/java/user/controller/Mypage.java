@@ -47,7 +47,6 @@ public class Mypage extends HttpServlet {
 		}
 		
 		int user_id = (int) session.getAttribute("user_id");
-		
 		DongariService dongariService = new DongariService();
 		ScrapsService scrapsService = new ScrapsService(); 
 		QuestionService questionService = new QuestionService();

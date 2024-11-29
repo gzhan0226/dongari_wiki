@@ -84,7 +84,7 @@
                     <c:otherwise>
                         <span><b>${sessionScope.username}</b></span><br><br>
                         <div class="user-actions">
-                           <a href="mypage.jsp">마이페이지</a>
+                           <a href="mypage">마이페이지</a>
                             <form action="/web_programming/logout" method="get">
                                 <button type="submit" class="logout-button">로그아웃</button>
                             </form>

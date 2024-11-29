@@ -50,38 +50,60 @@
      <div id="profile">
             <img>
             <h1>${sessionScope.username}</h1>
-        </div>
+        </div> 	
         <div id="my">
-       	<div class="select"><a href="">내가 쓴 리뷰</a></div><br>
+       	<div class="select"><h3>내가 쓴 리뷰</h3>
+       	<div class="sidebar">
+                    <c:choose> 
+                        <c:when test="${empty questionList}">
+                            <p>관심있는 동아리에 질문을 남기세요!</p>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="scrap" items="${questionList}">
+                                <div class="scrapped-club">
+                                    <span>${questionList.title} </span>
+                                    <span class="category">${questionList.body}</span>
+                                </div>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                </div></div><br>
        	<hr>
-       	<div class="select"><a href="">내가 쓴 답변</a></div><br>
+       	<div class="select"><h3>내가 쓴 답변</h3>
+       	<div class="sidebar">
+                    <c:choose> 
+                        <c:when test="${empty questionList}">
+                            <p>질문에 답변해 보세요!</p>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="scrap" items="${questionList}">
+                                <div class="scrapped-club">
+                                    <span>${questionList.title} </span>
+                                    <span class="category">${questionList.answer}</span>
+                                </div>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
+</div>
        	<hr>
-       	<div class="select"><h1>스크랩</h1>
-       	<section class="club-list">
-                <c:forEach var="dongari" items="${scrapList}">
-                    <div class="club-card" data-title="${dongari.title}">
-                        <img src="./assets/default_logo.png" alt="logo">
-                        <h4>${dongari.title}</h4>
-                        <p class="category">${dongari.category_name}</p>
-                        <p>${dongari.summary}</p>
-                        <button class="recruit-btn 
-                           <c:choose>
-                           <c:when test="${dongari.apply_start eq 'None'}">ongoing</c:when>
-                           <c:when test="${dongari.apply_start eq '9999'}">closed</c:when>
-                           <c:otherwise>open</c:otherwise>
-                       </c:choose>">
-                            <c:choose>
-                                <c:when test="${dongari.apply_start eq 'None'}">상시모집</c:when>
-                                <c:when test="${dongari.apply_start eq '9999'}">모집완료</c:when>
-                                <c:otherwise>모집중</c:otherwise>
-                            </c:choose>
-                        </button>
-                        <br>
-                        <%-- window.location.href='/web_programming/details?id=${dongari.id}' 로 나중에 바꾸기--%>
-                        <button class="club-button" onclick="window.location.href='/web_programming/review?id=${dongari.id}'">상세보기</button>
-                    </div>
-                </c:forEach>
-            </section>
+       	<div class="select">
+       	<h3>스크랩</h3>
+                <div class="sidebar">
+                    <c:choose> 
+                        <c:when test="${empty scrapList}">
+                            <p>관심있는 동아리를 PICK하고 다른 대학생들의 의견을 알아보세요!</p>
+                        </c:when>
+                        <c:otherwise>
+                            <c:forEach var="scrap" items="${scrapList}">
+                                <div class="scrapped-club">
+                                    <span>${scrap.title} </span>
+                                    <span class="category">${scrap.category_name}</span>
+                                </div>
+                            </c:forEach>
+                        </c:otherwise>
+                    </c:choose>
+                </div>
             <br>
         </div><br>
        	<hr>
@@ -91,7 +113,7 @@
         
         <div id="right">
             
-            <h1>관리중인 페이지</h1>
+            <h1>관리 중인 페이지</h1>
             <section class="club-list">
                 <c:forEach var="dongari" items="${dongariList}">
                     <div class="club-card" data-title="${dongari.title}">
@@ -99,17 +121,9 @@
                         <h4>${dongari.title}</h4>
                         <p class="category">${dongari.category_name}</p>
                         <p>${dongari.summary}</p>
-                        <button class="recruit-btn 
-                           <c:choose>
-                           <c:when test="${dongari.apply_start eq 'None'}">ongoing</c:when>
-                           <c:when test="${dongari.apply_start eq '9999'}">closed</c:when>
-                           <c:otherwise>open</c:otherwise>
-                       </c:choose>">
-                            <c:choose>
-                                <c:when test="${dongari.apply_start eq 'None'}">상시모집</c:when>
-                                <c:when test="${dongari.apply_start eq '9999'}">모집완료</c:when>
-                                <c:otherwise>모집중</c:otherwise>
-                            </c:choose>
+                        <button class="recruit-btn" onclick="window.location.href='/web_programming/edit?id=${dongari.id}'">
+                        수정
+                           
                         </button>
                         <br>
                         <%-- window.location.href='/web_programming/details?id=${dongari.id}' 로 나중에 바꾸기--%>
