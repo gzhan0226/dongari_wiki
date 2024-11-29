@@ -137,7 +137,7 @@
    				<p>${dongari.body}</p>
 			</div>
             <div class="write">
-                <button class="write-button"><a href="newreview?id=${dongari.id}">리뷰쓰기</a></button>
+                <button class="write-button"><a href="newquestion?dongari_id=${dongari.id}">질문하기</a></button>
             </div>
         </section>
 
