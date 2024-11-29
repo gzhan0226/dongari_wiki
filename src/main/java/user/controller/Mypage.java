@@ -55,7 +55,6 @@ public class Mypage extends HttpServlet {
 		
 		List<ScrapsDto> scrapsDtoList = scrapsService.findAll(user_id);
 		List<DongariDto> scrapsDongariList = new ArrayList<>(); 
-		
 		for (ScrapsDto scrap : scrapsDtoList) {
 			scrapsDongariList.add(dongariService.findById(scrap.getDongari_id()));
 		}

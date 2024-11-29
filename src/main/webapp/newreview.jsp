@@ -53,7 +53,7 @@
             </nav>
             <div class="header-right">
                 <div class="search-bar">
-                    <form action="search.jsp" method="GET">
+                    <form action="search" method="GET">
                         <input type="search" name="keyword" class="keyword" placeholder="찾으시는 동아리가 있나요?">
                         <button type="submit" class="submit">
                             <img src="./assets/search.png" alt="Search">
@@ -63,10 +63,10 @@
                 <div class="user-menu">
                     <c:choose>
                         <c:when test="${empty sessionScope.username}">
-                            <a href="login.jsp">로그인</a>
+                            <a href="login">로그인</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="mypage.jsp">마이페이지</a>
+                            <a href="mypage">마이페이지</a>
                         </c:otherwise>
                     </c:choose>
                 </div>

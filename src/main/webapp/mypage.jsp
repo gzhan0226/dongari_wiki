@@ -25,7 +25,7 @@
             </nav>
             <div class="header-right">
                 <div class="search-bar">
-                    <form action="search.jsp" method="GET">
+                    <form action="search" method="GET">
                         <input type="search" name="keyword" class="keyword" placeholder="찾으시는 동아리가 있나요?">
                         <button type="submit" class="submit">
                             <img src="./assets/search.png" alt="Search">
@@ -69,11 +69,11 @@
                     </c:choose>
                 </div></div><br>
        	<hr>
-       	<div class="select"><h3>내가 쓴 답변</h3>
+       	<div class="select"><h3>내가 받은 답변</h3>
        	<div class="sidebar">
                     <c:choose> 
                         <c:when test="${empty questionList}">
-                            <p>질문에 답변해 보세요!</p>
+                            <p>관심있는 동아리에 질문을 남기세요!!</p>
                         </c:when>
                         <c:otherwise>
                             <c:forEach var="scrap" items="${questionList}">
@@ -93,6 +93,7 @@
                     <c:choose> 
                         <c:when test="${empty scrapList}">
                             <p>관심있는 동아리를 PICK하고 다른 대학생들의 의견을 알아보세요!</p>
+                    
                         </c:when>
                         <c:otherwise>
                             <c:forEach var="scrap" items="${scrapList}">

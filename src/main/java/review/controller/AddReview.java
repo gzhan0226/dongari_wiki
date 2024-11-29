@@ -43,7 +43,7 @@ public class AddReview extends HttpServlet {
 		request.setAttribute("type", "newreview");
 		request.setAttribute("id", id);
 		
-		RequestDispatcher dis = request.getRequestDispatcher("newreview.jsp"); //form ÆäÀÌÁö »ý±â¸é Ãß°¡
+		RequestDispatcher dis = request.getRequestDispatcher("newreview.jsp"); //form ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½
 		dis.forward(request, response);
 	}
 
@@ -59,8 +59,7 @@ public class AddReview extends HttpServlet {
 			response.sendRedirect("login");
 			return; 
 		}
-		
-		int id = Integer.parseInt(request.getParameter("id")); 
+		int id = Integer.parseInt(request.getParameter("id")+request.getParameter("review_id")); 
 		int review_id = Integer.parseInt(request.getParameter("review_id"));	
 		int user_id = (int) session.getAttribute("user_id");
 		String title = request.getParameter("title");
