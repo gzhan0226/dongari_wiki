@@ -48,10 +48,10 @@
      <div class="profile-container">
      <div id="left">
      <div id="profile">
-     		<h1>반갑습니다!</h1>
+     		<h2>반갑습니다!</h2>
      		
-            <h1>${user.studentnumber}  ${user.realname}님</h1>
-            <h1>아이디 : ${user.username}</h1>
+            <h3>${user.studentnumber}  ${user.realname}님</h3>
+            <h3>아이디: ${user.username}</h3>
         </div> 	
         <div id="my">
        	<div class="select"><h3>내가 쓴 리뷰</h3>
@@ -64,8 +64,9 @@
                         <c:otherwise>
                             <c:forEach var="review" items="${reviewList}">
                                 <div class="scrapped-club">
-                                    <span>${review.title} </span>
-                                    <span class="category">${review.body}</span>
+                                    <span><b>제목: </b>"${review.title}" </span><br>
+                                    <span class="category">내용: ${review.body}</span><br>
+                                    <hr>
                                 </div>
                             </c:forEach>
                         </c:otherwise>
@@ -81,11 +82,21 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach var="question" items="${questionList}">
-                                <div class="scrapped-club">
-                                    <span>${question.title} </span>
-                                     <span>${question.body} </span>
-                                    <span class="category">${question.answer}</span>
-                                </div>
+                                <div class="scrapped-club" >
+                                	<b>질문</b><br>
+                                     <span>제목: "${question.title}"</span><br>
+                                     <span>내용: ${question.body}</span><br><br>
+                                    <c:choose>
+		                                <c:when test="${not empty question.answer}">
+		                                	<b>답변</b><br>
+		                                    <span class="category">${question.answer}</span>
+		                                </c:when>
+		                                <c:otherwise>
+		                                    <b>답변 대기 중</b>
+		                                </c:otherwise>
+		                            </c:choose>
+		                            </div>
+                                <hr>
                             </c:forEach>
                         </c:otherwise>
                     </c:choose>
@@ -102,9 +113,10 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach var="scrap" items="${scrapList}">
-                                <div class="scrapped-club">
-                                    <span>${scrap.title} </span>
+                                <div class="scrapped-club" onclick="window.location.href='/web_programming/review?id=${scrap.id}'">
+                                    <span><b>${scrap.title}</b></span>
                                     <span class="category">${scrap.category_name}</span>
+                                    <hr>
                                 </div>
                             </c:forEach>
                         </c:otherwise>
@@ -113,7 +125,7 @@
             <br>
         </div><br>
        	<hr>
-       	<div class="select"><a href="./logout">로그아웃</a></div>
+       	<div class="select"><a href="./logout">로그아웃</a></div><br><br>
         </div>
       </div>
         
@@ -129,10 +141,8 @@
                         <p>${dongari.summary}</p>
                         <button class="recruit-btn" onclick="window.location.href='/web_programming/edit?id=${dongari.id}'">
                         수정
-                           
                         </button>
                         <br>
-                        <%-- window.location.href='/web_programming/details?id=${dongari.id}' 로 나중에 바꾸기--%>
                         <button class="club-button" onclick="window.location.href='/web_programming/review?id=${dongari.id}'">상세보기</button>
                     </div>
                 </c:forEach>
