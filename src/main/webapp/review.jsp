@@ -217,7 +217,7 @@
                   				<c:forEach var="question" items="${questions}">
 				                <li class="question">
 			                    	<div class="text-container">
-			                    		<a href="reply?id=${question.id}">${question.title}</a>
+			                    		<a href="/web_programming/reply?id=${dongari.id}&question_id=${question.id}">${question.title}</a>
 					                </div>
 					            </li>
 			        			</c:forEach>
