@@ -267,17 +267,18 @@
             <div class="logo-container">
                 <img src="./assets/logo.png" alt="동국대학교 로고">
                 <div class="site-name">
+                
                     <div class="small-text">동국대학교 동아리 위키</div>
                     <div class="large-text">동동</div>
                 </div>
             </div>
             <nav>
-                <a href="./">홈</a> 
-                <a href="./all" class="active">동아리</a>
+                <a href="./" class="active">홈</a> 
+                <a href="./all" class="deactive">동아리</a>
             </nav>
             <div class="header-right">
                 <div class="search-bar">
-                    <form action="search.jsp" method="GET">
+                    <form action="all" method="GET">
                         <input type="search" name="keyword" class="keyword" placeholder="찾으시는 동아리가 있나요?">
                         <button type="submit" class="submit">
                             <img src="./assets/search.png" alt="Search">
@@ -287,10 +288,10 @@
                 <div class="user-menu">
                     <c:choose>
                         <c:when test="${empty sessionScope.username}">
-                            <a href="login">로그인</a>
+                            <a href="./login">로그인</a>
                         </c:when>
                         <c:otherwise>
-                            <a href="mypage">마이페이지</a>
+                            <a href="./mypage">마이페이지</a>
                         </c:otherwise>
                     </c:choose>
                 </div>
@@ -299,11 +300,12 @@
     </header>
 
     <div class="container">
-        <form action="${type}" method="post">
+        <form action="${type}" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <div class="form-group-inline-file">
                     <label for="image">동아리 소개 이미지</label>
                     <input type="file" id="image" name="clubImage">
+                    <input type="hidden" name="existingImage" value="${dongari.img}">
                 </div>
             </div>
             <div class="form-group">

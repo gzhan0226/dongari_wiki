@@ -25,7 +25,7 @@
             </nav>
             <div class="header-right">
                 <div class="search-bar">
-                    <form action="search" method="GET">
+                    <form action="all" method="GET">
                         <input type="search" name="keyword" class="keyword" placeholder="찾으시는 동아리가 있나요?">
                         <button type="submit" class="submit">
                             <img src="./assets/search.png" alt="Search">
@@ -51,7 +51,7 @@
             <p>여러 분야의 동아리를 확인하고, 관심있는 동아리에 대해 찾아보세요</p>
             <ul class="club-list">
                 <c:forEach var="dongari" items="${dongariList}">
-                    <li class="club-item">
+                    <li class="club-item" onclick="window.location.href='/web_programming/review?id=${dongari.id}'">
                         <div class="text-container">
                             <span><b>${dongari.title}</b></span>
                             <span class="category">${dongari.category_name}</span>
@@ -102,10 +102,10 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach var="scrap" items="${scrapList}">
-                                <div class="scrapped-club">
-                                    <span>${scrap.title} </span>
-                                    <span class="category">${scrap.category_name}</span>
-                                </div>
+	                                <div class="scrapped-club" onclick="window.location.href='/web_programming/review?id=${scrap.id}'">
+	                                    <span><b>${scrap.title}</b> </span>
+	                                    <span class="category">${scrap.category_name}</span>
+	                                </div>
                             </c:forEach>
                         </c:otherwise>
                     </c:choose>

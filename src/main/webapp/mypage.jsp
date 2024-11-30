@@ -25,7 +25,7 @@
             </nav>
             <div class="header-right">
                 <div class="search-bar">
-                    <form action="search" method="GET">
+                    <form action="all" method="GET">
                         <input type="search" name="keyword" class="keyword" placeholder="찾으시는 동아리가 있나요?">
                         <button type="submit" class="submit">
                             <img src="./assets/search.png" alt="Search">
@@ -48,11 +48,13 @@
      <div class="profile-container">
      <div id="left">
      <div id="profile">
-            <img>
-            <h1>${sessionScope.username}</h1>
+     		<h1>${user.realname}님 반갑습니다!</h1><br>
+     		<h2>ℹ️ 회원 정보</h2>
+            <h3> 학번: ${user.studentnumber}  </h3>
+            <h3> 아이디: ${user.username}</h3>
         </div> 	
         <div id="my">
-       	<div class="select"><h3>내가 쓴 리뷰</h3>
+       	<div class="select"><h3>👍 내가 쓴 리뷰</h3>
        	<div class="sidebar">
 
                     <c:choose> 
@@ -60,10 +62,11 @@
                             <p>관심있는 동아리에 리뷰를 남기세요!</p>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="scrap" items="${reviewList}">
+                            <c:forEach var="review" items="${reviewList}">
                                 <div class="scrapped-club">
-                                    <span>${review.title} </span>
-                                    <span class="category">${reviewList.body}</span>
+                                    <span><b>제목: </b>"${review.title}" </span><br>
+                                    <span class="category">내용: ${review.body}</span><br>
+                                    <hr>
                                 </div>
                             </c:forEach>
                         </c:otherwise>
@@ -71,19 +74,29 @@
                 </div></div>
                <br>
        	<hr>
-       	<div class="select"><h3>나의 질문과 답변</h3>
+       	<div class="select"><h3>⁉️나의 질문과 답변</h3>
        	<div class="sidebar">
                     <c:choose> 
                         <c:when test="${empty questionList}">
                             <p>관심있는 동아리에 질문을 남기세요!!</p>
                         </c:when>
                         <c:otherwise>
-                            <c:forEach var="scrap" items="${questionList}">
-                                <div class="scrapped-club">
-                                    <span>${questionList.title} </span>
-                                     <span>${questionList.body} </span>
-                                    <span class="category">${questionList.answer}</span>
-                                </div>
+                            <c:forEach var="question" items="${questionList}">
+                                <div class="scrapped-club" >
+                                	<b>질문</b><br>
+                                     <span>제목: "${question.title}"</span><br>
+                                     <span>내용: ${question.body}</span><br><br>
+                                    <c:choose>
+		                                <c:when test="${not empty question.answer}">
+		                                	<b>답변</b><br>
+		                                    <span class="category">${question.answer}</span>
+		                                </c:when>
+		                                <c:otherwise>
+		                                    <b>답변 대기 중</b>
+		                                </c:otherwise>
+		                            </c:choose>
+		                            </div>
+                                <hr>
                             </c:forEach>
                         </c:otherwise>
                     </c:choose>
@@ -91,7 +104,7 @@
 </div>
        	<hr>
        	<div class="select">
-       	<h3>스크랩</h3>
+       	<h3>☆ 스크랩</h3>
                 <div class="sidebar">
                     <c:choose> 
                         <c:when test="${empty scrapList}">
@@ -100,9 +113,10 @@
                         </c:when>
                         <c:otherwise>
                             <c:forEach var="scrap" items="${scrapList}">
-                                <div class="scrapped-club">
-                                    <span>${scrap.title} </span>
+                                <div class="scrapped-club" onclick="window.location.href='/web_programming/review?id=${scrap.id}'">
+                                    <span><b>${scrap.title}</b></span>
                                     <span class="category">${scrap.category_name}</span>
+                                    <hr>
                                 </div>
                             </c:forEach>
                         </c:otherwise>
@@ -111,7 +125,7 @@
             <br>
         </div><br>
        	<hr>
-       	<div class="select"><a href="./logout">로그아웃</a></div>
+       	<div class="select"><a href="./logout">ﾧ↦ 로그아웃</a></div><br><br>
         </div>
       </div>
         
@@ -122,16 +136,16 @@
                 <c:forEach var="dongari" items="${dongariList}">
                     <div class="club-card" data-title="${dongari.title}">
                         <img src="./assets/default_logo.png" alt="logo">
+                        <div class="inner">
                         <h4>${dongari.title}</h4>
                         <p class="category">${dongari.category_name}</p>
                         <p>${dongari.summary}</p>
                         <button class="recruit-btn" onclick="window.location.href='/web_programming/edit?id=${dongari.id}'">
                         수정
-                           
                         </button>
                         <br>
-                        <%-- window.location.href='/web_programming/details?id=${dongari.id}' 로 나중에 바꾸기--%>
                         <button class="club-button" onclick="window.location.href='/web_programming/review?id=${dongari.id}'">상세보기</button>
+                        </div>
                     </div>
                 </c:forEach>
             </section>

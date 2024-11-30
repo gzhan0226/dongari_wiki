@@ -14,19 +14,21 @@ import dongari.DongariDto;
 import dongari.DongariService;
 import question.QuestionDto;
 import question.QuestionService;
+import review.ReviewDto;
+import review.ReviewService;
 
 
 /**
- * Servlet implementation class Question
+ * Servlet implementation class EditQuestion
  */
-@WebServlet("/newquestion")
-public class AddQuestion extends HttpServlet {
+@WebServlet("/reply")
+public class ReplyQuestion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AddQuestion() {
+    public ReplyQuestion() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,21 +38,30 @@ public class AddQuestion extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		int dongari_id = Integer.parseInt(request.getParameter("id"));
+		int question_id = Integer.parseInt(request.getParameter("question_id"));
+		
+		QuestionService questionService = new QuestionService();
+		DongariService dongariService = new DongariService();
+		
+		QuestionDto questionDto = questionService.findById(question_id);
+		DongariDto dongariDto = dongariService.findById(dongari_id);
+		
 		if (session.getAttribute("user_id") == null) {
 			response.sendRedirect("login");
 			return;
 		}
 		
-		int id = Integer.parseInt(request.getParameter("dongari_id"));
+		int user_id = (int) session.getAttribute("user_id");
 		
-		DongariService dongariService = new DongariService();
+		if (user_id != questionDto.getUser_id()) {
+			response.sendRedirect("./");
+			return;
+		}
 		
-		DongariDto dongariDto = dongariService.findById(id);
-		
-		request.setAttribute("id", id);
 		request.setAttribute("dongari", dongariDto);
-		
-		RequestDispatcher dis = request.getRequestDispatcher("newquestion.jsp"); //form 페이지 생기면 추가
+		request.setAttribute("question", questionDto);
+		RequestDispatcher dis = request.getRequestDispatcher("reply.jsp"); 
 		dis.forward(request, response);
 	}
 
@@ -67,16 +78,16 @@ public class AddQuestion extends HttpServlet {
 			return; 
 		}
 		
-		int dongari_id = Integer.parseInt(request.getParameter("dongari_id")); 
+		int id = Integer.parseInt(request.getParameter("question_id")); 
+		int dongari_id = Integer.parseInt(request.getParameter("id"));	
 		int user_id = (int) session.getAttribute("user_id");
 		String title = request.getParameter("title");
 		String body = request.getParameter("body");
+		String reply = request.getParameter("reply");
 		
 		QuestionService questionService = new QuestionService();
-		
-		questionService.saveQuestion(new QuestionDto(0, user_id, dongari_id, title, body, ""));
-		
-		response.sendRedirect("./");
+		questionService.reply(new QuestionDto(id,user_id,dongari_id,title,body,reply)); 
+		response.sendRedirect("./question?id=" + dongari_id);
 		return; 
 	}
 

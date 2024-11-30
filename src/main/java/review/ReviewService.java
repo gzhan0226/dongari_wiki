@@ -26,6 +26,11 @@ public class ReviewService {
 		return reviewDtoList;
 	}
 	
+	public List<ReviewDto> findAllByUserId(int user_id) {
+		List<ReviewDto> reviewDtoList = reviewDao.findAllByUserId(user_id); 
+		return reviewDtoList;
+	}
+	
 	public ReviewDto findById(int id) {
 		ReviewDto reviewDto = reviewDao.findById(id); 
 		return reviewDto;

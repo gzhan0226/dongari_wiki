@@ -22,7 +22,7 @@ public class QuestionDao {
 	public void save(QuestionDto questionDto) {
 		//QuestionDto(int id, int user_id, int dongari_id, String title, String body, String answer)
 		conn = dbUtil.open();
-		String sql = "insert into review values(NULL,?, ?, ?, ?, ?)";
+		String sql = "insert into question values(NULL,?, ?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);	
 			pstmt.setInt(1, questionDto.getUser_id());
@@ -46,7 +46,7 @@ public class QuestionDao {
 				+ "dongari_id = ?, "
 				+ "title = ?, "
 				+ "body = ?, "
-				+ "answer = ?, "
+				+ "answer = ? "
 				+ "WHERE id = ?";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);

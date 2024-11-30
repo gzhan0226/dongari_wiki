@@ -133,6 +133,10 @@ a{
 	font-size:1.17em;
 	font-weight:bold;
 }
+ .inner{
+ position: relative;
+ right:0px;
+ }
 .select{
 	align-items:center;
 	width:100%;
@@ -161,12 +165,11 @@ a{
 	float:left;
     position: relative;
     border: 1px solid #ddd;
-    background-color: #fff;
+    background-color: #f3f3f3;
     border-radius: 8px;
-    text-align: center;
     padding: 20px 15px 15px;
     overflow: hidden;
-    width:40%;
+    width:90%;
     margin-right:2%;
     margin-bottom:2%;
 }
@@ -174,20 +177,26 @@ a{
 .recruit-btn {
     position: absolute;
     top: 10px;
+    width:30%;
     right: 10px;
-    padding: 5px 15px;
-    border-radius: 30px;
-    font-size: 0.9em;
+    padding: 10px;
+    border-radius: 10px;
     cursor: pointer;
     border: none;
+    transition: transform 0.5s ease;
+   	font-size:14px;
+}
+.recruit-btn:hover {
+    transform: scale(1.3);
 }
 
 .club-card img {
     width: auto;
     height: 80px;
     object-fit: cover;
-    border-radius: 8px 8px 0 0;
-    margin-top: 30px;
+    border-radius: 8px;
+    float:left;
+    margin-right:20px;
 }
 
 .club-card h4 {
@@ -200,14 +209,18 @@ a{
 }
 
 .club-button {
+	position:absolute;
+	right:10px;
+	bottom:10px;
+	padding:10px;
     background-color: orange;
-    width: 80%;
-    padding: 10px;
-    border: 1px solid orange;
+    width: 30%;
+    border: none;
     color: #333;
     border-radius: 10px;
     cursor: pointer;
     transition: transform 0.5s ease;
+   	font-size:14px;
 }
 
 .club-button:hover {

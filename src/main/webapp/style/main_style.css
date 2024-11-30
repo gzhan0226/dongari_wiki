@@ -1,272 +1,297 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
 }
 
 body {
-    font-family: 'Arial', sans-serif;
-    background-color: #f3f3f3;
+	font-family: 'Arial', sans-serif;
+	background-color: #f3f3f3;
 }
 
 header {
-    background-color: #333;
-    color: white;
-    padding: 1em 0;
-    display: flex;
-    justify-content: center;
+	background-color: #333;
+	color: white;
+	padding: 1em 0;
+	display: flex;
+	justify-content: center;
 }
 
 .header-content {
-    width: 1200px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+	width: 1200px;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
 
 .header-right {
-    display: flex;
-    align-items: center;
-    gap: 5px;
+	display: flex;
+	align-items: center;
+	gap: 5px;
 }
 
 .logo-container {
-    display: flex;
-    align-items: center;
+	display: flex;
+	align-items: center;
 }
 
 .logo-container img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
+	width: 50px;
+	height: 50px;
+	margin-right: 10px;
 }
 
 .site-name .small-text {
-    font-size: 12px;
-    color: #f3f3f3;
+	font-size: 12px;
+	color: #f3f3f3;
 }
 
 .site-name .large-text {
-    font-size: 22px;
-    font-weight: bold;
+	font-size: 22px;
+	font-weight: bold;
 }
 
 nav a {
-    color: #ccc;
-    margin: 0 10px;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
+	color: #ccc;
+	margin: 0 10px;
+	text-decoration: none;
+	font-size: 16px;
+	font-weight: bold;
 }
 
 nav a.active {
-    color: orange;
+	color: orange;
 }
-nav a.deactive:hover{
+
+nav a.deactive:hover {
 	color: orange;
 }
 
 .search-bar {
-    position: relative;
-    width: 250px;
-    max-width: 250px;
-    border-radius: 40px;
-    background: #FFF;
-    margin-right: 5px;
+	position: relative;
+	width: 250px;
+	max-width: 250px;
+	border-radius: 40px;
+	background: #FFF;
+	margin-right: 5px;
 }
 
 .search-bar .keyword {
-    width: 100%;
-    padding: 0.5em 1em;
-    border: 1px solid #fff;
-    border-radius: 20px;
-    padding-right: 3em;
-    font-size: 14px;
+	width: 100%;
+	padding: 0.5em 1em;
+	border: 1px solid #fff;
+	border-radius: 20px;
+	padding-right: 3em;
+	font-size: 14px;
 }
 
 .search-bar .submit {
-    position: absolute;
-    right: 15px;
-    top: 55%;
-    transform: translateY(-50%);
-    color: #fff;
-    border: none;
-    cursor: pointer;
-    background-color: #fff;
+	position: absolute;
+	right: 15px;
+	top: 55%;
+	transform: translateY(-50%);
+	color: #fff;
+	border: none;
+	cursor: pointer;
+	background-color: #fff;
 }
-.search-bar .submit img{
-    width: 20px;
-    height: auto;
+
+.search-bar .submit img {
+	width: 20px;
+	height: auto;
 }
 
 .user-menu a {
-    border-radius: 10px;
-    border: 1px solid #EFEDEB;
-    color: #fff;
-    padding: 0.5em 1em;
-    margin-left: 5px;
-    text-decoration: none;
+	border-radius: 10px;
+	border: 1px solid #EFEDEB;
+	color: #fff;
+	padding: 0.5em 1em;
+	margin-left: 5px;
+	text-decoration: none;
 }
 
 main {
-    display: flex;
-    justify-content: center;
-    padding: 1em;
-    gap: 1em;
+	display: flex;
+	justify-content: center;
+	padding: 1em;
+	gap: 1em;
 }
 
 .clubs {
-    width: 60%;
-    background-color: #fff;
-    padding: 1em;
-    border-radius: 8px;
+	width: 60%;
+	background-color: #fff;
+	padding: 1em;
+	border-radius: 8px;
 }
 
 .sidebars {
-    width: 280px;
-    display: flex;
-    flex-direction: column;
+	width: 280px;
+	display: flex;
+	flex-direction: column;
 }
 
 .sidebar {
-    background-color: #fff;
-    padding: 1em;
-    border-radius: 8px;
-    margin-bottom: 20px;
-    margin-top: 10px;
+	background-color: #fff;
+	padding: 1em;
+	border-radius: 8px;
+	margin-bottom: 20px;
+	margin-top: 10px;
 }
-.sidebar p{
-    color: #666;
-    font-size: 12px;
+
+.sidebar p {
+	color: #666;
+	font-size: 12px;
 }
 
 .sidebar span {
-    margin-right: 10px;
-    color: #333;
+	margin-right: 10px;
+	color: #333;
 }
+
 .sidebar a {
-    width: 20%;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 0.5em 1em;
-    margin-left: 5px;
-    text-decoration: none;
-    border-radius: 10px;
+	width: 20%;
+	background-color: #333;
+	color: #fff;
+	border: none;
+	padding: 0.5em 1em;
+	margin-left: 5px;
+	text-decoration: none;
+	border-radius: 10px;
 }
+
 .user-actions {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+	display: flex;
+	align-items: center;
+	gap: 10px;
 }
-.user-actions a, .logout-button {
-    width: auto;
-    background-color: #333;
-    color: #fff;
-    border: none;
-    padding: 0.5em 1em;
-    text-decoration: none;
-    border-radius: 10px;
-    text-align: center;
-    cursor: pointer;
+
+.user-actions a,
+.logout-button {
+	width: auto;
+	border: 1px solid #333;
+	background: #FFF;
+	padding: 0.4em 0.8em;
+	text-decoration: none;
+	border-radius: 10px;
+	text-align: center;
+	cursor: pointer;
+	color: #333;
 }
 
 .logout-form {
-    margin: 0;
+	margin: 0;
 }
 
 .logout-button {
-    all: unset;
-    display: inline-block;
-    padding: 0.5em 1em;
-    border-radius: 10px;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    cursor: pointer;
+	all: unset;
+	display: inline-block;
+	padding: 0.4em 0.8em;
+	border-radius: 10px;
+	border: 1px solid #333;
+	background: #FFF;
+	color: #333;
+	text-align: center;
+	cursor: pointer;
 }
+
 .clubs h2 {
-    font-size: 1.5em;
-    color: #333;
-    margin-bottom: 10px;
+	font-size: 1.5em;
+	color: #333;
+	margin-bottom: 10px;
 }
 
 .clubs p {
-    color: #666;
-    margin-bottom: 20px;
-    font-size: 14px;
+	color: #666;
+	margin-bottom: 20px;
+	font-size: 14px;
 }
 
 .club-list {
-    list-style: none;
-    margin-top: 1em;
+	list-style: none;
+	margin-top: 1em;
 }
 
 .club-item {
-    display: flex;
-    justify-content: space-between; /* 버튼을 오른쪽으로 */
-    align-items: center; /* 버튼을 수직 가운데 정렬 */
-    padding: 10px 15px;
-    border-bottom: 1px solid #eee;
+	display: flex;
+	justify-content: space-between;
+	/* 버튼을 오른쪽으로 */
+	align-items: center;
+	/* 버튼을 수직 가운데 정렬 */
+	padding: 10px 15px;
+	border-bottom: 1px solid #eee;
+	cursor: pointer;
 }
 
 .text-container {
-    display: flex;
-    flex-direction: column; /* 텍스트를 세로로 정렬 */
+	display: flex;
+	flex-direction: column;
+	/* 텍스트를 세로로 정렬 */
 }
 
 .category {
-    color: #888;
-    margin-top: 5px; /* NSA 아래 여백 추가 */
-    padding: 2px 5px;
-    font-size: 14px;
+	color: #888;
+	margin-top: 5px;
+	/* NSA 아래 여백 추가 */
+	padding: 2px 5px;
+	font-size: 14px;
 }
 
 .recruit-btn {
-    padding: 5px 10px;
-    border-radius: 10px;
-    font-size: 0.9em;
-    cursor: pointer;
-    border: none;
+	padding: 5px 10px;
+	border-radius: 10px;
+	font-size: 0.9em;
+	cursor: pointer;
+	border: none;
 }
 
 .recruit-btn.ongoing {
-    background-color: #333;
-    color: #fff;
+	background-color: #333;
+	color: #fff;
 }
 
 .recruit-btn.open {
-    background-color: orange;
-    color: #fff;
+	background-color: orange;
+	color: #fff;
 }
 
 .recruit-btn.closed {
-    background-color: #888;
-    color: #fff;
-    cursor: not-allowed;
+	background-color: #888;
+	color: #fff;
+	cursor: not-allowed;
 }
 
 .sidebar h3 {
-    font-size: 1.2em;
-    color: #333;
-    margin-bottom: 10px;
+	font-size: 1.2em;
+	color: #333;
+	margin-bottom: 10px;
 }
 
-.review{
-    border-radius: 10px;
-    border: 1px solid #373737;
-    background: #FFF;
-    padding: 1em;
-    margin-top: 10px;
+.review {
+	border-radius: 10px;
+	border: 1px solid #373737;
+	background: #FFF;
+	padding: 1em;
+	margin-top: 10px;
 }
 
 .review strong {
-    display: block;
-    font-weight: bold;
-    color: #333;
+	display: block;
+	font-weight: bold;
+	color: #333;
 }
 
 .review p {
-    color: #666;
-    font-size: 14px;
+	color: #666;
+	font-size: 14px;
+}
+
+.scrapped-club {
+	display: flex;
+	flex-direction: column;
+	border-radius: 10px;
+	border: 1px solid #373737;
+	background: #f3f3f3;
+	padding: 1em;
+	margin-top: 10px;
+	cursor: pointer;
 }

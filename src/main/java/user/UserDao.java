@@ -22,7 +22,7 @@ public class UserDao {
 		String sql = "insert into user values(NULL,?, ?, ?, ?)";
 		try {
 			PreparedStatement pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, userDto.getStudentNumber());
+			pstmt.setString(1, userDto.getStudentnumber());
 			pstmt.setString(2, userDto.getRealname());
 			pstmt.setString(3, userDto.getUsername());
 			pstmt.setString(4, userDto.getPassword());

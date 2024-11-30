@@ -170,7 +170,7 @@
             <button type="submit" value="로그인">로그인</button>
             <div class="signup-link">
                 아직 계정이 없으신가요? <br>
-                <a href="join">회원가입</a>
+                <a href="join.jsp">회원가입</a>
             </div>
         </form>
     </div>

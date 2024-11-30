@@ -1,7 +1,9 @@
 package dongari.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Enumeration;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.oreilly.servlet.MultipartRequest;
+import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
 import dongari.DongariDto;
 import dongari.DongariService;
@@ -60,46 +65,85 @@ public class EditDongari extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		request.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html;charset=UTF-8");
-		HttpSession session = request.getSession();
-		if (session == null) {
-			response.sendRedirect("login");
-			return; 
-		}
-		
-		int user_id = (int) session.getAttribute("user_id");
-		
-		int id = Integer.parseInt(request.getParameter("id")); // 여기서 id는 동아리 id
-		String title = request.getParameter("title");
-		String summary = request.getParameter("summary");
-		String body = request.getParameter("body");
-		int member_num = Integer.parseInt(request.getParameter("member_num"));
-		String img = request.getParameter("img");
-		int apply_status = Integer.parseInt(request.getParameter("apply_status")); //1 - 모집중, 2 - 상시 모집, 3 - 모집 마감
-		String apply_link = request.getParameter("apply_link");
-		String sns_link = request.getParameter("sns_link");
-		String location = request.getParameter("location");
-		int category_id = Integer.parseInt(request.getParameter("category_id"));
-		
-		String apply_start=null;
-		String apply_end=null;
-		if (apply_status==1) {
-			apply_start = request.getParameter("apply_start");
-			apply_end = request.getParameter("apply_end");
-		}
-		if(apply_status==3) {
-			apply_start="9999";
-			apply_end="9999";
-		}
-		
-		DongariService dongariService = new DongariService();
-		dongariService.editDongari(new DongariDto(id,user_id,category_id,member_num,img,
-				title,summary,body,apply_start,apply_end,apply_link,sns_link,location, ""));
-		
-		response.sendRedirect("./");
-		return; 
+	    request.setCharacterEncoding("UTF-8");
+	    response.setContentType("text/html;charset=UTF-8");
+
+	    HttpSession session = request.getSession();
+	    if (session == null || session.getAttribute("user_id") == null) {
+	        response.sendRedirect("login");
+	        return;
+	    }
+
+	    int user_id = (int) session.getAttribute("user_id");
+
+	    // 파일 업로드 경로 설정
+	    String uploadPath = getServletContext().getRealPath("/uploads");
+	    File uploadDir = new File(uploadPath);
+	    if (!uploadDir.exists()) {
+	        uploadDir.mkdir();
+	    }
+
+	    // 파일 업로드 처리
+	    int maxSize = 1024 * 1024 * 10; // 10MB
+	    MultipartRequest multi = new MultipartRequest(
+	        request,
+	        uploadPath,
+	        maxSize,
+	        "UTF-8",
+	        new DefaultFileRenamePolicy()
+	    );
+
+	    // 파라미터 가져오기
+	    int id = Integer.parseInt(multi.getParameter("id")); // 동아리 ID
+	    String title = multi.getParameter("title");
+	    String summary = multi.getParameter("summary");
+	    String body = multi.getParameter("body");
+	    int member_num = Integer.parseInt(multi.getParameter("member_num"));
+	    int apply_status = Integer.parseInt(multi.getParameter("apply_status")); // 1 - 모집 중, 2 - 상시 모집, 3 - 모집 마감
+	    String apply_link = multi.getParameter("apply_link");
+	    String sns_link = multi.getParameter("sns_link");
+	    String location = multi.getParameter("location");
+	    int category_id = Integer.parseInt(multi.getParameter("category_id"));
+
+	    // 모집 기간 처리
+	    String apply_start = null;
+	    String apply_end = null;
+	    if (apply_status == 1) { // 모집 중
+	        apply_start = multi.getParameter("apply_start");
+	        apply_end = multi.getParameter("apply_end");
+	    } else if (apply_status == 3) { // 모집 마감
+	        apply_start = "9999";
+	        apply_end = "9999";
+	    }
+
+	    // 이미지 처리
+	    String existingImage = multi.getParameter("existingImage"); // 기존 이미지
+	    String newImage = null;
+
+	    // 파일 업로드
+	    Enumeration<?> files = multi.getFileNames();
+	    if (files.hasMoreElements()) {
+	        String fileInputName = (String) files.nextElement();
+	        String savedFileName = multi.getFilesystemName(fileInputName);
+	        if (savedFileName != null) {
+	            newImage = "/uploads/" + savedFileName; // 새 이미지 경로 설정
+	        }
+	    }
+
+	    // 최종 이미지 경로 결정
+	    String finalImage = (newImage != null) ? newImage : existingImage;
+
+	    // 동아리 정보 수정
+	    DongariService dongariService = new DongariService();
+	    dongariService.editDongari(new DongariDto(
+	        id, user_id, category_id, member_num, finalImage,
+	        title, summary, body, apply_start, apply_end,
+	        apply_link, sns_link, location, ""
+	    ));
+
+	    response.sendRedirect("./");
 	}
+	
 	protected void doDelete(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html;charset=UTF-8");

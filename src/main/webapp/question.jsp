@@ -3,6 +3,8 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@ page import="java.util.*" %>
+<%@ page import="question.QuestionDao" %>
+<%@ page import="question.QuestionDto" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -82,7 +84,7 @@
 	</script>
 </head>
 <body>
-    <header>
+   <header>
         <div class="header-content">
             <div class="logo-container">
                 <img src="./assets/logo.png" alt="동국대학교 로고">
@@ -122,7 +124,7 @@
     <main>
         <section class="club-info">
             <div class="logo-container">
-                <img src="./${dongari.img}" alt="${dongari.title} Logo">
+                <img src="./assets/caps_logo.png" alt="${dongari.title} Logo">
                 <div class="site-name">
                     <div class="large-text">${dongari.title}</div> 
                     <div class="small-text">${dongari.member_num}명 이상</div>
@@ -135,7 +137,7 @@
    				<p>${dongari.body}</p>
 			</div>
             <div class="write">
-                <button class="write-button"><a href="newreview?id=${dongari.id}">리뷰쓰기</a></button>
+                <button class="write-button"><a href="newquestion?dongari_id=${dongari.id}">질문하기</a></button>
             </div>
         </section>
 
@@ -169,68 +171,42 @@
 			        <p><b>★<fmt:formatNumber value="${man}" type="number" maxFractionDigits="1" /></b>&nbsp;&nbsp;&nbsp;운영</p>
 			    </div>
 			</div>
-            <ul class="review-list">
-   				<c:forEach var="review" items="${reviews}">
-        		<li class="review-item" data-review-id="${review.id}" >
-	            	<div class="review-header">
-		                <span class="review-rating">
-		                	<fmt:formatNumber value="${review.total_rating}" type="number" maxFractionDigits="1" /><br>
-							<c:forEach begin="1" end="5" var="star">
-					            <c:choose>
-					                <c:when test="${star <= review.total_rating}">
-					                    ★
-					                </c:when>
-					                <c:when test="${star - 1 < review.total_rating && star > review.total_rating}">
-					                    ☆
-					                </c:when>
-					                <c:otherwise>
-					                    ☆
-					                </c:otherwise>
-					            </c:choose>
-					        </c:forEach>
-		                </span>
-		            </div>
-		            <div class ="review-body">
-		            	<div onclick="handleReviewClick('${review.username}', '${sessionScope.username}', '${dongari.id}', '${review.id}')">
-				            <strong class="review-title">"${review.title}"</strong>
-				            <p class="review-author">${review.username}</p>
-				            <p class="review-content">${review.body}</p>
-			            </div>
-			            <div class="review-controls">
-			                <span class="like-btn" data-review-id="${review.id}" data-likecheck="${review.likeCheck}">👍</span>
-			                <span id="likeCount${review.id}">${review.likeCount}</span>
-			            </div>
-		            </div>
-        		</li>
-    			</c:forEach>
-			</ul>
-        </section>
+			
+			<c:choose>
+	    		<c:when test="${not empty questions}">
+			        <ul class="review-list">
+			            <c:forEach var="question" items="${questions}">
+			                <li class="review-item" data-question-id="${question.id}">
+			                    <div class="review-body" onclick="window.location.href='/web_programming/reply?id=${dongari.id}&question_id=${question.id}'">
+			                     	<strong class="review-title">"${question.title}"</strong>
+			                        <p class="review-author">${question.user_id}</p>
+			                        <p class="review-content">${question.body}</p>
+		                        </div>
+		                     </li>
+		                     <li class="review-item" data-question-id="${question.id}">
+								<div class="review-body" onclick="window.location.href='/web_programming/reply?id=${dongari.id}&question_id=${question.id}'">
+			                        <p class="review-answer">
+			                            <c:choose>
+			                                <c:when test="${not empty question.answer}">
+			                                    <strong>답변</strong>
+			                                    <p class="review-content">${question.answer}</p>
+			                                </c:when>
+			                                <c:otherwise>
+			                                    답변 대기 중
+			                                </c:otherwise>
+			                            </c:choose>
+			                        </p>
+			                    </div>
+			                </li>
+			            </c:forEach>
+			        </ul>
+			    </c:when>
+			    <c:otherwise>
+			        <p>등록된 질문이 없습니다.</p>
+			    </c:otherwise>
+			</c:choose>
+		</section>
         <aside class="sidebars">
-            <h3>최근 질문</h3>
-            
-			<div class="sidebar">
-	            <c:choose>
-	            	<c:when test="${empty questions}">
-		                    <p>동아리에 대해 궁금한 점을 물어보세요!</p>
-		                </c:when>
-		                <c:otherwise>
-                  				<c:forEach var="question" items="${questions}">
-				                <li class="question">
-			                    	<div class="text-container">
-			                    		<a href="/web_programming/reply?id=${dongari.id}&question_id=${question.id}">${question.title}</a>
-					                </div>
-					            </li>
-			        			</c:forEach>
-		                </c:otherwise>
-		        </c:choose>
-		        <p class="question-list">
-		        	<a href="question?id=${dongari.id}">질문 더보기></a>
-				</p>
-			</div>
-            <div class="question-write">
-            	<a href="newquestion?dongari_id=${dongari.id}">질문하기</a>
-            </div>
-            
             <div class="apply">
 			    <c:choose>
 				    <c:when test="${dongari.apply_start eq 'None'}">
