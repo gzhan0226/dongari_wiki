@@ -190,15 +190,18 @@ main {
     font-size: 14px;
   }
   .club-button{
-  	width: 100%;
+  	background-color:orange;
+  	width: 80%;
     padding: 10px;
-    border: 1px solid #333;
+    border: 1px solid orange;
     color: #333;
-    border: none;
+    border-radius:10px;
     cursor: pointer;
+    transition: transform 0.5s ease;
   }
   .club-button:hover{
-    color: orange;
+
+  	transform: scale(1.3);
   }
 .recruit-btn.ongoing {
     background-color: #333;

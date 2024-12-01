@@ -66,33 +66,31 @@
 			</div>
 		</section>
 		<section class="club-list">
-			<c:forEach var="dongari" items="${list}">
-				<div class="club-card" data-title="${dongari.title}">
-					<img src="./assets/default_logo.png" alt="logo">
-					<h4>${dongari.title}</h4>
-					<p class="category">${dongari.category_name}</p>
-					<p>${dongari.summary}</p>
-					<button
-						class="recruit-btn 
+                <c:forEach var="dongari" items="${list}">
+                    <div class="club-card" data-title="${dongari.title}">
+                        <img src="./assets/default_logo.png" alt="logo">
+                        <h4>${dongari.title}</h4>
+                        <p class="category">${dongari.category_name}</p>
+                        <p>${dongari.summary}</p>
+                        <button class="recruit-btn 
                            <c:choose>
                            <c:when test="${dongari.apply_start eq 'None'}">ongoing</c:when>
                            <c:when test="${dongari.apply_start eq '9999'}">closed</c:when>
                            <c:otherwise>open</c:otherwise>
                        </c:choose>">
-						<c:choose>
-							<c:when test="${dongari.apply_start eq 'None'}">상시모집</c:when>
-							<c:when test="${dongari.apply_start eq '9999'}">모집완료</c:when>
-							<c:otherwise>모집중</c:otherwise>
-						</c:choose>
-					</button>
-					<br>
-					<%-- window.location.href='/web_programming/details?id=${dongari.id}' 로 나중에 바꾸기--%>
-					<button class="club-button"
-						onclick="window.location.href='/web_programming/review?id=${dongari.id}'">상세보기</button>
-				</div>
-			</c:forEach>
-		</section>
-	</main>
+                            <c:choose>
+                                <c:when test="${dongari.apply_start eq 'None'}">상시모집</c:when>
+                                <c:when test="${dongari.apply_start eq '9999'}">모집완료</c:when>
+                                <c:otherwise>모집중</c:otherwise>
+                            </c:choose>
+                        </button>
+                        <br>
+                        <%-- window.location.href='/web_programming/details?id=${dongari.id}' 로 나중에 바꾸기--%>
+                        <button class="club-button" onclick="window.location.href='/web_programming/review?id=${dongari.id}'">상세보기</button>
+                    </div>
+                </c:forEach>
+            </section>
+    </main>
 
 	<%-- 서버에서 필요한 데이터를 JavaScript 변수로 전달 --%>
 	<script>
