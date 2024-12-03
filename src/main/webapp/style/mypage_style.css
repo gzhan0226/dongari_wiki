@@ -151,6 +151,19 @@ a{
     padding: 20px;
     margin: 20px;
 }
+#right > h1{
+	width:80%;
+	float:left;
+}
+#right > button{
+	width:10%;
+	aspect-ratio:3/2;
+	border:none;
+	border-radius:20px;
+	font-size:1.5em;
+	background-color:orange;
+	color: black;
+}
 
 #left {
     width: 30vw;
