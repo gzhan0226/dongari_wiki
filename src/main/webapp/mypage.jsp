@@ -131,7 +131,7 @@
         
         <div id="right">
             
-            <h1>관리 중인 페이지</h1>
+            <h1>관리 중인 페이지</h1><button onclick="window.location.href='/web_programming/new'">+</button>
             <section class="club-list">
                 <c:forEach var="dongari" items="${dongariList}">
                     <div class="club-card" data-title="${dongari.title}">
@@ -147,6 +147,7 @@
                     </div>
                 </c:forEach>
             </section>
+            
         </div>
     </div>
     <%-- 서버에서 필요한 데이터를 JavaScript 변수로 전달 --%>
