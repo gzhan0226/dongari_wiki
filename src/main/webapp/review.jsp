@@ -124,13 +124,42 @@
             <div class="logo-container">
                 <img src="./${dongari.img}" alt="${dongari.title} Logo">
                 <div class="site-name">
-                    <div class="large-text">${dongari.title}</div> 
-                    <div class="small-text">${dongari.member_num}명 이상</div>
-                </div>
+				    <div class="large-text">${dongari.title}</div>
+				    <div class="small-text">
+				        <c:choose>
+				            <c:when test="${empty dongari.member_num}">
+				                부원수
+				            </c:when>
+				            <c:otherwise>
+				                ${dongari.member_num}명 이상
+				            </c:otherwise>
+				        </c:choose>
+				    </div>
+				</div>
                 <div class="scrap-btn" data-dongari-id="${dongari.id}" data-scrapcheck="${scrapCheck}">
                 	<div class="scrap">★</div>
                 </div>
             </div><br><br>
+            <div class="information-border">
+			    <div class="location">
+			        <c:choose>
+			            <c:when test="${empty dongari.location}">
+			                동아리방 위치
+			            </c:when>
+			            <c:otherwise>
+			                ${dongari.location}
+			            </c:otherwise>
+			        </c:choose>
+			    </div>
+			    <c:choose>
+			        <c:when test="${empty dongari.sns_link}">
+			            <a class="sns-link" onclick="alert('SNS 링크가 등록되지 않았습니다.');">sns 바로가기</a>
+			        </c:when>
+			        <c:otherwise>
+			            <a class="sns-link" href="https://${dongari.sns_link}/">sns 바로가기</a>
+			        </c:otherwise>
+			    </c:choose>
+			</div>
             <div class="introductions">
    				<p>${dongari.body}</p>
 			</div>

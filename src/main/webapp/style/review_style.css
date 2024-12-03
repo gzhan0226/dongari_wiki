@@ -427,3 +427,30 @@ main {
 .scrap.bookmarked {
 	color: orange;
 }
+.information-border{
+    display: flex;
+    justify-content: space-between;
+}
+.location{
+    margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 30px;
+    background-color: orange;
+    font-size: 12px;
+    color: white;
+    border: none;
+}
+.sns-link{
+	text-decoration: none;
+	margin-bottom: 20px;
+    padding: 10px;
+    border-radius: 10px;
+	border: 1px solid #333;
+    font-size: 12px;
+    color: #333;
+    font-weight: bold;
+}
+.sns-link:hover {
+	color: orange;
+	border: 1px solid orange;
+}

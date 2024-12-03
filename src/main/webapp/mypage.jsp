@@ -48,13 +48,13 @@
      <div class="profile-container">
      <div id="left">
      <div id="profile">
-     		<h1>${user.realname}님 반갑습니다!</h1><br>
-     		<h2>ℹ️ 회원 정보</h2>
-            <h3> 학번: ${user.studentnumber}  </h3>
-            <h3> 아이디: ${user.username}</h3>
+     		<h2>반갑습니다!</h2>
+     		
+            <h3>${user.studentnumber}  ${user.realname}님</h3>
+            <h3>아이디: ${user.username}</h3>
         </div> 	
         <div id="my">
-       	<div class="select"><h3>👍 내가 쓴 리뷰</h3>
+       	<div class="select"><h3>내가 쓴 리뷰</h3>
        	<div class="sidebar">
 
                     <c:choose> 
@@ -74,7 +74,7 @@
                 </div></div>
                <br>
        	<hr>
-       	<div class="select"><h3>⁉️나의 질문과 답변</h3>
+       	<div class="select"><h3>나의 질문과 답변</h3>
        	<div class="sidebar">
                     <c:choose> 
                         <c:when test="${empty questionList}">
@@ -104,7 +104,7 @@
 </div>
        	<hr>
        	<div class="select">
-       	<h3>☆ 스크랩</h3>
+       	<h3>스크랩</h3>
                 <div class="sidebar">
                     <c:choose> 
                         <c:when test="${empty scrapList}">
@@ -125,18 +125,17 @@
             <br>
         </div><br>
        	<hr>
-       	<div class="select"><a href="./logout">ﾧ↦ 로그아웃</a></div><br><br>
+       	<div class="select"><a href="./logout">로그아웃</a></div><br><br>
         </div>
       </div>
         
         <div id="right">
             
-            <h1>관리 중인 페이지</h1>
+            <h1>관리 중인 페이지</h1><button onclick="window.location.href='/web_programming/new'">+</button>
             <section class="club-list">
                 <c:forEach var="dongari" items="${dongariList}">
                     <div class="club-card" data-title="${dongari.title}">
                         <img src="./assets/default_logo.png" alt="logo">
-                        <div class="inner">
                         <h4>${dongari.title}</h4>
                         <p class="category">${dongari.category_name}</p>
                         <p>${dongari.summary}</p>
@@ -145,10 +144,10 @@
                         </button>
                         <br>
                         <button class="club-button" onclick="window.location.href='/web_programming/review?id=${dongari.id}'">상세보기</button>
-                        </div>
                     </div>
                 </c:forEach>
             </section>
+            
         </div>
     </div>
     <%-- 서버에서 필요한 데이터를 JavaScript 변수로 전달 --%>
